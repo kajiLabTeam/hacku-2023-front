@@ -1,0 +1,70 @@
+.appbar {
+  height: fit-content;
+  width: 80px;
+  background-color: var(--on-primary);
+  border-radius: 0 0 20px 0;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+
+  .stack {
+    padding: 40px 0 30px;
+    width: fit-content;
+    text-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    .icon_player,
+    .icon_postadd,
+    .icon_account,
+    .icon_search {
+      padding: 10px 15px 10px 15px;
+      width: 70px;
+      transition: all 0.3s;
+      border-radius: 0 20px 20px 0;
+    }
+
+    .icon_player {
+      fill: var(--primary);
+
+      &.selected {
+        background-color: var(--primary);
+      }
+    }
+
+    .icon_postadd {
+      padding-left: 16px;
+      width: 73px;
+      fill: var(--secoundary);
+
+      &.selected {
+        background-color: var(--secoundary);
+      }
+    }
+
+    .icon_account {
+      fill: var(--tertiary);
+
+      &.selected {
+        background-color: var(--tertiary);
+      }
+    }
+
+    .icon_search {
+      padding-left: 17px;
+      width: 76px;
+      fill: var(--quaternary);
+
+      &.selected {
+        background-color: var(--quaternary);
+      }
+    }
+
+    .selected {
+      fill: var(--on-primary);
+    }
+  }
+}

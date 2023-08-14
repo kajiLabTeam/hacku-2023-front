@@ -12,6 +12,8 @@
 
   --background: #e2e3e3;
   --background-dark: #d8d9da;
+
+  font-size: 12px;
 }
 
 
@@ -22,7 +24,8 @@
 }
 
 html,
-body {
+body,
+body>div {
   width: 100vw;
   height: 100vh;
   overflow: hidden;

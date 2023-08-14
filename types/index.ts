@@ -1,4 +1,6 @@
-import { reactions, speakers } from "@/const";
+import { pages, reactions, speakers } from "@/const";
+
+type Page = (typeof pages)[number];
 
 // 1枚のスライド
 type slideObject = {
@@ -63,6 +65,7 @@ type UserObject = {
 };
 
 export type {
+  Page,
   slideObject,
   Reactions,
   ShortObject,
