@@ -1,20 +1,25 @@
 import styles from "@/styles/post.module.scss";
 import ShortSettingsCard from "../ui/shortSettingsCard/shortSettingsCard";
+import usePostShort from "@/hooks/usePostShort";
+import SlideEditorComponent from "../ui/slideEditor/slideEditor";
 
 export default function PostPage() {
+  const [shorts, { addSlideAt, deleteSlideAt }] = usePostShort();
+
   return (
     <section className={styles.post}>
-      <section className={styles.page}>
-        <div className={styles.left_top}>
-          <ShortSettingsCard className={styles.settings_card} />
-        </div>
-      </section>
+      <ShortSettingsCard className={styles.settings_card} />
 
-      <section className={styles.page}></section>
-
-      <section className={styles.page}></section>
-
-      <section className={styles.page}></section>
+      {shorts.slides.map((_, index) => {
+        return (
+          <SlideEditorComponent
+            key={index}
+            index={index}
+            addSlideAt={addSlideAt}
+            deleteSlideAt={deleteSlideAt}
+          />
+        );
+      })}
     </section>
   );
 }

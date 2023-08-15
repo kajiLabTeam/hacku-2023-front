@@ -2,6 +2,7 @@ import "@/styles/globals.css";
 import Head from "next/head";
 import { AppProps } from "next/app";
 import { MantineProvider } from "@mantine/core";
+import { RecoilRoot } from "recoil";
 
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
@@ -15,9 +16,11 @@ export default function App(props: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <MantineProvider withGlobalStyles withNormalizeCSS>
-        <Component {...pageProps} />
-      </MantineProvider>
+      <RecoilRoot>
+        <MantineProvider withGlobalStyles withNormalizeCSS>
+          <Component {...pageProps} />
+        </MantineProvider>
+      </RecoilRoot>
     </>
   );
 }

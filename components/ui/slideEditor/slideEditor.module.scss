@@ -1,0 +1,89 @@
+.page {
+  height: 100%;
+  width: 100%;
+  padding-right: 100px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  scroll-snap-align: start;
+  position: relative;
+
+  &:first-of-type .pagenum::before {
+    display: none;
+  }
+
+  &:last-of-type .pagenum::after {
+    height: calc(50vh - 25px);
+  }
+}
+
+.left_top {
+  .pagenum {
+    height: 50px;
+    width: 50px;
+    color: var(--secoundary);
+    background-color: var(--on-secoundary);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: calc(25% - 25px);
+
+    &::before {
+      content: "";
+      margin-left: 24px;
+      width: 0;
+      height: calc(25vh - 23px);
+      display: block;
+      border-left: dashed 2px var(--on-secoundary);
+      position: absolute;
+      bottom: 50px;
+    }
+
+    &::after {
+      content: "";
+      margin-left: 24px;
+      width: 0;
+      height: calc(75vh - 23px);
+      display: block;
+      border-left: dashed 2px var(--on-secoundary);
+    }
+  }
+
+  .plus_icon {
+    height: 30px;
+    width: 30px;
+    padding: 5px;
+    color: var(--secoundary);
+    background-color: var(--on-secoundary);
+    border-radius: 50%;
+    cursor: pointer;
+    position: absolute;
+    right: 30px;
+    top: calc(75% - 25px);
+
+    path {
+      fill: var(--secoundary);
+    }
+  }
+}
+
+.right_top {
+  display: flex;
+  align-items: center;
+}
+
+.left_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right_bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

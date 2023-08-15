@@ -1,0 +1,16 @@
+.script_editor {
+  width: 80%;
+  height: 80%;
+  margin: 20px 0;
+  padding: 0 20px;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  resize: none;
+
+  background-color: var(--secoundary);
+  background-image: linear-gradient(180deg, var(--text) 1px, transparent 1px);
+  background-size: 100% 1.5em;
+  line-height: 2.25rem;
+  padding-bottom: 1px;
+}

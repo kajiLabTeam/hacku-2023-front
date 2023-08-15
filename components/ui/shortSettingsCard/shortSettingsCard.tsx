@@ -1,29 +1,17 @@
 import { useState } from "react";
 import styles from "./shortSettingsCard.module.scss";
-import { useForm } from "@mantine/form";
 import { PinIcon } from "@/components/icons/icon";
+import usePostShort from "@/hooks/usePostShort";
+import { Select } from "@mantine/core";
+import { genres, speakers } from "@/const";
 
 type props = {
   className?: string;
 };
 
 export default function ShortSettingsCard({ className }: props) {
-  const [searchTitle, setSearchTitle] = useState("");
   const [searchTag, setSearchTag] = useState("");
-  const tags = useForm({
-    initialValues: {
-      employees: [],
-    },
-  });
-
-  function addTag(tag: string) {
-    const taglist = tags.values.employees as string[];
-
-    if (taglist.includes(tag)) return;
-    if (tag === "") return;
-
-    tags.insertListItem("employees", tag);
-  }
+  const [short, { addTag, deleteTag, setTitle }] = usePostShort();
 
   return (
     <div className={`${styles.settings_card} ${className}`}>
@@ -37,8 +25,8 @@ export default function ShortSettingsCard({ className }: props) {
           id="settings_title"
           type="text"
           className={styles.settings_title}
-          value={searchTitle}
-          onChange={(e) => setSearchTitle(e.target.value)}
+          value={short.title}
+          onChange={(e) => setTitle(e.target.value)}
         />
       </div>
 
@@ -46,20 +34,6 @@ export default function ShortSettingsCard({ className }: props) {
         <label className={styles.label} htmlFor="settings_tag">
           タグ
         </label>
-
-        <div className={styles.tag_list}>
-          {tags.values.employees.map((tag, index) => {
-            return (
-              <div
-                key={tag}
-                className={styles.tag_item}
-                onClick={() => tags.removeListItem("employees", index)}
-              >
-                {tag}
-              </div>
-            );
-          })}
-        </div>
 
         <input
           type="text"
@@ -74,6 +48,51 @@ export default function ShortSettingsCard({ className }: props) {
             }
           }}
         />
+
+        <div className={styles.tag_list}>
+          {short.tags.map((tag, index) => {
+            return (
+              <div
+                key={tag}
+                className={styles.tag_item}
+                onClick={() => deleteTag(index)}
+              >
+                {tag}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div className={styles.select_container}>
+        <div className={styles.select_box}>
+          <label className={styles.label} htmlFor="settings_genre">
+            ジャンル
+          </label>
+          <Select
+            id="settings_genre"
+            className={styles.settings_genre}
+            data={genres}
+            placeholder="select genre"
+            searchable
+            nothingFound="Nothing found"
+          />
+        </div>
+
+        <div className={styles.select_box}>
+          <label className={styles.label} htmlFor="settings_genre">
+            スピーカー
+          </label>
+          <Select
+            id="settings_genre"
+            className={styles.settings_genre}
+            data={speakers}
+            defaultValue={speakers[0]}
+            placeholder="select speaker"
+            searchable
+            nothingFound="Nothing found"
+          />
+        </div>
       </div>
 
       <div className={styles.settings_container}>

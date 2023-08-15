@@ -68,3 +68,15 @@ export function PinIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function PlusIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 30 30"
+      {...props}
+    >
+      <path d="M27.15,12.15h-9.3V2.85c0-1.57-1.28-2.85-2.85-2.85s-2.85,1.28-2.85,2.85V12.15H2.85c-1.57,0-2.85,1.28-2.85,2.85s1.28,2.85,2.85,2.85H12.15v9.3c0,1.57,1.28,2.85,2.85,2.85s2.85-1.28,2.85-2.85v-9.3h9.3c1.57,0,2.85-1.28,2.85-2.85s-1.28-2.85-2.85-2.85Z" />
+    </svg>
+  );
+}
