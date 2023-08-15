@@ -45,3 +45,26 @@ export function SearchIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function PinIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 33.65 51.03"
+      {...props}
+    >
+      <rect
+        style={{ fill: "#231815" }}
+        x=".41"
+        y="38.06"
+        width="22.9"
+        height="3"
+        transform="translate(-29.4 41.35) rotate(-75.79)"
+      />
+      <path
+        style={{ fill: "#d20a3c" }}
+        d="M29.7,28.53c-.79-4.98-.21-14.18,2.44-18.14,.79-.37,1.31-.86,1.46-1.48,.63-2.48-4.74-5.97-12-7.81C14.35-.74,7.96-.22,7.33,2.26c-.16,.62,.06,1.3,.58,2,.44,4.74-3.43,13.11-6.49,17.12-.74,.4-1.21,.92-1.37,1.54-.72,2.84,5.44,6.85,13.75,8.95,8.31,2.1,15.64,1.51,16.36-1.33,.16-.62-.02-1.3-.47-2.01Z"
+      />
+    </svg>
+  );
+}

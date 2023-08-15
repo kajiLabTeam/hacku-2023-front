@@ -1,8 +1,13 @@
-import { useForm } from "@mantine/form";
-import styles from "./modal.module.scss";
 import { useState } from "react";
+import styles from "./shortSettingsCard.module.scss";
+import { useForm } from "@mantine/form";
+import { PinIcon } from "@/components/icons/icon";
 
-export default function ModalComponent() {
+type props = {
+  className?: string;
+};
+
+export default function ShortSettingsCard({ className }: props) {
   const [searchTitle, setSearchTitle] = useState("");
   const [searchTag, setSearchTag] = useState("");
   const tags = useForm({
@@ -21,23 +26,25 @@ export default function ModalComponent() {
   }
 
   return (
-    <>
+    <div className={`${styles.settings_card} ${className}`}>
+      <PinIcon className={styles.pin_icon} />
+
       <div className={styles.container}>
-        <label className={styles.label} htmlFor="search_title">
-          タイトル検索
+        <label className={styles.label} htmlFor="settings_title">
+          タイトル
         </label>
         <input
-          id="search_title"
+          id="settings_title"
           type="text"
-          className={styles.search_title}
+          className={styles.settings_title}
           value={searchTitle}
           onChange={(e) => setSearchTitle(e.target.value)}
         />
       </div>
 
-      <div className={styles.container}>
-        <label className={styles.label} htmlFor="search_tag">
-          タグ検索
+      <div className={styles.tag_container}>
+        <label className={styles.label} htmlFor="settings_tag">
+          タグ
         </label>
 
         <div className={styles.tag_list}>
@@ -56,8 +63,8 @@ export default function ModalComponent() {
 
         <input
           type="text"
-          id="search_tag"
-          className={styles.search_tag}
+          id="settings_tag"
+          className={styles.settings_tag}
           value={searchTag}
           onChange={(e) => setSearchTag(e.target.value)}
           onKeyDown={(e) => {
@@ -69,9 +76,9 @@ export default function ModalComponent() {
         />
       </div>
 
-      <div className={styles.search_container}>
-        <div className={styles.search}>検索</div>
+      <div className={styles.settings_container}>
+        <div className={styles.search}>投稿</div>
       </div>
-    </>
+    </div>
   );
 }
