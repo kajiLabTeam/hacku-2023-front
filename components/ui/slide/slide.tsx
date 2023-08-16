@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import styles from "./slide.module.scss";
 import { Marp } from "@marp-team/marp-core";
 
