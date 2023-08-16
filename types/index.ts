@@ -3,11 +3,16 @@ import { pages, reactions, speakers } from "@/const";
 type Page = (typeof pages)[number];
 
 // 1枚のスライド
-type slideObject = {
+type SlideObject = {
   script: string;
-  slideMd: string;
-  slideUrl: string;
-  voiceUrl: string;
+  slide: string;
+  voiceURL: string;
+};
+
+// 投稿時の1枚のスライド
+type PostSlideObject = {
+  script: string;
+  slide: string;
 };
 
 type Datetime = `${number}-${number}-${number}`;
@@ -18,7 +23,7 @@ type Reactions = (typeof reactions)[number];
 type ShortObject = {
   id: number;
   title: string;
-  slides: slideObject[];
+  slides: SlideObject[];
   tags: string[];
   created_at: Datetime;
   reactions: {
@@ -29,16 +34,8 @@ type ShortObject = {
 // 投稿時のショート
 type PostShortObject = {
   title: string;
-  slides: slideObject[];
+  slides: PostSlideObject[];
   tags: string[];
-};
-
-// サムネイル
-type ThumbnailObject = {
-  id: number;
-  title: string;
-  slideMd?: string;
-  slideUrl?: string;
 };
 
 // VoiceVox のスピーカー
@@ -66,11 +63,11 @@ type UserObject = {
 
 export type {
   Page,
-  slideObject,
+  SlideObject,
+  PostSlideObject,
   Reactions,
   ShortObject,
   PostShortObject,
-  ThumbnailObject,
   Speaker,
   UserObject,
 };

@@ -8,26 +8,11 @@
   scroll-snap-type: y mandatory;
   scroll-snap-align: start;
 
-  .page {
-    height: 100%;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    scroll-snap-align: start;
-  }
-
-  .page:nth-of-type(2n) {
-    background-color: aqua;
-  }
-
-  .left_top {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .settings_card {
-      rotate: -1deg;
-    }
+  .settings_card {
+    rotate: -1deg;
+    position: absolute;
+    left: 10%;
+    top: 50px;
+    width: 450px;
   }
 }
