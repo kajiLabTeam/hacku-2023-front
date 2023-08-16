@@ -1,4 +1,4 @@
-import { pages, reactions, speakers } from "@/const";
+import { genres, pages, reactions, speakers } from "@/const";
 
 type Page = (typeof pages)[number];
 
@@ -10,10 +10,7 @@ type SlideObject = {
 };
 
 // 投稿時の1枚のスライド
-type PostSlideObject = {
-  script: string;
-  slide: string;
-};
+type PostSlideObject = Omit<SlideObject, "voiceURL">;
 
 type Datetime = `${number}-${number}-${number}`;
 
@@ -23,30 +20,38 @@ type Reactions = (typeof reactions)[number];
 type ShortObject = {
   id: number;
   title: string;
+  speaker: Speaker;
   slides: SlideObject[];
   tags: string[];
-  created_at: Datetime;
+  createdAt: Datetime;
   reactions: {
     [key in Reactions]: number;
   };
 };
 
-// 投稿時のショート
-type PostShortObject = {
+// ショートの一覧取得時
+type ShortList = {
+  id: number;
   title: string;
-  slides: PostSlideObject[];
-  tags: string[];
-};
+  slide: string;
+  voiceURL: string;
+  views: number;
+  speaker: Speaker;
+  poster: string;
+}[];
+
+// 投稿時のショート
+type PostShortObject = Pick<ShortObject, "title" | "slides" | "tags">;
 
 // VoiceVox のスピーカー
 type Speaker = (typeof speakers)[number];
 
+// ジャンル
+type Genres = keyof typeof genres;
+
 // 閲覧記録
 type ViewRecord = {
-  date: Datetime;
-  frontend: number;
-  backend: number;
-  infra: number;
+  [key in Genres]: number;
 };
 
 // 実績
@@ -58,7 +63,26 @@ type Achievement = {
 // ユーザー情報
 type UserObject = {
   achievements: Achievement[];
-  genres: ViewRecord[];
+  report: ViewRecord[];
+};
+
+// 履歴
+type HistoryObject = {
+  id: number;
+  title: string;
+  slide: string;
+  views: number;
+  poster: string;
+};
+
+// 投稿履歴
+type PostHistories = {
+  postHistories: HistoryObject[];
+};
+
+// 閲覧履歴
+type BrowsingHistories = {
+  browsingHistories: HistoryObject[];
 };
 
 export type {
@@ -67,7 +91,11 @@ export type {
   PostSlideObject,
   Reactions,
   ShortObject,
+  ShortList,
   PostShortObject,
   Speaker,
+  Genres,
+  ViewRecord,
+  Achievement,
   UserObject,
 };

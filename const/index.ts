@@ -1,6 +1,6 @@
 const pages = ["view", "post", "user"] as const;
 
-const reactions = ["supreme", "like", "hmm"] as const;
+const reactions = ["heart", "good", "smile"] as const;
 
 const speakers = [
   "ずんだもん",
@@ -31,13 +31,11 @@ const speakers = [
   "中国うさぎ",
 ] as const;
 
-const genres = [
-  "フロントエンド",
-  "バックエンド",
-  "スマホアプリ",
-  "インフラ",
-  "デザイン",
-  "その他",
-] as const;
+const genres = {
+  frontend: "フロントエンド",
+  backend: "バックエンド",
+  infra: "インフラ",
+  others: "その他",
+} as const;
 
 export { pages, reactions, speakers, genres };
