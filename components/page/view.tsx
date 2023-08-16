@@ -9,7 +9,14 @@ import {
   SmileIcon,
   SmileFilledIcon,
 } from "@/components/icons/icon";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { ShortObject } from "@/types";
+
+type shortContentProps = {
+  short: ShortObject;
+  index: number;
+  isViewing: boolean;
+};
 
 export default function ViewPage() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -41,28 +48,47 @@ export default function ViewPage() {
     };
   }, [setCurrentIndex]);
 
+  const ShortContent = ({ short, index, isViewing }: shortContentProps) => {
+    const memoizedShortComponent = useMemo(
+      () => (
+        <ShortViewer short={short} shortIndex={index} isViewing={isViewing} />
+      ),
+      [short, index, isViewing]
+    );
+    return memoizedShortComponent;
+  };
+
+  const ShortInfo = ({ short }: { short: ShortObject }) => {
+    const memoizedShortComponent = useMemo(
+      () => (
+        <div className={styles.right}>
+          {dateComponent(short.createdAt)}
+
+          <div className={styles.reaction}>
+            <HeartIcon className={styles.icon} />
+            <GoodIcon className={styles.icon} />
+            <SmileIcon className={styles.icon} />
+          </div>
+        </div>
+      ),
+      [short.createdAt]
+    );
+    return memoizedShortComponent;
+  };
+
   return (
     <section className={styles.view} id="viewer">
       {shorts.map((short, index) => (
-        <div className={styles.short} key={index}>
+        <div className={styles.short} key={short.id}>
           <h1 className={styles.title}>{short.title}</h1>
 
           <div className={styles.container}>
-            <ShortViewer
+            <ShortContent
               short={short}
-              shortIndex={index}
-              isViewing={currentIndex === index}
+              index={index}
+              isViewing={index === currentIndex}
             />
-
-            <div className={styles.right}>
-              {dateComponent(short.createdAt)}
-
-              <div className={styles.reaction}>
-                <HeartIcon className={styles.icon} />
-                <GoodIcon className={styles.icon} />
-                <SmileIcon className={styles.icon} />
-              </div>
-            </div>
+            <ShortInfo short={short} key={index} />
           </div>
         </div>
       ))}

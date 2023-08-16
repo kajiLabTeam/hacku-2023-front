@@ -53,10 +53,6 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
     };
   }, [setSlideIndex, shortIndex]);
 
-  useEffect(() => {
-    console.log(">", shortIndex, isViewing);
-  }, [shortIndex, isViewing]);
-
   return (
     <div className={styles.short_viewr}>
       <div
