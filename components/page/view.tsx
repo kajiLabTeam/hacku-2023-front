@@ -1,6 +1,6 @@
 import styles from "@/styles/view.module.scss";
 import { shorts } from "@/sample/short";
-import SlideComponent from "@/components/ui/slide/slide";
+import ShortViewer from "@/components/ui/shortViewer/shortViewer";
 import {
   GoodFilledIcon,
   GoodIcon,
@@ -9,8 +9,11 @@ import {
   SmileIcon,
   SmileFilledIcon,
 } from "@/components/icons/icon";
+import { useEffect, useState } from "react";
 
 export default function ViewPage() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
   function dateComponent(date: string) {
     const d = new Date(date);
     const year = d.getFullYear();
@@ -27,20 +30,29 @@ export default function ViewPage() {
     );
   }
 
+  useEffect(() => {
+    const viewer = document.getElementById("viewer");
+    if (!viewer) return;
+
+    viewer.onscroll = () => {
+      const windowHigh = window.innerHeight;
+      const scrollTop = viewer.scrollTop;
+      setCurrentIndex(Math.round(scrollTop / windowHigh));
+    };
+  }, [setCurrentIndex]);
+
   return (
-    <section className={styles.view}>
+    <section className={styles.view} id="viewer">
       {shorts.map((short, index) => (
         <div className={styles.short} key={index}>
           <h1 className={styles.title}>{short.title}</h1>
 
           <div className={styles.container}>
-            <div className={styles.left}>
-              <div className={styles.short_container}>
-                {short.slides.map((slide, index) => (
-                  <SlideComponent markdown={slide.slide} key={index} />
-                ))}
-              </div>
-            </div>
+            <ShortViewer
+              short={short}
+              shortIndex={index}
+              isViewing={currentIndex === index}
+            />
 
             <div className={styles.right}>
               {dateComponent(short.createdAt)}

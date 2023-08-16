@@ -7,6 +7,12 @@
 
   scroll-snap-type: y mandatory;
 
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
   .short {
     height: 100vh;
     padding: 40px;
@@ -22,29 +28,6 @@
     .container {
       display: grid;
       grid-template-columns: 1fr 100px;
-    }
-  }
-}
-
-.left {
-  .short_container {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    border-radius: 10px;
-    display: flex;
-    overflow: scroll hidden;
-    scroll-snap-type: x mandatory;
-
-    & > div {
-      flex-shrink: 0;
-      scroll-snap-align: start;
-      box-sizing: content-box;
-      border-right: 1px solid var(--primary);
-    }
-
-    & > div:last-of-type {
-      border-right: none;
     }
   }
 }
