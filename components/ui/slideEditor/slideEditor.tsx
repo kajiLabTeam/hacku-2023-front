@@ -5,15 +5,18 @@ import ScriptEditor from "@/components/ui/scriptEditor/scriptEditor";
 import { PlusIcon } from "@/components/icons/icon";
 import { Button, Flex, Modal, Space } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
+import { PostSlideObject } from "@/types";
 
 type props = {
   index: number;
+  slide: PostSlideObject;
   addSlideAt: (index: number) => void;
   deleteSlideAt: (index: number) => void;
 };
 
 export default function SlideEditorComponent({
   index,
+  slide,
   addSlideAt,
   deleteSlideAt,
 }: props) {
@@ -66,7 +69,7 @@ export default function SlideEditorComponent({
         </div>
 
         <div className={styles.right_top}>
-          <SlideComponent />
+          <SlideComponent markdown={slide.slide} />
         </div>
 
         <div className={styles.left_bottom}>

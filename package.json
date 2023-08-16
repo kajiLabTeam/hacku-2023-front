@@ -19,6 +19,7 @@
     "@mantine/notifications": "^6.0.19",
     "@mantine/prism": "^6.0.19",
     "@mantine/tiptap": "^6.0.19",
+    "@marp-team/marp-core": "^3.8.0",
     "@tabler/icons-react": "^2.30.0",
     "@tiptap/extension-highlight": "^2.0.4",
     "@tiptap/extension-link": "^2.0.4",

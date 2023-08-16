@@ -1,7 +1,26 @@
-import styles from './slide.module.scss';
+import { useEffect } from "react";
+import styles from "./slide.module.scss";
+import { Marp } from "@marp-team/marp-core";
 
-export default function SlideComponent() {
+type props = {
+  markdown: string;
+};
+
+export default function SlideComponent({ markdown }: props) {
+  const marp = new Marp();
+  const { html, css } = marp.render(markdown);
+
+  useEffect(() => {
+    console.log(css);
+  }, [css]);
+
   return (
-    <div className={styles.slide}></div>
-  )
+    <>
+      <style jsx>{css}</style>
+
+      <div className={styles.slide}>
+        <div dangerouslySetInnerHTML={{ __html: html }} />
+      </div>
+    </>
+  );
 }
