@@ -10,10 +10,6 @@ export default function SlideComponent({ markdown }: props) {
   const marp = new Marp();
   const { html, css } = marp.render(markdown);
 
-  useEffect(() => {
-    console.log(css);
-  }, [css]);
-
   return (
     <>
       <style jsx>{css}</style>

@@ -38,4 +38,7 @@ const genres = {
   others: "その他",
 } as const;
 
-export { pages, reactions, speakers, genres };
+const genresKeys = Object.keys(genres) as (keyof typeof genres)[];
+const genresValues = Object.values(genres);
+
+export { pages, reactions, speakers, genres, genresKeys , genresValues};
