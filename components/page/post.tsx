@@ -10,11 +10,12 @@ export default function PostPage() {
     <section className={styles.post}>
       <ShortSettingsCard className={styles.settings_card} />
 
-      {shorts.slides.map((_, index) => {
+      {shorts.slides.map((slide, index) => {
         return (
           <SlideEditorComponent
             key={index}
             index={index}
+            slide={slide}
             addSlideAt={addSlideAt}
             deleteSlideAt={deleteSlideAt}
           />
