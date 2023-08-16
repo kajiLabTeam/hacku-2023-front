@@ -72,7 +72,7 @@ export default function ShortSettingsCard({ className }: props) {
           <Select
             id="settings_genre"
             className={styles.settings_genre}
-            data={genres}
+            data={Object.values(genres)}
             placeholder="select genre"
             searchable
             nothingFound="Nothing found"
