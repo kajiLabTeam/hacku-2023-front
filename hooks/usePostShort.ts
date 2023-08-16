@@ -1,5 +1,6 @@
+import { speakers } from "@/const";
 import { postShortState } from "@/store/state";
-import { PostSlideObject } from "@/types";
+import { GenreKey, PostSlideObject, Speaker } from "@/types";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 
@@ -9,6 +10,7 @@ export default function usePostShort() {
   const init = useCallback(() => {
     setShorts({
       title: "",
+      speaker: speakers[0],
       slides: [
         {
           script: "",
@@ -16,6 +18,7 @@ export default function usePostShort() {
         },
       ],
       tags: [],
+      genre: "",
     });
   }, [setShorts]);
 
@@ -26,9 +29,8 @@ export default function usePostShort() {
       slide: "",
     };
     setShorts({
-      title: short.title,
+      ...short,
       slides: [...short.slides, newSlide],
-      tags: short.tags,
     });
   }
 
@@ -41,9 +43,8 @@ export default function usePostShort() {
     const newSlides = [...short.slides];
     newSlides.splice(index, 0, newSlide);
     setShorts({
-      title: short.title,
+      ...short,
       slides: newSlides,
-      tags: short.tags,
     });
   }
 
@@ -52,18 +53,32 @@ export default function usePostShort() {
     const newSlides = [...short.slides];
     newSlides.splice(index, 1);
     setShorts({
-      title: short.title,
+      ...short,
       slides: newSlides,
-      tags: short.tags,
     });
   }
 
   // タイトルを更新
   function setTitle(title: string) {
     setShorts({
+      ...short,
       title: title,
-      slides: short.slides,
-      tags: short.tags,
+    });
+  }
+
+  // speakerを更新
+  function setSpeaker(speaker: Speaker) {
+    setShorts({
+      ...short,
+      speaker: speaker,
+    });
+  }
+
+  // ジャンルを更新
+  function setGenre(genre: GenreKey) {
+    setShorts({
+      ...short,
+      genre: genre,
     });
   }
 
@@ -72,9 +87,8 @@ export default function usePostShort() {
     const newSlides = structuredClone([...short.slides]);
     newSlides[index].slide = slide;
     setShorts({
-      title: short.title,
+      ...short,
       slides: newSlides,
-      tags: short.tags,
     });
   }
 
@@ -89,9 +103,8 @@ export default function usePostShort() {
       const newSlides = structuredClone([...short.slides]);
       newSlides[index].script = script;
       setShorts({
-        title: short.title,
+        ...short,
         slides: newSlides,
-        tags: short.tags,
       });
     }
   }
@@ -104,8 +117,7 @@ export default function usePostShort() {
     const uniqueTags = newTags.filter((x, i, self) => self.indexOf(x) === i);
 
     setShorts({
-      title: short.title,
-      slides: short.slides,
+      ...short,
       tags: uniqueTags,
     });
   }
@@ -115,8 +127,7 @@ export default function usePostShort() {
     const newTags = [...short.tags];
     newTags.splice(index, 1);
     setShorts({
-      title: short.title,
-      slides: short.slides,
+      ...short,
       tags: newTags,
     });
   }
@@ -135,6 +146,8 @@ export default function usePostShort() {
       addSlideAt,
       deleteSlideAt,
       setTitle,
+      setSpeaker,
+      setGenre,
       updateSlideLayout,
       updateSlideScript,
       addTag,

@@ -1,4 +1,5 @@
-import { genres, pages, reactions, speakers } from "@/const";
+import { genres, genresKeys, pages, reactions, speakers } from "@/const";
+import { ValueOf } from "next/dist/shared/lib/constants";
 
 type Page = (typeof pages)[number];
 
@@ -16,6 +17,13 @@ type Datetime = `${number}-${number}-${number}`;
 
 type Reactions = (typeof reactions)[number];
 
+// VoiceVox のスピーカー
+type Speaker = (typeof speakers)[number];
+
+type GenreKey = keyof typeof genres | "";
+
+type GenreValue = ValueOf<typeof genres>;
+
 // 1つのショート
 type ShortObject = {
   id: number;
@@ -23,6 +31,9 @@ type ShortObject = {
   speaker: Speaker;
   slides: SlideObject[];
   tags: string[];
+  genre: GenreKey;
+  views: number;
+  poster: string;
   createdAt: Datetime;
   reactions: {
     [key in Reactions]: number;
@@ -41,17 +52,17 @@ type ShortList = {
 }[];
 
 // 投稿時のショート
-type PostShortObject = Pick<ShortObject, "title" | "slides" | "tags">;
-
-// VoiceVox のスピーカー
-type Speaker = (typeof speakers)[number];
-
-// ジャンル
-type Genres = keyof typeof genres;
+type PostShortObject = {
+  title: string;
+  speaker: Speaker;
+  slides: PostSlideObject[];
+  tags: string[];
+  genre: GenreKey;
+};
 
 // 閲覧記録
 type ViewRecord = {
-  [key in Genres]: number;
+  [key in GenreKey]: number;
 };
 
 // 実績
@@ -94,8 +105,11 @@ export type {
   ShortList,
   PostShortObject,
   Speaker,
-  Genres,
+  GenreKey,
+  GenreValue,
   ViewRecord,
   Achievement,
   UserObject,
+  PostHistories,
+  BrowsingHistories,
 };

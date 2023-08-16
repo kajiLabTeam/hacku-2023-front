@@ -3,7 +3,8 @@ import styles from "./shortSettingsCard.module.scss";
 import { PinIcon } from "@/components/icons/icon";
 import usePostShort from "@/hooks/usePostShort";
 import { Select } from "@mantine/core";
-import { genres, speakers } from "@/const";
+import { genres, genresKeys, genresValues, speakers } from "@/const";
+import { GenreKey, GenreValue, Speaker } from "@/types";
 
 type props = {
   className?: string;
@@ -11,7 +12,8 @@ type props = {
 
 export default function ShortSettingsCard({ className }: props) {
   const [searchTag, setSearchTag] = useState("");
-  const [short, { addTag, deleteTag, setTitle }] = usePostShort();
+  const [short, { addTag, deleteTag, setTitle, setSpeaker, setGenre }] =
+    usePostShort();
 
   return (
     <div className={`${styles.settings_card} ${className}`}>
@@ -72,7 +74,11 @@ export default function ShortSettingsCard({ className }: props) {
           <Select
             id="settings_genre"
             className={styles.settings_genre}
-            data={Object.values(genres)}
+            data={genresValues}
+            onChange={(v) => {
+              const g = genresKeys.find((key) => genres[key] === v) || "";
+              setGenre(g);
+            }}
             placeholder="select genre"
             searchable
             nothingFound="Nothing found"
@@ -88,6 +94,7 @@ export default function ShortSettingsCard({ className }: props) {
             className={styles.settings_genre}
             data={speakers}
             defaultValue={speakers[0]}
+            onChange={(v) => setSpeaker(v as Speaker)}
             placeholder="select speaker"
             searchable
             nothingFound="Nothing found"
