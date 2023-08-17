@@ -1,17 +1,28 @@
 .short {
   height: 100vh;
-  padding: 40px;
+  padding: 20px 10px 40px 40px;
   scroll-snap-align: start;
+  display: flex;
+  align-items: center;
 
-  .title {
-    padding-bottom: 10px;
-    color: var(--on-primary);
-    text-align: center;
-    font-size: 2.5rem;
-  }
-
-  .container {
+  .inner_short {
+    width: 100%;
+    height: fit-content;
     display: grid;
-    grid-template-columns: 1fr 100px;
+    grid-template-rows: auto 1fr;
+
+    .title {
+      padding-bottom: 10px;
+      color: var(--on-primary);
+      text-align: center;
+      font-size: 2.5rem;
+    }
+
+    .container {
+      height: fit-content;
+      display: grid;
+      grid-template-columns: 1fr 100px;
+      justify-content: center;
+    }
   }
 }

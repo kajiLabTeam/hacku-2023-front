@@ -23,7 +23,7 @@ export default function usePostShort() {
   }, [setShorts]);
 
   // 最後にスライドを追加
-  function addSlide() {
+  const addSlide = useCallback(() => {
     const newSlide: PostSlideObject = {
       script: "",
       slide: "",
@@ -32,105 +32,132 @@ export default function usePostShort() {
       ...short,
       slides: [...short.slides, newSlide],
     });
-  }
+  }, [setShorts, short]);
 
   // 途中にスライドを追加
-  function addSlideAt(index: number) {
-    const newSlide: PostSlideObject = {
-      script: "",
-      slide: "",
-    };
-    const newSlides = [...short.slides];
-    newSlides.splice(index, 0, newSlide);
-    setShorts({
-      ...short,
-      slides: newSlides,
-    });
-  }
-
-  // スライドを削除
-  function deleteSlideAt(index: number) {
-    const newSlides = [...short.slides];
-    newSlides.splice(index, 1);
-    setShorts({
-      ...short,
-      slides: newSlides,
-    });
-  }
-
-  // タイトルを更新
-  function setTitle(title: string) {
-    setShorts({
-      ...short,
-      title: title,
-    });
-  }
-
-  // speakerを更新
-  function setSpeaker(speaker: Speaker) {
-    setShorts({
-      ...short,
-      speaker: speaker,
-    });
-  }
-
-  // ジャンルを更新
-  function setGenre(genre: GenreKey) {
-    setShorts({
-      ...short,
-      genre: genre,
-    });
-  }
-
-  // スライドを更新
-  function updateSlideLayout(index: number, slide: string) {
-    const newSlides = structuredClone([...short.slides]);
-    newSlides[index].slide = slide;
-    setShorts({
-      ...short,
-      slides: newSlides,
-    });
-  }
-
-  // 台本を更新
-  function updateSlideScript(index: number, script: string) {
-    let count = script.split("\n").length;
-    for (const line of script.split("\n")) {
-      if (line.length > 23) count++;
-    }
-
-    if (count < 14) {
-      const newSlides = structuredClone([...short.slides]);
-      newSlides[index].script = script;
+  const addSlideAt = useCallback(
+    (index: number) => {
+      const newSlide: PostSlideObject = {
+        script: "",
+        slide: "",
+      };
+      const newSlides = [...short.slides];
+      newSlides.splice(index, 0, newSlide);
       setShorts({
         ...short,
         slides: newSlides,
       });
-    }
-  }
+    },
+    [setShorts, short]
+  );
+
+  // スライドを削除
+  const deleteSlideAt = useCallback(
+    (index: number) => {
+      const newSlides = [...short.slides];
+      newSlides.splice(index, 1);
+      setShorts({
+        ...short,
+        slides: newSlides,
+      });
+    },
+    [setShorts, short]
+  );
+
+  // タイトルを更新
+  const setTitle = useCallback(
+    (title: string) => {
+      setShorts({
+        ...short,
+        title: title,
+      });
+    },
+    [setShorts, short]
+  );
+
+  // speakerを更新
+  const setSpeaker = useCallback(
+    (speaker: Speaker) => {
+      setShorts({
+        ...short,
+        speaker: speaker,
+      });
+    },
+    [setShorts, short]
+  );
+
+  // ジャンルを更新
+  const setGenre = useCallback(
+    (genre: GenreKey) => {
+      setShorts({
+        ...short,
+        genre: genre,
+      });
+    },
+    [setShorts, short]
+  );
+
+  // スライドを更新
+  const updateSlideLayout = useCallback(
+    (index: number, slide: string) => {
+      const newSlides = structuredClone([...short.slides]);
+      newSlides[index].slide = slide;
+      setShorts({
+        ...short,
+        slides: newSlides,
+      });
+    },
+    [setShorts, short]
+  );
+
+  // 台本を更新
+  const updateSlideScript = useCallback(
+    (index: number, script: string) => {
+      let count = script.split("\n").length;
+      for (const line of script.split("\n")) {
+        if (line.length > 23) count++;
+      }
+
+      if (count < 14) {
+        const newSlides = structuredClone([...short.slides]);
+        newSlides[index].script = script;
+        setShorts({
+          ...short,
+          slides: newSlides,
+        });
+      }
+    },
+    [setShorts, short]
+  );
 
   // タグを追加
-  function addTag(tag: string) {
-    const newTags = [...short.tags];
-    newTags.push(tag);
+  const addTag = useCallback(
+    (tag: string) => {
+      const newTags = [...short.tags];
+      newTags.push(tag);
 
-    const uniqueTags = newTags.filter((x, i, self) => self.indexOf(x) === i);
+      const uniqueTags = newTags.filter((x, i, self) => self.indexOf(x) === i);
 
-    setShorts({
-      ...short,
-      tags: uniqueTags,
-    });
-  }
+      setShorts({
+        ...short,
+        tags: uniqueTags,
+      });
+    },
+    [setShorts, short]
+  );
 
   // タグを削除
-  function deleteTag(index: number) {
-    const newTags = [...short.tags];
-    newTags.splice(index, 1);
-    setShorts({
-      ...short,
-      tags: newTags,
-    });
-  }
+  const deleteTag = useCallback(
+    (index: number) => {
+      const newTags = [...short.tags];
+      newTags.splice(index, 1);
+      setShorts({
+        ...short,
+        tags: newTags,
+      });
+    },
+    [setShorts, short]
+  );
 
   useEffect(() => {
     if (short.slides.length === 0) {

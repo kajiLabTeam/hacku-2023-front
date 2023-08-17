@@ -3,7 +3,7 @@ import { shorts } from "@/sample/short";
 import ShortViewer from "@/components/ui/shortViewer/shortViewer";
 import { useEffect, useMemo, useState } from "react";
 import { ShortObject } from "@/types";
-import ShortInfoComponent from "../shortInfo/shortInfo";
+import ShortInfoComponent from "@/components/ui/shortInfo/shortInfo";
 
 type shortContentProps = {
   short: ShortObject;
@@ -47,15 +47,17 @@ export default function ViewContainer() {
     <>
       {shorts.map((short, index) => (
         <div className={styles.short} key={short.id}>
-          <h1 className={styles.title}>{short.title}</h1>
+          <div className={styles.inner_short}>
+            <h1 className={styles.title}>{short.title}</h1>
 
-          <div className={styles.container}>
-            <ShortContent
-              short={short}
-              index={index}
-              isViewing={index === currentIndex}
-            />
-            <ShortInfo short={short} key={index} />
+            <div className={styles.container}>
+              <ShortContent
+                short={short}
+                index={index}
+                isViewing={index === currentIndex}
+              />
+              <ShortInfo short={short} key={index} />
+            </div>
           </div>
         </div>
       ))}
