@@ -1,16 +1,9 @@
 import styles from "./viewComponent.module.scss";
 import { shorts } from "@/sample/short";
 import ShortViewer from "@/components/ui/shortViewer/shortViewer";
-import {
-  GoodFilledIcon,
-  GoodIcon,
-  HeartFilledIcon,
-  HeartIcon,
-  SmileIcon,
-  SmileFilledIcon,
-} from "@/components/icons/icon";
 import { useEffect, useMemo, useState } from "react";
 import { ShortObject } from "@/types";
+import ShortInfoComponent from "../shortInfo/shortInfo";
 
 type shortContentProps = {
   short: ShortObject;
@@ -20,22 +13,6 @@ type shortContentProps = {
 
 export default function ViewContainer() {
   const [currentIndex, setCurrentIndex] = useState(0);
-
-  function dateComponent(date: string) {
-    const d = new Date(date);
-    const year = d.getFullYear();
-    const month = d.getMonth() + 1;
-    const day = d.getDate();
-
-    return (
-      <div className={styles.date_container}>
-        <p className={styles.year}>{year}</p>
-        <p className={styles.date}>
-          {month}/{day}
-        </p>
-      </div>
-    );
-  }
 
   useEffect(() => {
     const viewer = document.getElementById("viewer");
@@ -60,18 +37,8 @@ export default function ViewContainer() {
 
   const ShortInfo = ({ short }: { short: ShortObject }) => {
     const memoizedShortComponent = useMemo(
-      () => (
-        <div className={styles.right}>
-          {dateComponent(short.createdAt)}
-
-          <div className={styles.reaction}>
-            <HeartIcon className={styles.icon} />
-            <GoodIcon className={styles.icon} />
-            <SmileIcon className={styles.icon} />
-          </div>
-        </div>
-      ),
-      [short.createdAt]
+      () => <ShortInfoComponent short={short} />,
+      [short]
     );
     return memoizedShortComponent;
   };
