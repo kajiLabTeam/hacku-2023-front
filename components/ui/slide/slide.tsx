@@ -3,7 +3,7 @@ import { Marp } from "@marp-team/marp-core";
 
 type props = {
   markdown: string;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export default function SlideComponent({ markdown, onClick }: props) {
