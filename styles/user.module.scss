@@ -3,29 +3,28 @@
   height: 100%;
   display: flex;
   background-color: var(--tertiary);
-  overflow: hidden; /* Hide any overflowing content */
+  overflow: hidden;
 
   .left_container {
     width: 50%;
     height: 100%;
-    overflow-y: scroll; /* Enable scrolling only for the left side */
+    overflow-y: scroll;
     scroll-snap-type: y mandatory;
     scroll-snap-align: start;
   }
 
   .right_container {
-    flex: 1; /* Expand to fill remaining width */
+    flex: 1;
     height: 100%;
     display: flex;
-    flex-direction: column; /* Arrange items vertically */
+    flex-direction: column;
   }
 
   .right_top,
   .right_bottom {
-    flex: 1; /* Share available height equally */
+    flex: 1;
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 1px solid #000;
   }
 }
