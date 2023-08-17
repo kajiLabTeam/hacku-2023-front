@@ -9,17 +9,17 @@ const shorts: ShortObject[] = [
       {
         script: "This is the first slide1",
         slide: "# First slide1\n\nThis is the first slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/1-1.mp3",
       },
       {
         script: "This is the secound slide1",
         slide: "# Secound slide1\n\nThis is the secound slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/1-2.mp3",
       },
       {
         script: "This is the third slide1",
         slide: "# Third slide1\n\nThis is the third slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/1-3.mp3",
       },
     ],
     createdAt: "2021-01-01",
@@ -41,17 +41,17 @@ const shorts: ShortObject[] = [
       {
         script: "This is the first slide2",
         slide: "# First slide2\n\nThis is the first slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/2-1.mp3",
       },
       {
         script: "This is the secound slide2",
         slide: "# Secound slide2\n\nThis is the secound slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/2-2.mp3",
       },
       {
         script: "This is the third slide2",
         slide: "# Third slide2\n\nThis is the third slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/2-2.mp3",
       },
     ],
     createdAt: "2022-02-02",
@@ -73,17 +73,17 @@ const shorts: ShortObject[] = [
       {
         script: "This is the first slide3",
         slide: "# First slide3\n\nThis is the first slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/3-1.mp3",
       },
       {
         script: "This is the secound slide3",
         slide: "# Secound slide3\n\nThis is the secound slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/3-2.mp3",
       },
       {
         script: "This is the third slide3",
         slide: "# Third slide3\n\nThis is the third slide",
-        voiceURL: "/sample/sample.wav",
+        voiceURL: "/sample/sounds/3-3.mp3",
       },
     ],
     createdAt: "2023-03-03",
