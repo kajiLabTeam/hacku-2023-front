@@ -81,7 +81,7 @@ export default function ShortInfoComponent({ short }: { short: ShortObject }) {
     );
   };
 
-  const ReactionComponent = (reaction: Reactions) => {
+  const ReactionComponent = ({ reaction }: { reaction: Reactions }) => {
     return (
       <div>
         {reactionState[reaction].reacted
@@ -97,7 +97,9 @@ export default function ShortInfoComponent({ short }: { short: ShortObject }) {
       {dateComponent(short.createdAt)}
 
       <div className={styles.reaction}>
-        {reactions.map((reaction) => ReactionComponent(reaction))}
+        {reactions.map((reaction) => (
+          <ReactionComponent reaction={reaction} key={reaction} />
+        ))}
       </div>
     </div>
   );
