@@ -65,6 +65,10 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
   // 再生
   useEffect(() => {
     if (!isViewing) return;
+    sounds.map((s) => {
+      s.pause();
+      s.currentTime = 0;
+    });
     sounds[slideIndex]?.play();
     sounds[slideIndex]?.addEventListener("ended", () => {
       const shortEle = document.getElementById(`short-${shortIndex}`);
