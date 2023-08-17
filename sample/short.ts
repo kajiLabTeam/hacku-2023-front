@@ -51,7 +51,7 @@ const shorts: ShortObject[] = [
       {
         script: "This is the third slide2",
         slide: "# Third slide2\n\nThis is the third slide",
-        voiceURL: "/sample/sounds/2-2.mp3",
+        voiceURL: "/sample/sounds/2-3.mp3",
       },
     ],
     createdAt: "2022-02-02",

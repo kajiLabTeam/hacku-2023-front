@@ -133,3 +133,22 @@ export function SmileFilledIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function VolumeOnIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 23.39" {...props}>
+      <path d="M0,7.69V15.69H5.33l6.67,6.67V1.03L5.33,7.69H0Zm18,4c0-2.28-1.29-4.36-3.33-5.37v10.73c1.97-.97,3.33-3,3.33-5.36ZM14.67,0V2.75c3.85,1.15,6.67,4.72,6.67,8.95s-2.81,7.8-6.67,8.95v2.75c5.35-1.21,9.33-5.99,9.33-11.69S20.01,1.21,14.67,0Z" />
+    </svg>
+  );
+}
+
+export function VolumeOffIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
+      <path d="M21.33,11.69c0,1.25-.27,2.43-.72,3.52l2.01,2.01c.9-1.71,1.37-3.6,1.37-5.53C24,5.99,20,1.21,14.67,0V2.75c3.85,1.15,6.67,4.72,6.67,8.95Z" />
+      <path d="M18,11.69c0-2.36-1.33-4.39-3.33-5.37v2.95l3.27,3.27c.07-.27,.07-.56,.07-.84Z" />
+      <polygon points="12 6.6 12 1.03 9.21 3.81 12 6.6" />
+      <path d="M12,10L2,0,.31,1.69,6.31,7.69H0V15.69H5.33l6.67,6.67V13.39l5.67,5.68c-.89,.68-1.89,1.24-3,1.56v2.76c1.84-.43,3.51-1.27,4.91-2.41l2.73,2.72,1.69-1.69L12,10Z" />
+    </svg>
+  );
+}
