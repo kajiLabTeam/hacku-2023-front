@@ -24,7 +24,6 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
       left: elementWidth * index,
       behavior: "smooth",
     });
-    setSlideIndex(index);
   }
 
   // 前のスライドに移動
