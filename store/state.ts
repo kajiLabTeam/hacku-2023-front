@@ -1,7 +1,7 @@
 import { atom } from "recoil";
 import { recoilKeyHashSet } from "./key";
 import { PostShortObject } from "@/types";
-import { genres, speakers } from "@/const";
+import { speakers } from "@/const";
 
 const postShortState = atom<PostShortObject>({
   key: recoilKeyHashSet.postShorts,
@@ -19,4 +19,9 @@ const postShortState = atom<PostShortObject>({
   },
 });
 
-export { postShortState };
+const playingState = atom<boolean>({
+  key: recoilKeyHashSet.playing,
+  default: false,
+});
+
+export { postShortState, playingState };

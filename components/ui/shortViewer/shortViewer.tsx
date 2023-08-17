@@ -1,8 +1,10 @@
 import styles from "./shortViewer.module.scss";
+import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import { ShortObject } from "@/types";
 import SlideComponent from "@/components/ui/slide/slide";
-import { useEffect, useState } from "react";
 import { useFocusTrap, useHotkeys } from "@mantine/hooks";
+import { playingState } from "@/store/state";
 
 type props = {
   isViewing: boolean;
@@ -11,9 +13,10 @@ type props = {
 };
 
 export default function ShortViewer({ isViewing, shortIndex, short }: props) {
+  const [sounds, setSounds] = useState<HTMLAudioElement[]>([]);
+  const [playing, setPlaying] = useRecoilState(playingState);
   const [slideIndex, setSlideIndex] = useState(0);
   const focusTrapRef = useFocusTrap(isViewing);
-  const [sounds, setSounds] = useState<HTMLAudioElement[]>([]);
 
   // スライドを移動
   function scrollToSlide(index: number) {
@@ -56,20 +59,21 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
     };
   }, [setSlideIndex, shortIndex]);
 
+  // 音声リストを取得
   useEffect(() => {
     const soundUrls = short.slides.map((slide) => slide.voiceURL);
     const s = soundUrls.map((url) => new Audio(url));
     setSounds(s);
   }, [short.slides]);
 
-  // 再生
+  // スライドに合わせて再生する
   useEffect(() => {
     if (!isViewing) return;
+
     sounds.map((s) => {
       s.pause();
-      s.currentTime = 0;
     });
-    sounds[slideIndex]?.play();
+    if (playing) sounds[slideIndex]?.play();
     sounds[slideIndex]?.addEventListener("ended", () => {
       const shortEle = document.getElementById(`short-${shortIndex}`);
       if (!shortEle) return;
@@ -78,7 +82,15 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
         behavior: "smooth",
       });
     });
-  }, [isViewing, shortIndex, slideIndex, sounds]);
+  }, [isViewing, playing, shortIndex, slideIndex, sounds]);
+
+  // スライドが切り替わった場合は再生位置を戻す
+  useEffect(() => {
+    if (!isViewing) return;
+    sounds.map((s) => {
+      s.currentTime = 0;
+    });
+  }, [isViewing, slideIndex, sounds]);
 
   return (
     <div className={styles.short_viewr}>
@@ -89,9 +101,19 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
         tabIndex={0}
       >
         {short.slides.map((slide, index) => (
-          <SlideComponent markdown={slide.slide} key={index} />
+          <SlideComponent
+            markdown={slide.slide}
+            key={index}
+            onClick={() => setPlaying((v) => !v)}
+          />
         ))}
       </div>
+
+      {!playing && (
+        <div className={styles.overlay}>
+          <div className={styles.play}></div>
+        </div>
+      )}
 
       <div className={styles.pointer}>
         {Array(short.slides.length)

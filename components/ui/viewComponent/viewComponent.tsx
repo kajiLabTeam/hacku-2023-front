@@ -3,7 +3,7 @@ import { shorts } from "@/sample/short";
 import ShortViewer from "@/components/ui/shortViewer/shortViewer";
 import { useEffect, useMemo, useState } from "react";
 import { ShortObject } from "@/types";
-import ShortInfoComponent from "../shortInfo/shortInfo";
+import ShortInfoComponent from "@/components/ui/shortInfo/shortInfo";
 
 type shortContentProps = {
   short: ShortObject;
