@@ -9,7 +9,6 @@ import {
   SmileFilledIcon,
 } from "@/components/icons/icon";
 import useReaction from "@/hooks/useReaction";
-import { useEffect } from "react";
 import { reactions } from "@/const";
 
 type IconRelationType = {

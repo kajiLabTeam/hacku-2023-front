@@ -5,7 +5,6 @@ import {
   SearchIcon,
 } from "@/components/icons/icon";
 import styles from "./appbar.module.scss";
-import { useDisclosure } from "@mantine/hooks";
 import { Modal } from "@mantine/core";
 import ModalComponent from "@/components/ui/modal/modal";
 import { Page } from "@/types";

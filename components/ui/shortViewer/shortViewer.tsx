@@ -1,8 +1,8 @@
+import styles from "./shortViewer.module.scss";
 import { ShortObject } from "@/types";
-import styles from "./ShortViewer.module.scss";
 import SlideComponent from "@/components/ui/slide/slide";
-import { use, useEffect, useRef, useState } from "react";
-import { useFocusTrap, useHotkeys, useIntersection } from "@mantine/hooks";
+import { useEffect, useState } from "react";
+import { useFocusTrap, useHotkeys } from "@mantine/hooks";
 
 type props = {
   isViewing: boolean;
