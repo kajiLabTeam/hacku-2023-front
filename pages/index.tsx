@@ -7,6 +7,7 @@ import PostPage from "@/components/page/post";
 import ViewPage from "@/components/page/view";
 import UserPage from "@/components/page/user";
 import { useDisclosure, useHotkeys } from "@mantine/hooks";
+import SearchPage from "@/components/page/search";
 
 const noto = Noto_Sans_JP({
   subsets: ["latin"],
@@ -21,14 +22,15 @@ export default function Home() {
     ["1", () => setPage("view")],
     ["2", () => setPage("post")],
     ["3", () => setPage("user")],
-    ["4", () => open()],
-    ["f", () => open()],
+    ["4", () => setPage("search")],
+    ["f", () => setPage("search")],
   ]);
 
-  const Page = {
+  const Page: { [key in Page]: JSX.Element } = {
     view: <ViewPage />,
     post: <PostPage />,
     user: <UserPage />,
+    search: <SearchPage />,
   };
 
   return (
