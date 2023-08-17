@@ -70,13 +70,12 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
 
   // スライドに合わせて再生する
   useEffect(() => {
-    if (!isViewing) return;
+    if (!isViewing || sounds.length === 0) return;
 
     sounds.map((s) => s.pause());
 
     if (!playing) return;
 
-    console.log(shortIndex, sounds[slideIndex]);
     setPlayingSound(sounds[slideIndex]);
     sounds[slideIndex]?.addEventListener("ended", () => {
       const shortEle = document.getElementById(`short-${shortIndex}`);
