@@ -18,7 +18,7 @@ type Datetime = `${number}-${number}-${number}`;
 type Reactions = (typeof reactions)[number];
 
 type ReactionsState = {
-  [key in Reactions]: { count: number; isReacted: boolean };
+  [key in Reactions]: { count: number; reacted: boolean };
 };
 
 // VoiceVox のスピーカー

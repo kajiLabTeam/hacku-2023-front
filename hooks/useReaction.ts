@@ -8,9 +8,9 @@ export default function useReaction(defaultState: ReactionsState) {
   // reaction を付ける
   function addReaction(reaction: Reactions) {
     const clonedReaction = structuredClone(reactionsState);
-    clonedReaction[reaction].isReacted = true;
+    clonedReaction[reaction].reacted = true;
 
-    if (defaultReaction[reaction].isReacted) {
+    if (defaultReaction[reaction].reacted) {
       clonedReaction[reaction].count = defaultReaction[reaction].count;
     } else {
       clonedReaction[reaction].count = defaultReaction[reaction].count + 1;
@@ -22,10 +22,10 @@ export default function useReaction(defaultState: ReactionsState) {
   // reaction を外す
   function removeReaction(reaction: Reactions) {
     const clonedReaction = structuredClone(reactionsState);
-    clonedReaction[reaction].isReacted = false;
+    clonedReaction[reaction].reacted = false;
     clonedReaction[reaction].count = defaultReaction[reaction].count;
 
-    if (defaultReaction[reaction].isReacted) {
+    if (defaultReaction[reaction].reacted) {
       clonedReaction[reaction].count = defaultReaction[reaction].count - 1;
     } else {
       clonedReaction[reaction].count = defaultReaction[reaction].count;

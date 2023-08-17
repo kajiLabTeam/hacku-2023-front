@@ -84,7 +84,7 @@ export default function ShortInfoComponent({ short }: { short: ShortObject }) {
   const ReactionComponent = (reaction: Reactions) => {
     return (
       <div>
-        {reactionState[reaction].isReacted
+        {reactionState[reaction].reacted
           ? IconRelation[reaction].filled
           : IconRelation[reaction].normal}
         <p className={styles.count}>{reactionState[reaction].count}</p>
