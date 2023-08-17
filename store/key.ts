@@ -1,4 +1,9 @@
-const recoilKeys = ["postShorts", "playing"] as const;
+const recoilKeys = [
+  "postShorts",
+  "playing",
+  "playingSound",
+  "playingShortId",
+] as const;
 
 // Key: Keyのオブジェクト
 const recoilKeyHashSet = Object.fromEntries(recoilKeys.map((k) => [k, k])) as {

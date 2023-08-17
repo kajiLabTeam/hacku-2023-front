@@ -24,4 +24,14 @@ const playingState = atom<boolean>({
   default: false,
 });
 
-export { postShortState, playingState };
+const playingSoundState = atom<HTMLAudioElement | null>({
+  key: recoilKeyHashSet.playingSound,
+  default: null,
+});
+
+const playingShortIdState = atom<number>({
+  key: recoilKeyHashSet.playingShortId,
+  default: -1,
+});
+
+export { postShortState, playingState, playingSoundState, playingShortIdState };

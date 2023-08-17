@@ -5,6 +5,7 @@ import { ShortObject } from "@/types";
 import SlideComponent from "@/components/ui/slide/slide";
 import { useFocusTrap, useHotkeys } from "@mantine/hooks";
 import { playingState } from "@/store/state";
+import { usePlayingSound } from "@/hooks/usePlayingSound";
 
 type props = {
   isViewing: boolean;
@@ -15,6 +16,7 @@ type props = {
 export default function ShortViewer({ isViewing, shortIndex, short }: props) {
   const [sounds, setSounds] = useState<HTMLAudioElement[]>([]);
   const [playing, setPlaying] = useRecoilState(playingState);
+  const [_, { setPlayingSound, switchShort }] = usePlayingSound();
   const [slideIndex, setSlideIndex] = useState(0);
   const focusTrapRef = useFocusTrap(isViewing);
 
@@ -70,10 +72,12 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
   useEffect(() => {
     if (!isViewing) return;
 
-    sounds.map((s) => {
-      s.pause();
-    });
-    if (playing) sounds[slideIndex]?.play();
+    sounds.map((s) => s.pause());
+
+    if (!playing) return;
+
+    console.log(shortIndex, sounds[slideIndex]);
+    setPlayingSound(sounds[slideIndex]);
     sounds[slideIndex]?.addEventListener("ended", () => {
       const shortEle = document.getElementById(`short-${shortIndex}`);
       if (!shortEle) return;
@@ -82,15 +86,19 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
         behavior: "smooth",
       });
     });
-  }, [isViewing, playing, shortIndex, slideIndex, sounds]);
+  }, [isViewing, playing, setPlayingSound, shortIndex, slideIndex, sounds]);
 
   // スライドが切り替わった場合は再生位置を戻す
   useEffect(() => {
     if (!isViewing) return;
-    sounds.map((s) => {
-      s.currentTime = 0;
-    });
+
+    sounds.map((s) => (s.currentTime = 0));
   }, [isViewing, slideIndex, sounds]);
+
+  // ショートが切り替わったら再生停止
+  useEffect(() => {
+    if (isViewing) switchShort(shortIndex);
+  }, [isViewing, shortIndex, switchShort]);
 
   return (
     <div className={styles.short_viewr}>
