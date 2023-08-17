@@ -17,7 +17,11 @@ export default function HeadMeta() {
       <meta property="og:image" content={IMG_URL} />
       <meta name="twitter:image" content={IMG_URL} />
       <meta property="og:site_name" content={TITLE} />
-      <meta name="twitter:image" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:site" content="@SatooRu_65536" />
+      <meta name="twitter:title" content={TITLE} />
+      <meta name="twitter:description" content={DESCRIPTION} />
+      <meta name="twitter:image" content={IMG_URL} />
       <link rel="icon" href="/favicon.ico" />
     </Head>
   );
