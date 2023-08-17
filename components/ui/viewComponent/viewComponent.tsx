@@ -47,15 +47,17 @@ export default function ViewContainer() {
     <>
       {shorts.map((short, index) => (
         <div className={styles.short} key={short.id}>
-          <h1 className={styles.title}>{short.title}</h1>
+          <div className={styles.inner_short}>
+            <h1 className={styles.title}>{short.title}</h1>
 
-          <div className={styles.container}>
-            <ShortContent
-              short={short}
-              index={index}
-              isViewing={index === currentIndex}
-            />
-            <ShortInfo short={short} key={index} />
+            <div className={styles.container}>
+              <ShortContent
+                short={short}
+                index={index}
+                isViewing={index === currentIndex}
+              />
+              <ShortInfo short={short} key={index} />
+            </div>
           </div>
         </div>
       ))}

@@ -1,4 +1,7 @@
 .short_viewr {
+  margin-inline: auto;
+  max-width: calc((100vh - 150px) / 9 * 16);
+  width: 100%;
   position: relative;
 
   .pointer {
