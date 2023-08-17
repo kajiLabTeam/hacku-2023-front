@@ -21,7 +21,7 @@ export default function ModalComponent() {
   }
 
   return (
-    <>
+    <div className={styles.modal}>
       <div className={styles.container}>
         <label className={styles.label} htmlFor="search_title">
           タイトル検索
@@ -72,6 +72,6 @@ export default function ModalComponent() {
       <div className={styles.search_container}>
         <div className={styles.search}>検索</div>
       </div>
-    </>
+    </div>
   );
 }

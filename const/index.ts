@@ -1,4 +1,4 @@
-const pages = ["view", "post", "user"] as const;
+const pages = ["view", "post", "user", "search"] as const;
 
 const reactions = ["heart", "good", "smile"] as const;
 
