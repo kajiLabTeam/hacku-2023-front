@@ -1,5 +1,4 @@
 import { playingShortIdState, playingSoundState } from "@/store/state";
-import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 export function usePlayingSound() {
