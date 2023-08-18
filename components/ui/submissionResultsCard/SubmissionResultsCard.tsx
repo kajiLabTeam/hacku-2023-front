@@ -1,7 +1,8 @@
 import { useState } from "react";
-import styles from "./submissionResultsCard.module.scss";
+import { Title } from "@mantine/core";
+
 import { PinIcon } from "@/components/icons/icon";
-import usePostShort from "@/hooks/usePostShort";
+import styles from "./submissionResultsCard.module.scss";
 
 import SubmissionResultsList from "../submissionResultsList/SubmissionResultsList";
 
@@ -10,13 +11,12 @@ type props = {
 };
 
 export default function SubmissionResultsCard({ className }: props) {
-  const [searchTag, setSearchTag] = useState("");
-  const [short, { addTag, deleteTag, setTitle, setSpeaker, setGenre }] =
-    usePostShort();
-
   return (
     <div className={`${styles.settings_card} ${className}`}>
       <PinIcon className={styles.pin_icon} />
+      <Title mb={32} align="center" weight="bold">
+        投稿実績
+      </Title>
       <SubmissionResultsList />
     </div>
   );
