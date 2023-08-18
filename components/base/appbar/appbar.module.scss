@@ -66,4 +66,54 @@
       fill: var(--on-primary);
     }
   }
+
+  @media (max-width: 850px) {
+    width: fit-content;
+    height: 65px;
+    background-color: var(--on-primary);
+    border-radius: 0 20px 0 0;
+
+    position: fixed;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: auto;
+    z-index: 10;
+
+    .stack {
+      padding: 5px 10px 0 20px;
+      width: fit-content;
+      text-align: start;
+      display: flex;
+      flex-direction: row;
+      gap: 30px;
+
+      @media (max-width: 450px) {
+        gap: 15px;
+      }
+
+      .icon_player,
+      .icon_postadd,
+      .icon_account,
+      .icon_search {
+        margin: 5px;
+        padding: 5px;
+        width: 50px;
+        transition: all 0.3s;
+        border-radius: 10px;
+      }
+
+      .icon_player {
+        padding: 6px;
+      }
+
+      .icon_postadd{
+        padding: 2px 3px 5px 7px;
+      }
+
+      .selected {
+        fill: var(--on-primary);
+      }
+    }
+  }
 }

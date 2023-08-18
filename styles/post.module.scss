@@ -6,4 +6,8 @@
   overflow-y: scroll;
 
   scroll-snap-type: y mandatory;
+
+  @media (max-width: 850px) {
+    padding: 0;
+  }
 }
