@@ -1,85 +1,40 @@
-import { Box, SimpleGrid, Text, Title } from "@mantine/core";
+import { useRecoilValue } from "recoil";
+import { Center, Image, SimpleGrid, Text } from "@mantine/core";
+
+import { userInformationState } from "@/store/state";
 
 export default function SubmissionResultsList() {
+  const userInformation = useRecoilValue(userInformationState);
+
   return (
-    <Box>
-      <Title mb={40} order={1} align="center" weight="bold">
-        投稿実績
-      </Title>
-      <SimpleGrid cols={8} spacing={16} verticalSpacing={20}>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-        <Box h={80} w={80} bg="blue">
-          <Text align="center">Java</Text>
-        </Box>
-      </SimpleGrid>
-    </Box>
+    <SimpleGrid cols={6} spacing={16} verticalSpacing={16}>
+      {userInformation.achievements.map((achievement) => {
+        return (
+          <>
+            {achievement.link == "" ? (
+              <Center
+                key={achievement.name}
+                bg="gray.2"
+                h={100}
+                w={100}
+                variant="outline"
+              >
+                <Text>{achievement.name}</Text>
+              </Center>
+            ) : (
+              <Center key={achievement.name} h={100} w={100} variant="outline">
+                <Image
+                  mx="auto"
+                  radius="md"
+                  p={4}
+                  src={achievement.link}
+                  alt={achievement.name}
+                />
+              </Center>
+            )}
+          </>
+        );
+      })}
+    </SimpleGrid>
   );
 }

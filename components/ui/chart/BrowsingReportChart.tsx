@@ -1,4 +1,5 @@
-import React from "react";
+import { Bar } from "react-chartjs-2";
+import { useRecoilValue } from "recoil";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -8,8 +9,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar } from "react-chartjs-2";
-import { Box, Title as MTitle } from "@mantine/core";
+
+import { userInformationState } from "@/store/state";
 
 ChartJS.register(
   CategoryScale,
@@ -20,46 +21,47 @@ ChartJS.register(
   Legend
 );
 
-const labels = ["8/8", "8/9", "8/10", "8/11", "8/12", "8/13", "8/14"];
-
-const data = {
-  labels,
-  datasets: [
-    {
-      label: "React",
-      data: [38, 75, 18, 46, 62, 42, 73],
-      backgroundColor: "rgba(255, 99, 132, 0.5)",
-    },
-    {
-      label: "Python",
-      data: [38, 75, 18, 46, 62, 42, 73],
-      backgroundColor: "rgba(53, 162, 235, 0.5)",
-    },
-  ],
-};
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: "top" as const, // "top" として型を明示的に指定
-    },
-    title: {
-      display: true,
-      text: "",
-    },
-  },
-  scales: {
-    x: {
-      stacked: true,
-    },
-    y: {
-      stacked: true,
-    },
-  },
-};
-
 export default function BrowsingReportChart() {
-  console.log(data);
+  const userInformation = useRecoilValue(userInformationState);
+
+  const labels = userInformation.report.dates.map((date) => {
+    const month = (date.getMonth() + 1).toString().padStart(2, "0");
+    const day = date.getDate().toString().padStart(2, "0");
+    return `${month}/${day}`;
+  });
+
+  const data = {
+    labels,
+    datasets: userInformation.report.genres.map((genre) => {
+      return {
+        label: genre.name,
+        data: genre.dailyViews,
+        backgroundColor: `rgba(${genre.color})`,
+      };
+    }),
+  };
+
+  const options = {
+    responsive: true,
+    plugins: {
+      legend: {
+        display: true,
+        position: "top" as const, // "top" として型を明示的に指定
+      },
+      title: {
+        display: false,
+        text: "",
+      },
+    },
+    scales: {
+      x: {
+        stacked: true,
+      },
+      y: {
+        stacked: true,
+      },
+    },
+  };
+
   return <Bar data={data} options={options} />;
 }
