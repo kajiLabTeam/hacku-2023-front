@@ -10,9 +10,6 @@ import { Page } from "@/types";
 type props = {
   page: Page;
   onChangePage: (page: Page) => void;
-  opened: boolean;
-  open: () => void;
-  close: () => void;
 };
 
 export default function Appbar({ page, onChangePage }: props) {

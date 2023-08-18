@@ -3,6 +3,7 @@ const recoilKeys = [
   "playing",
   "playingSound",
   "playingShortId",
+  "signedIn",
 ] as const;
 
 // Key: Keyのオブジェクト

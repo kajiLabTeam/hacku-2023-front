@@ -1,6 +1,7 @@
 import { useForm } from "@mantine/form";
 import styles from "./modal.module.scss";
 import { useState } from "react";
+import { logout } from "@/components/firebase/auth";
 
 export default function ModalComponent() {
   const [searchTitle, setSearchTitle] = useState("");
@@ -70,7 +71,9 @@ export default function ModalComponent() {
       </div>
 
       <div className={styles.search_container}>
-        <div className={styles.search}>検索</div>
+        <div className={styles.search} onClick={logout}>
+          検索
+        </div>
       </div>
     </div>
   );
