@@ -57,7 +57,7 @@ export default function SlideEditorComponent({
         </Modal.Content>
       </Modal.Root>
 
-      <section className={styles.page} data-slide-number={index} key={index}>
+      <section className={styles.page} key={index}>
         <div className={styles.left_top}>
           <span className={styles.pagenum} onClick={open}>
             {index + 1}
