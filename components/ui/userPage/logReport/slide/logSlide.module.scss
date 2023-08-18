@@ -1,0 +1,30 @@
+.slide {
+  position: relative;
+  width: 100%;
+  max-height: 95%;
+  aspect-ratio: 16/9;
+  background-color: var(--on-primary);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.played_container {
+  position: absolute; 
+  top: 5%;
+  right: 0%;
+  width: 20%;
+  height: 10%;
+  border-radius: 0px;
+  text-align: center; 
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.4); 
+  
+  display: flex; /* Flexコンテナにする */
+  align-items: center; /* 垂直方向に中央揃え */
+  justify-content: center; /* 水平方向に中央揃え */
+}
+
+.played_text {
+  color: white;
+  
+}

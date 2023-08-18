@@ -1,6 +1,6 @@
 import styles from "@/styles/user.module.scss";
 
-import ReportList from "../ui/userPage/logReport/ReportList";
+import ReportList from "../ui/userPage/logReport/reportList/ReportList";
 import SubmissionResultsCard from "../ui/userPage/submissionReport/card/SubmissionResultsCard";
 import BrowsingReportChartCard from "../ui/userPage/browsingReport/card/BrowsingReportChartCard";
 

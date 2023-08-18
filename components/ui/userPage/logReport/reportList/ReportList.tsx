@@ -1,10 +1,21 @@
 import { Box, SimpleGrid, Text, Title } from "@mantine/core";
-import SlideComponent from "../../slide/slide";
+
 import { useRecoilValue } from "recoil";
 import { postHistoryState } from "@/store/state";
+import LogSlideComponent from "../slide/logSlide";
 
 export default function ReportList() {
   const postHistory = useRecoilValue(postHistoryState);
+
+  const formatNumber = (number: number) => {
+    if (number >= 10000) {
+      return `${Math.floor(number / 10000)}万`;
+    } else if (number >= 1000) {
+      return `${Math.floor(number / 1000)}千`;
+    } else {
+      return number.toString();
+    }
+  };
 
   return (
     <Box ml={80}>
@@ -15,7 +26,10 @@ export default function ReportList() {
         {postHistory.postHistories.map((postHistory) => {
           return (
             <Box key={postHistory.id}>
-              <SlideComponent markdown={postHistory.slide} />
+              <LogSlideComponent
+                markdown={postHistory.slide}
+                views={formatNumber(postHistory.views)}
+              />
               <Text mt={10} fw={800} align="center">
                 {postHistory.title}
               </Text>
