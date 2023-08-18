@@ -71,7 +71,7 @@ export default function ModalComponent() {
       </div>
 
       <div className={styles.search_container}>
-        <div className={styles.search} onClick={logout}>
+        <div className={styles.search}>
           検索
         </div>
       </div>

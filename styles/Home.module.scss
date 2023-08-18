@@ -3,3 +3,30 @@
   width: 100%;
   background-color: var(--primary);
 }
+
+.debug_signout {
+  width: 40px;
+  height: 40px;
+  line-height: 20px;
+  border-radius: 10px;
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  text-align: center;
+  font-size: 14px;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: -2px;
+  z-index: 9999999999;
+
+  background-image: linear-gradient(
+    to right,
+    #000000 0%,
+    #ff0000 35%,
+    #ffff00 50%,
+    #0000ff 65%,
+    #ff0000 100%
+  );
+  box-shadow: 2px 3px 5px #000;
+}

@@ -6,10 +6,10 @@ import { Page } from "@/types";
 import PostPage from "@/components/page/post";
 import ViewPage from "@/components/page/view";
 import UserPage from "@/components/page/user";
-import { useDisclosure, useHotkeys } from "@mantine/hooks";
+import { useDisclosure, useHotkeys, useLocalStorage } from "@mantine/hooks";
 import SearchPage from "@/components/page/search";
 import { Modal } from "@mantine/core";
-import { useIsSigned } from "@/components/firebase/auth";
+import { login, logout, useIsSigned } from "@/components/firebase/auth";
 import SigninComponent from "@/components/ui/signin/signin";
 
 const noto = Noto_Sans_JP({
@@ -19,8 +19,15 @@ const noto = Noto_Sans_JP({
 
 export default function Home() {
   const [opened, { open, close }] = useDisclosure(false);
-  const [page, setPage] = useState<Page>("view");
+  const [page, setPage] = useLocalStorage<Page>({
+    key: "page",
+    defaultValue: "view",
+  });
   const isSigned = useIsSigned();
+
+  function signinWithEnter() {
+    if (opened) login();
+  }
 
   useHotkeys([
     ["1", () => setPage("view")],
@@ -28,6 +35,8 @@ export default function Home() {
     ["3", () => setPage("user")],
     ["4", () => setPage("search")],
     ["f", () => setPage("search")],
+    ["enter", signinWithEnter],
+    ["esc", close],
   ]);
 
   const Page: { [key in Page]: JSX.Element } = {
@@ -55,6 +64,12 @@ export default function Home() {
       >
         <SigninComponent />
       </Modal>
+
+      {isSigned && (
+        <div className={styles.debug_signout} onClick={logout}>
+          ログアウト
+        </div>
+      )}
 
       <Appbar page={page} onChangePage={setPage} />
       {Page[page]}
