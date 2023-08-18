@@ -7,7 +7,9 @@
 
   scroll-snap-type: y mandatory;
 
-  @media (max-width: 850px) {
-    padding: 0;
+  @media (orientation: portrait) {
+    @media (max-width: 850px) {
+      padding: 0;
+    }
   }
 }

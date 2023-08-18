@@ -2,12 +2,11 @@
   height: 100vh;
   padding: 20px 20px 40px;
   scroll-snap-align: start;
-  display: flex;
   align-items: center;
 
   .inner_short {
     width: 100%;
-    height: fit-content;
+    height: 100%;
     display: grid;
     grid-template-rows: auto 1fr;
 
@@ -26,14 +25,16 @@
     }
   }
 
-  @media (max-width: 850px) {
-    padding: 10px 10px 80px;
+  @media (orientation: portrait) {
+    @media (max-width: 850px) {
+      padding: 10px 10px 80px;
 
-    .inner_short .container {
-      width: 100%;
-      height: 100%;
-      grid-template-columns: 1fr;
-      grid-template-rows: 1fr 90px;
+      .inner_short .container {
+        width: 100%;
+        height: 100%;
+        grid-template-columns: 1fr;
+        grid-template-rows: 1fr 90px;
+      }
     }
   }
 }

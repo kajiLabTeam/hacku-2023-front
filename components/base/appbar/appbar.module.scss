@@ -67,52 +67,67 @@
     }
   }
 
-  @media (max-width: 850px) {
-    width: fit-content;
-    height: 65px;
-    background-color: var(--on-primary);
-    border-radius: 0 20px 0 0;
-
-    position: fixed;
+  @media (max-height: 450px) {
+    height: auto;
     bottom: 0;
-    top: auto;
-    left: 0;
-    right: auto;
-    z-index: 10;
+    border-radius: 0;
 
     .stack {
-      padding: 5px 10px 0 20px;
+      height: 100%;
+      padding: 0;
+      justify-content: space-evenly;
+      gap: 0;
+    }
+  }
+
+  @media (orientation: portrait) {
+    @media (max-width: 850px) {
       width: fit-content;
-      text-align: start;
-      display: flex;
-      flex-direction: row;
-      gap: 30px;
+      height: 65px;
+      background-color: var(--on-primary);
+      border-radius: 0 20px 0 0;
 
-      @media (max-width: 450px) {
-        gap: 15px;
-      }
+      position: fixed;
+      bottom: 0;
+      top: auto;
+      left: 0;
+      right: auto;
+      z-index: 10;
 
-      .icon_player,
-      .icon_postadd,
-      .icon_account,
-      .icon_search {
-        margin: 5px;
-        padding: 5px;
-        width: 50px;
-        transition: all 0.3s;
-        border-radius: 10px;
-      }
+      .stack {
+        padding: 5px 10px 0 20px;
+        width: fit-content;
+        text-align: start;
+        display: flex;
+        flex-direction: row;
+        gap: 30px;
 
-      .icon_player {
-        padding: 6px;
-      }
+        @media (max-width: 450px) {
+          gap: 15px;
+        }
 
-      .icon_postadd{
-        padding: 2px 3px 5px 7px;
-      }
+        .icon_player,
+        .icon_postadd,
+        .icon_account,
+        .icon_search {
+          margin: 5px;
+          padding: 5px;
+          width: 50px;
+          transition: all 0.3s;
+          border-radius: 10px;
+        }
 
-      .selected {
-        fill: var(--on-primary);
+        .icon_player {
+          padding: 6px;
+        }
+
+        .icon_postadd {
+          padding: 2px 3px 5px 7px;
+        }
+
+        .selected {
+          fill: var(--on-primary);
+        }
       }
     }
   }

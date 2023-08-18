@@ -2,7 +2,7 @@
   .date_container {
     margin-left: auto;
     width: 60px;
-    padding-bottom: 20px;
+    padding-bottom: 10px;
     text-align: center;
 
     .year,
@@ -30,7 +30,7 @@
     flex-direction: column;
     background-color: var(--on-primary);
     border-radius: 15px;
-    gap: 20px;
+    gap: 10px;
 
     .icon {
       width: 30px;
@@ -48,33 +48,39 @@
     }
   }
 
-  @media (max-width: 850px) {
-    padding-top: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
+  @media (max-height: 400px) {
+    margin-top: -30px;
+  }
 
-    .date_container {
-      margin: 0;
-      padding: 0;
-      height: fit-content;
+  @media (orientation: portrait) {
+    @media (max-width: 850px) {
+      padding-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
 
-      .date {
-        line-height: 2.5rem;
+      .date_container {
+        margin: 0;
+        padding: 0;
+        height: fit-content;
+
+        .date {
+          line-height: 2.5rem;
+        }
       }
-    }
 
-    .reaction {
-      margin: 0;
-      width: fit-content;
-      padding: 10px;
-      flex-direction: row;
+      .reaction {
+        margin: 0;
+        width: fit-content;
+        padding: 10px;
+        flex-direction: row;
 
-      .count {
-        color: var(--primary);
-        font-size: 1.5rem;
-        line-height: 1.5rem;
+        .count {
+          color: var(--primary);
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+        }
       }
     }
   }

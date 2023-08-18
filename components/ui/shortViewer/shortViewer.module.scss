@@ -1,9 +1,14 @@
 .short_viewr {
   margin-inline: auto;
-  max-width: calc((100vh - 150px) / 9 * 16);
+  // max-width: calc((100vh - 150px) / 9 * 16);
   width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
   position: relative;
   cursor: pointer;
+
 
   .volume_icon {
     width: 30px;
@@ -20,7 +25,6 @@
     left: 0;
     right: 0;
     background-color: #00000030;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -57,9 +61,7 @@
 
   .short_container {
     width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    border-radius: 10px;
+    height: 100%;
     display: flex;
     overflow: scroll hidden;
     scroll-snap-type: x mandatory;
