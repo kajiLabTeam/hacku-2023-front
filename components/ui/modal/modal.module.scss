@@ -1,6 +1,7 @@
 .modal {
   width: 100%;
   max-width: 500px;
+  padding: 10px;
   height: fit-content;
 
   .container {
@@ -44,6 +45,7 @@
 
     .search_tag {
       margin-top: 10px;
+      max-width: 90%;
       height: 3rem;
       padding: 0 10px;
       font-size: 1.5rem;
