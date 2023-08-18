@@ -1,13 +1,16 @@
 import { Noto_Sans_JP } from "next/font/google";
 import styles from "@/styles/Home.module.scss";
 import Appbar from "@/components/base/appbar/appbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Page } from "@/types";
 import PostPage from "@/components/page/post";
 import ViewPage from "@/components/page/view";
 import UserPage from "@/components/page/user";
 import { useDisclosure, useHotkeys } from "@mantine/hooks";
 import SearchPage from "@/components/page/search";
+import { Modal } from "@mantine/core";
+import { useIsSigned } from "@/components/firebase/auth";
+import SigninComponent from "@/components/ui/signin/signin";
 
 const noto = Noto_Sans_JP({
   subsets: ["latin"],
@@ -17,6 +20,7 @@ const noto = Noto_Sans_JP({
 export default function Home() {
   const [opened, { open, close }] = useDisclosure(false);
   const [page, setPage] = useState<Page>("view");
+  const isSigned = useIsSigned();
 
   useHotkeys([
     ["1", () => setPage("view")],
@@ -33,15 +37,26 @@ export default function Home() {
     search: <SearchPage />,
   };
 
+  useEffect(() => {
+    if (page !== "view") {
+      if (isSigned === false) open();
+    }
+  }, [isSigned, open, page]);
+
   return (
     <main className={`${noto.className} ${styles.main}`}>
-      <Appbar
-        page={page}
-        onChangePage={setPage}
+      <Modal
         opened={opened}
-        open={open}
-        close={close}
-      />
+        onClose={() => {
+          close();
+          setPage("view");
+        }}
+        withCloseButton={false}
+      >
+        <SigninComponent />
+      </Modal>
+
+      <Appbar page={page} onChangePage={setPage} />
       {Page[page]}
     </main>
   );

@@ -2,6 +2,7 @@ import { atom } from "recoil";
 import { recoilKeyHashSet } from "./key";
 import { PostShortObject } from "@/types";
 import { speakers } from "@/const";
+import { User } from "firebase/auth";
 
 const postShortState = atom<PostShortObject>({
   key: recoilKeyHashSet.postShorts,
@@ -34,4 +35,15 @@ const playingShortIdState = atom<number>({
   default: -1,
 });
 
-export { postShortState, playingState, playingSoundState, playingShortIdState };
+const userState = atom<User | null>({
+  key: recoilKeyHashSet.signedIn,
+  default: null,
+});
+
+export {
+  postShortState,
+  playingState,
+  playingSoundState,
+  playingShortIdState,
+  userState,
+};
