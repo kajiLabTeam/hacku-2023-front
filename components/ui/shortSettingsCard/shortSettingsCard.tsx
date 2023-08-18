@@ -6,17 +6,13 @@ import { Select } from "@mantine/core";
 import { genres, genresKeys, genresValues, speakers } from "@/const";
 import { Speaker } from "@/types";
 
-type props = {
-  className?: string;
-};
-
-export default function ShortSettingsCard({ className }: props) {
+export default function ShortSettingsCard() {
   const [searchTag, setSearchTag] = useState("");
   const [short, { addTag, deleteTag, setTitle, setSpeaker, setGenre }] =
     usePostShort();
 
   return (
-    <div className={`${styles.settings_card} ${className}`}>
+    <div className={styles.settings_card}>
       <PinIcon className={styles.pin_icon} />
 
       <div className={styles.container}>

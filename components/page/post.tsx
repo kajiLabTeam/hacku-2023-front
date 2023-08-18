@@ -15,7 +15,7 @@ export default function PostPage() {
 
   return (
     <section className={styles.post}>
-      <ShortSettingsCard className={styles.settings_card} />
+      <ShortSettingsCard />
 
       {shorts.slides.map((slide, index) => {
         return (

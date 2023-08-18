@@ -6,12 +6,4 @@
   overflow-y: scroll;
 
   scroll-snap-type: y mandatory;
-
-  .settings_card {
-    rotate: -1deg;
-    position: absolute;
-    left: 10%;
-    top: 50px;
-    width: 450px;
-  }
 }
