@@ -1,5 +1,5 @@
 import { Box, SimpleGrid, Text, Title } from "@mantine/core";
-import SlideComponent from "../slide/slide";
+import SlideComponent from "../../slide/slide";
 import { useRecoilValue } from "recoil";
 import { postHistoryState } from "@/store/state";
 
@@ -12,12 +12,12 @@ export default function ReportList() {
         自分の投稿
       </Title>
       <SimpleGrid cols={2} mt="xl" verticalSpacing={40}>
-        {postHistory.postHistories.map((pH) => {
+        {postHistory.postHistories.map((postHistory) => {
           return (
-            <Box key={pH.id}>
-              <SlideComponent markdown={pH.slide} />
+            <Box key={postHistory.id}>
+              <SlideComponent markdown={postHistory.slide} />
               <Text mt={10} fw={800} align="center">
-                {pH.title}
+                {postHistory.title}
               </Text>
             </Box>
           );

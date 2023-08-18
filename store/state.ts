@@ -195,6 +195,11 @@ const userInformationState = atom<UserInformationObject>({
           color: "99, 179, 237, 1",
           dailyViews: [20, 11, 44, 22, 43, 4, 76],
         },
+        {
+          name: "その他",
+          color: "160, 174, 192, 1",
+          dailyViews: [20, 11, 44, 22, 43, 4, 76],
+        },
       ],
     },
   },

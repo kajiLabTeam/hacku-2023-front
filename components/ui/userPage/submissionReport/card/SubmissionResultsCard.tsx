@@ -4,7 +4,7 @@ import { Title } from "@mantine/core";
 import { PinIcon } from "@/components/icons/icon";
 import styles from "./submissionResultsCard.module.scss";
 
-import SubmissionResultsList from "../submissionResultsList/SubmissionResultsList";
+import SubmissionResultsList from "../list/SubmissionResultsList";
 
 type props = {
   className?: string;
