@@ -1,5 +1,7 @@
 .right {
   .date_container {
+    margin-left: auto;
+    width: 60px;
     padding-bottom: 20px;
     text-align: center;
 
@@ -19,7 +21,7 @@
   }
 
   .reaction {
-    margin-inline: auto;
+    margin-left: auto;
     height: fit-content;
     width: 60px;
     padding: 20px;
@@ -43,6 +45,37 @@
       color: var(--primary);
       text-align: center;
       font-size: 1.5rem;
+    }
+  }
+
+  @media (max-width: 850px) {
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    .date_container {
+      margin: 0;
+      padding: 0;
+      height: fit-content;
+
+      .date {
+        line-height: 2.5rem;
+      }
+    }
+
+    .reaction {
+      margin: 0;
+      width: fit-content;
+      padding: 10px;
+      flex-direction: row;
+
+      .count {
+        color: var(--primary);
+        font-size: 1.5rem;
+        line-height: 1.5rem;
+      }
     }
   }
 }

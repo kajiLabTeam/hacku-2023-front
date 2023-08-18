@@ -1,6 +1,6 @@
 .short {
   height: 100vh;
-  padding: 20px 10px 40px 40px;
+  padding: 20px 20px 40px;
   scroll-snap-align: start;
   display: flex;
   align-items: center;
@@ -21,8 +21,19 @@
     .container {
       height: fit-content;
       display: grid;
-      grid-template-columns: 1fr 100px;
+      grid-template-columns: 1fr 70px;
       justify-content: center;
+    }
+  }
+
+  @media (max-width: 850px) {
+    padding: 10px 10px 80px;
+
+    .inner_short .container {
+      width: 100%;
+      height: 100%;
+      grid-template-columns: 1fr;
+      grid-template-rows: 1fr 90px;
     }
   }
 }
