@@ -56,7 +56,8 @@ type PostShortObject = {
 
 // 閲覧記録
 type ViewRecord = {
-  [key in GenreKey]: number;
+  dates: Array<Date>;
+  genres: Array<Genre>;
 };
 
 // 実績
@@ -65,10 +66,17 @@ type Achievement = {
   link: string;
 };
 
+// ジャンル
+type Genre = {
+  name: string;
+  color: string;
+  dailyViews: number[];
+};
+
 // ユーザー情報
-type UserObject = {
+type UserInformationObject = {
   achievements: Achievement[];
-  report: ViewRecord[];
+  report: ViewRecord;
 };
 
 // 履歴
@@ -104,7 +112,7 @@ export type {
   GenreValue,
   ViewRecord,
   Achievement,
-  UserObject,
+  UserInformationObject,
   PostHistories,
   BrowsingHistories,
 };
