@@ -3,19 +3,11 @@ import { Box, SimpleGrid, Text, Title } from "@mantine/core";
 import { useRecoilValue } from "recoil";
 import { postHistoryState } from "@/store/state";
 import LogSlideComponent from "../slide/logSlide";
+import { useUserPage } from "@/hooks/useUserPage";
 
 export default function ReportList() {
+  const { formatNumber } = useUserPage();
   const postHistory = useRecoilValue(postHistoryState);
-
-  const formatNumber = (number: number) => {
-    if (number >= 10000) {
-      return `${Math.floor(number / 10000)}万`;
-    } else if (number >= 1000) {
-      return `${Math.floor(number / 1000)}千`;
-    } else {
-      return number.toString();
-    }
-  };
 
   return (
     <Box ml={80}>
