@@ -74,6 +74,14 @@
 .right_top {
   display: flex;
   align-items: center;
+
+  .slide_container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    overflow: hidden;
+  }
 }
 
 .left_bottom {

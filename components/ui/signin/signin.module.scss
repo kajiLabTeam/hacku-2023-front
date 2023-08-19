@@ -1,0 +1,20 @@
+.signin {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  cursor: pointer;
+
+  .icon {
+    height: 3rem;
+
+    path {
+      fill: var(--primary);
+    }
+  }
+
+  .text {
+    line-height: 3rem;
+    color: var(--primary);
+  }
+}

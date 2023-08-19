@@ -17,6 +17,10 @@ type Datetime = `${number}-${number}-${number}`;
 
 type Reactions = (typeof reactions)[number];
 
+type ReactionsState = {
+  [key in Reactions]: { count: number; reacted: boolean };
+};
+
 // VoiceVox のスピーカー
 type Speaker = (typeof speakers)[number];
 
@@ -35,21 +39,11 @@ type ShortObject = {
   views: number;
   poster: string;
   createdAt: Datetime;
-  reactions: {
-    [key in Reactions]: number;
-  };
+  reactions: ReactionsState;
 };
 
 // ショートの一覧取得時
-type ShortList = {
-  id: number;
-  title: string;
-  slide: string;
-  voiceURL: string;
-  views: number;
-  speaker: Speaker;
-  poster: string;
-}[];
+type ShortList = ShortObject[];
 
 // 投稿時のショート
 type PostShortObject = {
@@ -109,6 +103,7 @@ export type {
   SlideObject,
   PostSlideObject,
   Reactions,
+  ReactionsState,
   ShortObject,
   ShortList,
   PostShortObject,

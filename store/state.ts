@@ -1,7 +1,8 @@
 import { atom } from "recoil";
 import { recoilKeyHashSet } from "./key";
 import { PostHistories, PostShortObject, UserInformationObject } from "@/types";
-import { genres, speakers } from "@/const";
+import { speakers } from "@/const";
+import { User } from "firebase/auth";
 
 const postShortState = atom<PostShortObject>({
   key: recoilKeyHashSet.postShorts,
@@ -17,6 +18,26 @@ const postShortState = atom<PostShortObject>({
     tags: [],
     genre: "",
   },
+});
+
+const playingState = atom<boolean>({
+  key: recoilKeyHashSet.playing,
+  default: false,
+});
+
+const playingSoundState = atom<HTMLAudioElement | null>({
+  key: recoilKeyHashSet.playingSound,
+  default: null,
+});
+
+const playingShortIdState = atom<number>({
+  key: recoilKeyHashSet.playingShortId,
+  default: -1,
+});
+
+const userState = atom<User | null>({
+  key: recoilKeyHashSet.signedIn,
+  default: null,
 });
 
 const postHistoryState = atom<PostHistories>({
@@ -205,4 +226,12 @@ const userInformationState = atom<UserInformationObject>({
   },
 });
 
-export { postShortState, postHistoryState, userInformationState };
+export {
+  postShortState,
+  postHistoryState,
+  userInformationState,
+  playingState,
+  playingSoundState,
+  playingShortIdState,
+  userState,
+};

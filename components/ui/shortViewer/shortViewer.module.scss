@@ -1,0 +1,78 @@
+.short_viewr {
+  margin-inline: auto;
+  max-width: calc((100vh - 150px) / 9 * 16);
+  width: 100%;
+  position: relative;
+  cursor: pointer;
+
+  .volume_icon {
+    width: 30px;
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    cursor: pointer;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #00000030;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+
+    .play {
+      width: 35px;
+      height: 50px;
+      background-color: #ffffff;
+      clip-path: polygon(0% 0%, 100% 50%, 0% 100%, 0% 100%);
+    }
+  }
+
+  .pointer {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+
+    span {
+      width: 10px;
+      height: 10px;
+      border: solid 1px var(--primary);
+      border-radius: 50%;
+      display: inline-block;
+      cursor: pointer;
+
+      &[data-current="true"] {
+        background-color: var(--primary);
+      }
+    }
+  }
+
+  .short_container {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+    border-radius: 10px;
+    display: flex;
+    overflow: scroll hidden;
+    scroll-snap-type: x mandatory;
+
+    & > div {
+      flex-shrink: 0;
+      scroll-snap-align: start;
+      box-sizing: content-box;
+      border-right: 1px solid var(--primary);
+    }
+
+    & > div:last-of-type {
+      border-right: none;
+    }
+  }
+}

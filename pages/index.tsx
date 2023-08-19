@@ -1,12 +1,16 @@
 import { Noto_Sans_JP } from "next/font/google";
 import styles from "@/styles/Home.module.scss";
 import Appbar from "@/components/base/appbar/appbar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Page } from "@/types";
 import PostPage from "@/components/page/post";
 import ViewPage from "@/components/page/view";
 import UserPage from "@/components/page/user";
-import { useDisclosure, useHotkeys } from "@mantine/hooks";
+import { useDisclosure, useHotkeys, useLocalStorage } from "@mantine/hooks";
+import SearchPage from "@/components/page/search";
+import { Modal } from "@mantine/core";
+import { login, logout, useIsSigned } from "@/components/firebase/auth";
+import SigninComponent from "@/components/ui/signin/signin";
 
 const noto = Noto_Sans_JP({
   subsets: ["latin"],
@@ -15,31 +19,59 @@ const noto = Noto_Sans_JP({
 
 export default function Home() {
   const [opened, { open, close }] = useDisclosure(false);
-  const [page, setPage] = useState<Page>("view");
+  const [page, setPage] = useLocalStorage<Page>({
+    key: "page",
+    defaultValue: "view",
+  });
+  const isSigned = useIsSigned();
+
+  function signinWithEnter() {
+    if (opened) login();
+  }
 
   useHotkeys([
     ["1", () => setPage("view")],
     ["2", () => setPage("post")],
     ["3", () => setPage("user")],
-    ["4", () => open()],
-    ["f", () => open()],
+    ["4", () => setPage("search")],
+    ["f", () => setPage("search")],
+    ["enter", signinWithEnter],
+    ["esc", close],
   ]);
 
-  const Page = {
+  const Page: { [key in Page]: JSX.Element } = {
     view: <ViewPage />,
     post: <PostPage />,
     user: <UserPage />,
+    search: <SearchPage />,
   };
+
+  useEffect(() => {
+    if (page !== "view") {
+      if (isSigned === false) open();
+    }
+  }, [isSigned, open, page]);
 
   return (
     <main className={`${noto.className} ${styles.main}`}>
-      <Appbar
-        page={page}
-        onChangePage={setPage}
+      <Modal
         opened={opened}
-        open={open}
-        close={close}
-      />
+        onClose={() => {
+          close();
+          setPage("view");
+        }}
+        withCloseButton={false}
+      >
+        <SigninComponent />
+      </Modal>
+
+      {isSigned && (
+        <div className={styles.debug_signout} onClick={logout}>
+          ログアウト
+        </div>
+      )}
+
+      <Appbar page={page} onChangePage={setPage} />
       {Page[page]}
     </main>
   );

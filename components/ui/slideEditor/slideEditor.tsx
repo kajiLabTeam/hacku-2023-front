@@ -69,7 +69,9 @@ export default function SlideEditorComponent({
         </div>
 
         <div className={styles.right_top}>
-          <SlideComponent markdown={slide.slide} />
+          <div className={styles.slide_container}>
+            <SlideComponent markdown={slide.slide} />
+          </div>
         </div>
 
         <div className={styles.left_bottom}>

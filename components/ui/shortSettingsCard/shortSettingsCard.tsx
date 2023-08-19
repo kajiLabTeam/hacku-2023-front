@@ -4,7 +4,7 @@ import { PinIcon } from "@/components/icons/icon";
 import usePostShort from "@/hooks/usePostShort";
 import { Select } from "@mantine/core";
 import { genres, genresKeys, genresValues, speakers } from "@/const";
-import { GenreKey, GenreValue, Speaker } from "@/types";
+import { Speaker } from "@/types";
 
 type props = {
   className?: string;

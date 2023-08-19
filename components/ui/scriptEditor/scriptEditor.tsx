@@ -1,7 +1,5 @@
-import { useEffect } from "react";
 import styles from "./scriptEditor.module.scss";
 import usePostShort from "@/hooks/usePostShort";
-import { useEventListener } from "@mantine/hooks";
 
 type props = {
   className?: string;
