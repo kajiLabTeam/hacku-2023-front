@@ -16,7 +16,9 @@ export default function SlideComponent({ markdown, onClick }: props) {
 
       <div className={styles.slide} onClick={onClick}>
         <div dangerouslySetInnerHTML={{ __html: html }} />
+        
       </div>
+      
     </>
   );
 }
