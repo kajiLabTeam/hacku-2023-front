@@ -1,97 +1,229 @@
 .page {
-  height: 100%;
   width: 100%;
-  padding-right: 100px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  scroll-snap-align: start;
   position: relative;
+  scroll-snap-align: start;
 
-  &:first-of-type .pagenum::before {
-    display: none;
+  @media (min-width: 850px) {
+    height: 100%;
+    padding-right: 100px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    &:first-of-type .pagenum::before {
+      display: none;
+    }
+
+    &:last-of-type .pagenum::after {
+      height: calc(50vh - 25px);
+    }
   }
 
-  &:last-of-type .pagenum::after {
-    height: calc(50vh - 25px);
+  @media (max-width: 850px) {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    & > div {
+      width: 100%;
+    }
+
+    &:first-of-type .pagenum::before {
+      display: none;
+    }
+
+    &:last-of-type {
+      padding-bottom: 50vh;
+
+      .pagenum::after {
+        display: none;
+      }
+
+      .plus_icon {
+        color: var(--secoundary);
+        background-color: var(--on-secoundary);
+        border: none;
+
+        path {
+          fill: var(--secoundary);
+        }
+      }
+    }
   }
 }
 
 .left_top {
-  .pagenum {
-    height: 50px;
-    width: 50px;
-    color: var(--secoundary);
-    background-color: var(--on-secoundary);
-    border-radius: 10px;
-    text-align: center;
-    font-size: 2.5rem;
-    font-weight: bold;
-    cursor: pointer;
-    position: absolute;
-    right: 20px;
-    top: calc(25% - 25px);
-
-    &::before {
-      content: "";
-      margin-left: 24px;
-      width: 0;
-      height: calc(25vh - 23px);
-      display: block;
-      border-left: dashed 2px var(--on-secoundary);
+  @media (min-width: 850px) {
+    .pagenum {
+      height: 50px;
+      width: 50px;
+      color: var(--secoundary);
+      background-color: var(--on-secoundary);
+      border-radius: 10px;
+      text-align: center;
+      font-size: 2.5rem;
+      font-weight: bold;
+      cursor: pointer;
       position: absolute;
-      bottom: 50px;
+      right: 20px;
+      top: calc(25% - 25px);
+
+      &::before {
+        content: "";
+        margin-left: 24px;
+        width: 0;
+        height: calc(25vh - 23px);
+        display: block;
+        border-left: dashed 2px var(--on-secoundary);
+        position: absolute;
+        bottom: 50px;
+      }
+
+      &::after {
+        content: "";
+        margin-left: 24px;
+        width: 0;
+        height: calc(75vh - 23px);
+        display: block;
+        border-left: dashed 2px var(--on-secoundary);
+      }
     }
 
-    &::after {
-      content: "";
-      margin-left: 24px;
-      width: 0;
-      height: calc(75vh - 23px);
-      display: block;
-      border-left: dashed 2px var(--on-secoundary);
+    .plus_icon {
+      height: 30px;
+      width: 30px;
+      padding: 5px;
+      color: var(--secoundary);
+      background-color: var(--on-secoundary);
+      border-radius: 50%;
+      cursor: pointer;
+      position: absolute;
+      right: 30px;
+      top: calc(75% - 25px);
+
+      path {
+        fill: var(--secoundary);
+      }
     }
   }
 
-  .plus_icon {
-    height: 30px;
-    width: 30px;
-    padding: 5px;
-    color: var(--secoundary);
-    background-color: var(--on-secoundary);
-    border-radius: 50%;
-    cursor: pointer;
-    position: absolute;
-    right: 30px;
-    top: calc(75% - 25px);
+  @media (max-width: 850px) {
+    margin-block: 50px 20px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: center;
 
-    path {
-      fill: var(--secoundary);
+    .pagenum {
+      margin: auto 20px;
+      height: 50px;
+      width: 50px;
+      color: var(--secoundary);
+      background-color: var(--on-secoundary);
+      border-radius: 10px;
+      font-size: 2.5rem;
+      text-align: center;
+      display: block;
+      font-weight: bold;
+      cursor: pointer;
+      position: relative;
+
+      &::before {
+        content: "";
+        width: 50vw;
+        height: 0px;
+        border: 1px dashed var(--on-secoundary);
+        display: block;
+        position: absolute;
+        top: 24px;
+        right: 70px;
+      }
+
+      &::after {
+        content: "";
+        width: 50vw;
+        height: 0px;
+        border: 1px dashed var(--on-secoundary);
+        display: block;
+        position: absolute;
+        top: 24px;
+        left: 120px;
+      }
+    }
+
+    .plus_icon {
+      margin: auto 0;
+      width: 30px;
+      height: 30px;
+      padding: 5px;
+      background-color: var(--secoundary);
+      border: 3px solid var(--on-secoundary);
+      border-radius: 50%;
+      cursor: pointer;
+
+      path {
+        fill: var(--on-secoundary);
+      }
     }
   }
 }
 
 .right_top {
-  display: flex;
-  align-items: center;
+  @media (min-width: 850px) {
+    display: flex;
+    align-items: center;
+    padding-top: 5px;
 
-  .slide_container {
-    width: 100%;
-    height: auto;
-    aspect-ratio: 16/9;
-    border-radius: 10px;
-    overflow: hidden;
+    .slide_container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+  }
+
+  @media (max-width: 850px) {
+    padding: 10px;
+
+    .slide_container {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16/9;
+      border-radius: 10px;
+      overflow: hidden;
+    }
   }
 }
 
 .left_bottom {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @media (min-width: 850px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  @media (max-width: 850px) {
+    order: 2;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
 
 .right_bottom {
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 850px) {
+    order: 1;
+    height: 300px;
+    padding-inline: 10px;
+
+    textarea {
+      height: 100%;
+      width: 100%;
+    }
+  }
 }

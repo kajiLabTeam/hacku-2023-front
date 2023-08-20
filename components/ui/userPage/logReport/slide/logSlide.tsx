@@ -18,7 +18,7 @@ export default function LogSlideComponent({ markdown, views }: props) {
       <div className={styles.slide}>
         <div dangerouslySetInnerHTML={{ __html: html }} />
         <div className={styles.played_container}>
-          <Text color="white"  size="sm">{`${views}回視聴`}</Text>
+          <p className={styles.views}>{`${views} 視聴`}</p>
         </div>
       </div>
     </>

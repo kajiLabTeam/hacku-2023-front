@@ -1,32 +1,169 @@
 .settings_card {
-  width: 90%;
-  height: fit-content;
-  padding: 30px;
-  background-color: var(--background-dark);
-  position: relative;
-  box-shadow: 7px 5px 5px #0000003f;
-  z-index: 10;
+  @media (min-width: 850px) {
+    width: calc((100vw - 220px) / 2);
+    max-width: 700px;
+    height: fit-content;
+    max-height: 360px;
+    padding: 10px 20px;
+    background-color: var(--background-dark);
+    position: relative;
+    box-shadow: 7px 5px 5px #0000003f;
+    z-index: 10;
 
-  .pin_icon {
-    width: 20px;
+    rotate: -1deg;
     position: absolute;
-    top: -10px;
-    left: 50%;
+    left: 90px;
+    top: 50px;
+
+    @media (min-height: 1000px) {
+      top: 10%;
+    }
+
+    @media (max-height: 800px) {
+      top: 20px;
+    }
+
+    @media (min-width: 1800px) {
+      left: 10%;
+    }
+
+    .pin_icon {
+      width: 20px;
+      position: absolute;
+      top: -10px;
+      left: 50%;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      border-radius: 10px;
+    }
+
+    .container,
+    .tag_container {
+      width: 100%;
+      margin: 15px 0;
+      text-align: center;
+
+      @media (max-height: 800px) {
+        margin: 5px 0;
+      }
+
+      .settings_title {
+        height: 3rem;
+        width: 90%;
+        padding: 0 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+      }
+
+      .settings_tag {
+        width: 90%;
+        height: 3rem;
+        padding: 0 10px;
+        margin-bottom: 10px;
+        font-size: 1.2rem;
+      }
+
+      .tag_list {
+        width: 100%;
+        height: 45px;
+        padding: 5px 10px;
+        background-color: var(--background);
+        display: flex;
+        gap: 20px;
+        overflow-x: scroll;
+
+        .tag_item {
+          padding: 5px 10px;
+          font-size: 1.3rem;
+          border-radius: 5px;
+          color: var(--on-secoundary);
+          background-color: var(--secoundary);
+          display: inline-block;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .settings_container {
+      text-align: end;
+
+      .search {
+        padding: 5px 10px;
+        font-weight: bold;
+        border-radius: 5px;
+        display: inline-block;
+
+        transition: all 0.3s;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        background-color: var(--on-primary);
+        cursor: pointer;
+      }
+
+      .search:hover {
+        color: var(--on-primary);
+        background-color: var(--primary);
+        border: 1px solid var(--primary);
+      }
+    }
+
+    .select_container {
+      display: flex;
+      justify-content: space-around;
+
+      .select_box {
+        width: 40%;
+
+        .settings_genre {
+          height: 3rem;
+        }
+      }
+    }
+
+    .label {
+      display: block;
+      font-size: 1.5rem;
+      text-align: center;
+    }
   }
 
-  input {
-    border: none;
-    outline: none;
-    border-radius: 10px;
-  }
-
-  .container,
-  .tag_container {
+  @media (max-width: 850px) {
     width: 100%;
-    margin: 15px 0;
+    padding: 50px 0;
+    background-color: var(--background-dark);
+    scroll-snap-align: start;
     text-align: center;
 
-    .settings_title {
+    & > * {
+      padding: 20px 0;
+      max-width: 400px;
+      margin-inline: auto;
+    }
+
+    input {
+      border: none;
+      outline: none;
+      border-radius: 10px;
+    }
+
+    .select_container {
+      display: flex;
+      justify-content: space-around;
+
+      .select_box {
+        width: 40%;
+
+        .settings_genre {
+          height: 3rem;
+        }
+      }
+    }
+
+    .settings_title,
+    .settings_tag {
       height: 3rem;
       width: 90%;
       padding: 0 10px;
@@ -34,74 +171,38 @@
       font-weight: bold;
     }
 
-    .settings_tag {
-      width: 90%;
-      height: 3rem;
-      padding: 0 10px;
-      margin-bottom: 10px;
-      font-size: 1.2rem;
+    .pin_icon {
+      display: none;
     }
 
-    .tag_list {
-      width: 100%;
-      height: 45px;
-      padding: 5px 10px;
-      background-color: var(--background);
-      display: flex;
-      gap: 20px;
-      overflow-x: scroll;
+    .settings_container {
+      padding: 0 10px;
+      text-align: end;
 
-      .tag_item {
+      .search {
         padding: 5px 10px;
-        font-size: 1.3rem;
+        font-weight: bold;
         border-radius: 5px;
-        color: var(--on-secoundary);
-        background-color: var(--secoundary);
         display: inline-block;
+
+        transition: all 0.3s;
+        color: var(--primary);
+        border: 1px solid var(--primary);
+        background-color: var(--on-primary);
         cursor: pointer;
       }
-    }
-  }
 
-  .settings_container {
-    text-align: end;
-
-    .search {
-      padding: 5px 10px;
-      font-weight: bold;
-      border-radius: 5px;
-      display: inline-block;
-
-      transition: all 0.3s;
-      color: var(--primary);
-      border: 1px solid var(--primary);
-      background-color: var(--on-primary);
-      cursor: pointer;
-    }
-
-    .search:hover {
-      color: var(--on-primary);
-      background-color: var(--primary);
-      border: 1px solid var(--primary);
-    }
-  }
-
-  .select_container {
-    display: flex;
-    justify-content: space-around;
-
-    .select_box {
-      width: 40%;
-
-      .settings_genre {
-        height: 3rem;
+      .search:hover {
+        color: var(--on-primary);
+        background-color: var(--primary);
+        border: 1px solid var(--primary);
       }
     }
-  }
 
-  .label {
-    display: block;
-    font-size: 1.5rem;
-    text-align: center;
+    .label {
+      display: block;
+      font-size: 1.5rem;
+      text-align: center;
+    }
   }
 }

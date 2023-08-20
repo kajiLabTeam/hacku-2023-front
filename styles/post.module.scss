@@ -5,13 +5,15 @@
   background-color: var(--secoundary);
   overflow-y: scroll;
 
-  scroll-snap-type: y mandatory;
+  @media (min-width: 850px) {
+    scroll-snap-type: y mandatory;
+  }
 
-  .settings_card {
-    rotate: -1deg;
-    position: absolute;
-    left: 10%;
-    top: 50px;
-    width: 450px;
+  @media (max-width: 850px) {
+    scroll-snap-type: y proximity;
+
+    @media (orientation: portrait) {
+      padding: 0;
+    }
   }
 }
