@@ -1,6 +1,11 @@
 import { atom } from "recoil";
 import { recoilKeyHashSet } from "./key";
-import { PostHistories, PostShortObject, UserInformationObject } from "@/types";
+import {
+  BrowsingHistories,
+  PostHistories,
+  PostShortObject,
+  UserInformationObject,
+} from "@/types";
 import { speakers } from "@/const";
 import { User } from "firebase/auth";
 
@@ -153,6 +158,63 @@ const postHistoryState = atom<PostHistories>({
   },
 });
 
+const browsingHistoryState = atom<BrowsingHistories>({
+  key: recoilKeyHashSet.browsingHistories,
+  default: {
+    browsingHistories: [
+      {
+        id: 3,
+        title: "猿しかわからないGolang講座",
+        slide: "# Goの学び方",
+        views: 7777,
+        poster: "Hikakin",
+      },
+      {
+        id: 1,
+        title: "10秒でわかるJavaScript",
+        slide: "# JSとは\n- 型がないのでエラーがでない！！",
+        views: 10,
+        poster: "Hikakin",
+      },
+      {
+        id: 2,
+        title: "1分で年収1000万",
+        slide: "Pythonは型がないので初心者におすすめ！",
+        views: 100,
+        poster: "Hikakin",
+      },
+      {
+        id: 3,
+        title: "猿しかわからないGolang講座",
+        slide: "# Goの学び方",
+        views: 7777,
+        poster: "Hikakin",
+      },
+      {
+        id: 1,
+        title: "10秒でわかるJavaScript",
+        slide: "# JSとは\n- 型がないのでエラーがでない！！",
+        views: 10,
+        poster: "Hikakin",
+      },
+      {
+        id: 2,
+        title: "1分で年収1000万",
+        slide: "Pythonは型がないので初心者におすすめ！",
+        views: 100,
+        poster: "Hikakin",
+      },
+      {
+        id: 3,
+        title: "猿しかわからないGolang講座",
+        slide: "# Goの学び方",
+        views: 7777,
+        poster: "Hikakin",
+      },
+    ],
+  },
+});
+
 const userInformationState = atom<UserInformationObject>({
   key: recoilKeyHashSet.userInformation,
   default: {
@@ -232,6 +294,7 @@ const userInformationState = atom<UserInformationObject>({
 export {
   postShortState,
   postHistoryState,
+  browsingHistoryState,
   userInformationState,
   playingState,
   playingSoundState,

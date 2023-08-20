@@ -6,6 +6,7 @@ const recoilKeys = [
   "signedIn",
   "userInformation",
   "postHistories",
+  "browsingHistories",
 ] as const;
 
 // Key: Keyのオブジェクト
