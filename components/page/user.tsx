@@ -15,7 +15,6 @@ export default function UserPage() {
   
   return (
     <section className={styles.user}>
-      <h1>User</h1>
       <div className={styles.left_container}>
         <ReportList />
       </div>
