@@ -10,6 +10,7 @@ import {
   Legend,
 } from "chart.js";
 
+import { userInformation } from "@/sample/userInformation";
 import { userInformationState } from "@/store/state";
 
 ChartJS.register(
@@ -22,7 +23,7 @@ ChartJS.register(
 );
 
 export default function BrowsingReportChart() {
-  const userInformation = useRecoilValue(userInformationState);
+  // const userInformation = useRecoilValue(userInformationState);
 
   const labels = userInformation.report.dates.map((date) => {
     const month = (date.getMonth() + 1).toString().padStart(2, "0");
