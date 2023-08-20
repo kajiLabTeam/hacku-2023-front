@@ -113,6 +113,7 @@ export type {
   ViewRecord,
   Achievement,
   UserInformationObject,
+  HistoryObject,
   PostHistories,
   BrowsingHistories,
 };

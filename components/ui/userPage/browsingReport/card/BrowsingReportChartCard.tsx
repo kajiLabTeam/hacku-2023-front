@@ -1,4 +1,4 @@
-import { Center, Title } from "@mantine/core";
+import { Center } from "@mantine/core";
 
 import { PinIcon } from "@/components/icons/icon";
 import styles from "./browsingReportChartCard.module.scss";
