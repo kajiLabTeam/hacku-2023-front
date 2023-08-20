@@ -159,9 +159,12 @@ const userInformationState = atom<UserInformationObject>({
     achievements: [
       {
         name: "JavaScript",
-        link: "https://firebasestorage.googleapis.com/v0/b/open-hack-u-2023-nagoya.appspot.com/o/javascript_original_logo_icon_146455.png?alt=media&token=b29f59fb-fbf1-4220-8c7d-9beef06b927e",
+        link: "tps://firebasest",
       },
-      { name: "TypeScript", link: "" },
+      {
+        name: "TypeScript",
+        link: "https://firebasestorage.googleapis.com/v0/b/open-hack-u-2023-nagoya.appspot.com/o/image%2FTypescript_logo_2020.svg.png?alt=media&token=3405f199-1327-43de-b08e-669ab8df11d4",
+      },
       { name: "Go", link: "" },
       { name: "MVC", link: "" },
       { name: "C", link: "" },
@@ -175,11 +178,11 @@ const userInformationState = atom<UserInformationObject>({
       { name: "React", link: "" },
       {
         name: "Java",
-        link: "https://firebasestorage.googleapis.com/v0/b/open-hack-u-2023-nagoya.appspot.com/o/java_original_wordmark_logo_icon_146459.png?alt=media&token=639cd4c3-7a42-4d5c-bbfb-f26ec939a0c7",
+        link: "",
       },
       {
         name: "Docker",
-        link: "https://firebasestorage.googleapis.com/v0/b/open-hack-u-2023-nagoya.appspot.com/o/file_type_docker_icon_130643.png?alt=media&token=ea7d8b0b-d67d-4fdd-a181-f9872e8966cf",
+        link: "",
       },
       { name: "MySQL", link: "" },
       { name: "Sass", link: "" },
