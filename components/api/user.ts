@@ -5,73 +5,43 @@ import {
   UserInformationObject,
   UserObject,
 } from "@/types";
-import axios from "axios";
+import { commonPostFetch } from "./common";
 
-const postUser = async (tokenId: string): Promise<UserObject | ErrorObject> => {
-  try {
-    const res = await axios.post("/user/post", {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return await res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+// ユーザーを追加
+const fetchUser = async (
+  tokenId: string
+): Promise<UserObject | ErrorObject> => {
+  return commonPostFetch<UserObject>("user/post", tokenId);
 };
 
+// ユーザー情報を取得
 const fetchUserInformation = async (
-  tokenId: string,
-  shortId: number
+  shortId: number,
+  tokenId: string
 ): Promise<UserInformationObject | ErrorObject> => {
-  try {
-    const res = await axios.get(`api/short/get/${shortId}`, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+  return commonPostFetch<UserInformationObject>(`user/get/${shortId}`, tokenId);
 };
 
+// 投稿履歴を取得
 const fetchPostHistories = async (
   tokenId: string
 ): Promise<PostHistories | ErrorObject> => {
-  try {
-    const res = await axios.get("user/post/history", {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+  return commonPostFetch<PostHistories>("user/post/history", tokenId);
 };
 
+// 閲覧履歴を取得
 const fetchBrowsingHistories = async (
   tokenId: string,
   page: number
 ): Promise<BrowsingHistories | ErrorObject> => {
-  try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/browsing/history/?page=${page}`,
-      {
-        headers: {
-          Authorization: `Bearer ${tokenId}`,
-        },
-      }
-    );
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+  return commonPostFetch<BrowsingHistories>(
+    `user/browsing/history/?page=${page}`,
+    tokenId
+  );
 };
 
 export {
-  postUser,
+  fetchUser,
   fetchUserInformation,
   fetchPostHistories,
   fetchBrowsingHistories,
