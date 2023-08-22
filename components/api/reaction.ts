@@ -9,8 +9,6 @@ const postReaction = async (
   try {
     const res = await axios.post(`/short/${shortId}/reaction/add/`, reaction, {
       headers: {
-        ContentType: "application/json",
-        Access: "application/json",
         Authorization: `Bearer ${tokenId}`,
       },
     });
@@ -29,8 +27,6 @@ const deleteReaction = async (
     const res = await axios.delete(`/short/${shortId}/reaction/remove/`, {
       data: reaction,
       headers: {
-        ContentType: "application/json",
-        Access: "application/json",
         Authorization: `Bearer ${tokenId}`,
       },
     });
