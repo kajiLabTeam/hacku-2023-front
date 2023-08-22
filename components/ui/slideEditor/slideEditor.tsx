@@ -49,7 +49,13 @@ export default function SlideEditorComponent({
                 キャンセル
               </Button>
 
-              <Button onClick={() => deleteSlideAt(index)} data-autofocus>
+              <Button
+                onClick={() => {
+                  deleteSlideAt(index);
+                  close();
+                }}
+                data-autofocus
+              >
                 削除
               </Button>
             </Flex>
