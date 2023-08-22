@@ -1,6 +1,5 @@
 import {
   BrowsingHistories,
-  ErrorObject,
   PostHistories,
   UserInformationObject,
   UserObject,
@@ -8,9 +7,7 @@ import {
 import { commonPostFetch } from "./common";
 
 // ユーザーを追加
-const fetchUser = async (
-  tokenId: string
-): Promise<UserObject | ErrorObject> => {
+const fetchUser = async (tokenId: string): Promise<UserObject> => {
   return commonPostFetch<UserObject>("user/post", tokenId);
 };
 
@@ -18,14 +15,12 @@ const fetchUser = async (
 const fetchUserInformation = async (
   shortId: number,
   tokenId: string
-): Promise<UserInformationObject | ErrorObject> => {
+): Promise<UserInformationObject> => {
   return commonPostFetch<UserInformationObject>(`user/get/${shortId}`, tokenId);
 };
 
 // 投稿履歴を取得
-const fetchPostHistories = async (
-  tokenId: string
-): Promise<PostHistories | ErrorObject> => {
+const fetchPostHistories = async (tokenId: string): Promise<PostHistories> => {
   return commonPostFetch<PostHistories>("user/post/history", tokenId);
 };
 
@@ -33,7 +28,7 @@ const fetchPostHistories = async (
 const fetchBrowsingHistories = async (
   tokenId: string,
   page: number
-): Promise<BrowsingHistories | ErrorObject> => {
+): Promise<BrowsingHistories> => {
   return commonPostFetch<BrowsingHistories>(
     `user/browsing/history/?page=${page}`,
     tokenId
