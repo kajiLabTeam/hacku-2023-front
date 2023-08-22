@@ -37,7 +37,7 @@ export const commonPostFetch = async <T>(
 };
 
 // DELETEリクエスト
-export const commonDeleteFetchWithBody = async <T>(
+export const commonDeleteFetch = async <T>(
   path: string,
   body: any,
   tokenId: string
