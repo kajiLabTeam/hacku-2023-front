@@ -15,6 +15,8 @@ type PostSlideObject = Omit<SlideObject, "voiceURL">;
 
 type Datetime = `${number}-${number}-${number}`;
 
+type ReactionObject = { reaction: typeof reactions };
+
 type Reactions = (typeof reactions)[number];
 
 type ReactionsState = {
@@ -73,6 +75,12 @@ type Genre = {
   dailyViews: number[];
 };
 
+// ユーザー
+type UserObject = {
+  id: number;
+  name: string;
+};
+
 // ユーザー情報
 type UserInformationObject = {
   achievements: Achievement[];
@@ -98,10 +106,15 @@ type BrowsingHistories = {
   browsingHistories: HistoryObject[];
 };
 
+type ErrorObject = {
+  error: string;
+};
+
 export type {
   Page,
   SlideObject,
   PostSlideObject,
+  ReactionObject,
   Reactions,
   ReactionsState,
   ShortObject,
@@ -112,8 +125,10 @@ export type {
   GenreValue,
   ViewRecord,
   Achievement,
+  UserObject,
   UserInformationObject,
   HistoryObject,
   PostHistories,
   BrowsingHistories,
+  ErrorObject,
 };
