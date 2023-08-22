@@ -4,11 +4,11 @@ import {
   UserInformationObject,
   UserObject,
 } from "@/types";
-import { commonGetFetch } from "./common";
+import { commonGetFetch, commonPostFetch } from "./common";
 
 // ユーザーを追加
 const fetchUser = async (tokenId: string): Promise<UserObject> => {
-  return commonGetFetch<UserObject>("user/post", tokenId);
+  return commonPostFetch<UserObject>("/api/user/post", {}, tokenId);
 };
 
 // ユーザー情報を取得

@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { useSetRecoilState } from "recoil";
 import { userState } from "@/store/state";
-import { cloneObjec } from "../util/util";
+import { fetchUser } from "../api/user";
 
 export const login = (): Promise<void> => {
   const provider = new GoogleAuthProvider();
@@ -33,6 +33,7 @@ export const useIsSigned = (): boolean | undefined => {
       if (user) {
         (async () => {
           const token = await user.getIdToken();
+          void fetchUser(token);
           setUserToken(token);
           setIsSigned(true);
         })();

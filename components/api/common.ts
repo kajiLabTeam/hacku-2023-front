@@ -1,6 +1,6 @@
 import axios from "axios";
 
-// 共通処理
+// GETリクエスト
 export const commonGetFetch = async <T>(
   path: string,
   tokenId: string
@@ -16,29 +16,17 @@ export const commonGetFetch = async <T>(
     });
 };
 
-// 共通処理
-export const commonGetFetchWithBody = async <T>(
-  path: string,
-  tokenId: string
-): Promise<T> => {
-  return axios
-    .get(path, { headers: { Authorization: `Bearer ${tokenId}` } })
-    .then((res) => {
-      return res.data as T;
-    })
-    .catch((err) => {
-      console.log(err);
-      throw err;
-    });
-};
-
-// 共通処理
+// POSTリクエスト
 export const commonPostFetch = async <T>(
   path: string,
+  body: any,
   tokenId: string
 ): Promise<T> => {
+  const headers = {
+    Authorization: `Bearer ${tokenId}`,
+  };
   return axios
-    .post(path, { headers: { Authorization: `Bearer ${tokenId}` } })
+    .post(path, body, { headers: { Authorization: `Bearer ${tokenId}` } })
     .then((res) => {
       return res.data as T;
     })
@@ -48,14 +36,14 @@ export const commonPostFetch = async <T>(
     });
 };
 
-// 共通処理
-export const commonPostFetchWithBody = async <T>(
+// DELETEリクエスト
+export const commonDeleteFetchWithBody = async <T>(
   path: string,
   body: any,
   tokenId: string
 ): Promise<T> => {
   return axios
-    .post(path, body, { headers: { Authorization: `Bearer ${tokenId}` } })
+    .delete(path, { headers: { Authorization: `Bearer ${tokenId}` } })
     .then((res) => {
       return res.data as T;
     })
