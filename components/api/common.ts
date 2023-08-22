@@ -1,12 +1,12 @@
 import axios from "axios";
 
 // 共通処理
-export const commonPostFetch = async <T>(
+export const commonGetFetch = async <T>(
   path: string,
   tokenId: string
 ): Promise<T> => {
   return axios
-    .post(path, { headers: { Authorization: `Bearer ${tokenId}` } })
+    .get(path, { headers: { Authorization: `Bearer ${tokenId}` } })
     .then((res) => {
       return res.data as T;
     })
