@@ -11,6 +11,7 @@ import SearchPage from "@/components/page/search";
 import { Modal } from "@mantine/core";
 import { login, logout, useIsSigned } from "@/components/firebase/auth";
 import SigninComponent from "@/components/ui/signin/signin";
+import LoadingComponent from "@/components/ui/loading/loading";
 
 const noto = Noto_Sans_JP({
   subsets: ["latin"],
@@ -70,6 +71,8 @@ export default function Home() {
           ログアウト
         </div>
       )}
+
+      {isSigned === undefined && <LoadingComponent />}
 
       <Appbar page={page} onChangePage={setPage} />
       {Page[page]}
