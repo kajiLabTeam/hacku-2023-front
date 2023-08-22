@@ -16,22 +16,22 @@ const userInformation: UserInformationObject = {
     { name: "C++", link: "" },
     { name: "React", link: "" },
     { name: "Docker", link: "" },
-    { name: "MySQL", link: "" },
+    { name: "PostgreSQL", link: "" },
     { name: "Sass", link: "" },
     { name: "FastAPI", link: "" },
-    { name: "C++", link: "" },
+    { name: "C#", link: "" },
     { name: "React", link: "" },
     {
       name: "Java",
       link: "",
     },
     {
-      name: "Docker",
+      name: "Scala",
       link: "",
     },
     { name: "MySQL", link: "" },
-    { name: "Sass", link: "" },
-    { name: "FastAPI", link: "" },
+    { name: "R", link: "" },
+    { name: "Rust", link: "" },
   ],
   report: {
     dates: [
