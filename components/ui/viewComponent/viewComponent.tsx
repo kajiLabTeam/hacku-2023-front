@@ -32,10 +32,6 @@ export default function ViewContainer() {
   }, [currentIndex, tokenId, isSigned, shorts.length]);
 
   useEffect(() => {
-    console.log(shorts);
-  }, [shorts]);
-
-  useEffect(() => {
     const viewer = document.getElementById("viewer");
     if (!viewer) return;
 
@@ -57,10 +53,16 @@ export default function ViewContainer() {
     return memoizedShortComponent;
   };
 
-  const ShortInfo = ({ short }: { short: ShortObject }) => {
+  const ShortInfo = ({
+    short,
+    isViewing,
+  }: {
+    short: ShortObject;
+    isViewing: boolean;
+  }) => {
     const memoizedShortComponent = useMemo(
-      () => <ShortInfoComponent short={short} />,
-      [short]
+      () => <ShortInfoComponent short={short} isViewing={isViewing} />,
+      [isViewing, short]
     );
     return memoizedShortComponent;
   };
@@ -78,7 +80,11 @@ export default function ViewContainer() {
                 index={index}
                 isViewing={index === currentIndex}
               />
-              <ShortInfo short={short} key={index} />
+              <ShortInfo
+                short={short}
+                key={index}
+                isViewing={index === currentIndex}
+              />
             </div>
           </div>
         </div>

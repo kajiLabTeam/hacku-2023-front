@@ -5,7 +5,7 @@ import { reactions } from "@/const";
 type Reaction = { reaction: string };
 
 // リアクションを追加
-const addReaction = async (
+const fetchAddReaction = async (
   shortId: number,
   reaction: string,
   tokenId: string
@@ -18,26 +18,28 @@ const addReaction = async (
 };
 
 // リアクションを削除
-const deleteReaction = async (
+const fetchRemoveReaction = async (
   shortId: number,
   reaction: string,
   tokenId: string
 ): Promise<Reaction> => {
   return commonPostFetchWithBody<Reaction>(
-    `short/${shortId}/reaction/add/`,
+    `short/${shortId}/reaction/remove/`,
     { reaction: reaction },
     tokenId
   );
 };
 
 // リアクションを更新
-export const updateReaction = async (
+const fetchUpdateReaction = async (
   shortId: number,
   reaction: ReactionsState,
   tokenId: string
 ): Promise<void> => {
   reactions.map((r) => {
-    if (reaction[r].reacted) addReaction(shortId, r, tokenId);
-    else deleteReaction(shortId, r, tokenId);
+    if (reaction[r].reacted) fetchAddReaction(shortId, r, tokenId);
+    else fetchRemoveReaction(shortId, r, tokenId);
   });
 };
+
+export { fetchAddReaction, fetchRemoveReaction, fetchUpdateReaction };

@@ -1,9 +1,18 @@
+import {
+  fetchAddReaction,
+  fetchRemoveReaction,
+} from "@/components/api/reaction";
 import { Reactions, ReactionsState } from "@/types";
 import { useCallback, useState } from "react";
 
-export default function useReaction(defaultState: ReactionsState) {
+export default function useReaction(
+  shortid: number,
+  defaultState: ReactionsState,
+  tokenId: string
+) {
   const [reactionsState, setReactionsState] = useState(defaultState);
   const [defaultReaction] = useState(defaultState);
+  const [token] = useState(tokenId);
 
   // reaction を付ける
   const addReaction = useCallback(
@@ -17,9 +26,10 @@ export default function useReaction(defaultState: ReactionsState) {
         clonedReaction[reaction].count = defaultReaction[reaction].count + 1;
       }
 
+      void fetchAddReaction(shortid, reaction, token);
       setReactionsState(clonedReaction);
     },
-    [defaultReaction, reactionsState]
+    [defaultReaction, reactionsState, shortid, token]
   );
 
   // reaction を外す
@@ -35,9 +45,10 @@ export default function useReaction(defaultState: ReactionsState) {
         clonedReaction[reaction].count = defaultReaction[reaction].count;
       }
 
+      void fetchRemoveReaction(shortid, reaction, token);
       setReactionsState(clonedReaction);
     },
-    [defaultReaction, reactionsState]
+    [defaultReaction, reactionsState, shortid, token]
   );
 
   return [reactionsState, { removeReaction, addReaction }] as const;

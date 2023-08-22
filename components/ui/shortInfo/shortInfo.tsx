@@ -10,6 +10,8 @@ import {
 } from "@/components/icons/icon";
 import useReaction from "@/hooks/useReaction";
 import { reactions } from "@/const";
+import { useRecoilValue } from "recoil";
+import { userState } from "@/store/state";
 
 type IconRelationType = {
   [key in Reactions]: {
@@ -19,8 +21,11 @@ type IconRelationType = {
 };
 
 export default function ShortInfoComponent({ short }: { short: ShortObject }) {
+  const tokenId = useRecoilValue(userState);
   const [reactionState, { addReaction, removeReaction }] = useReaction(
-    short.reactions
+    short.id,
+    short.reactions,
+    tokenId || ""
   );
 
   const IconRelation: IconRelationType = {
