@@ -40,7 +40,7 @@ const playingShortIdState = atom<number>({
   default: -1,
 });
 
-const userState = atom<User | null>({
+const userState = atom<string | null>({
   key: recoilKeyHashSet.signedIn,
   default: null,
 });
