@@ -36,8 +36,6 @@
     }
 
     .icon_postadd {
-      padding-left: 16px;
-      width: 73px;
       fill: var(--secoundary);
 
       &.selected {
@@ -54,7 +52,6 @@
     }
 
     .icon_search {
-      padding: 10px 10px 10px 17px;
       fill: var(--quaternary);
 
       &.selected {
@@ -115,14 +112,6 @@
           width: 50px;
           transition: all 0.3s;
           border-radius: 10px;
-        }
-
-        .icon_player {
-          padding: 6px;
-        }
-
-        .icon_postadd {
-          padding: 2px 3px 5px 7px;
         }
 
         .selected {
