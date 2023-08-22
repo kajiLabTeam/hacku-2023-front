@@ -3,14 +3,13 @@ import { Carousel } from "@mantine/carousel";
 import { Box, SimpleGrid, Text } from "@mantine/core";
 
 import styles from "./reportList.module.scss";
-import { useUserPage } from "@/hooks/useUserPage";
+import { formatNumber } from "@/components/util/util";
 import LogSlideComponent from "../slide/logSlide";
 import { postHistories } from "@/sample/postHistory";
 import { browsingHistories } from "@/sample/browsingHistory";
 import { browsingHistoryState, postHistoryState } from "@/store/state";
 
 export default function ReportList() {
-  const { formatNumber } = useUserPage();
   // const postHistory = useRecoilValue(postHistoryState);
   // const browsingHistory = useRecoilValue(browsingHistoryState);
 
