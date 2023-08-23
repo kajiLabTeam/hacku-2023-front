@@ -66,12 +66,6 @@ export default function Home() {
         <SigninComponent />
       </Modal>
 
-      {isSigned && (
-        <div className={styles.debug_signout} onClick={logout}>
-          ログアウト
-        </div>
-      )}
-
       {isSigned === undefined && <LoadingComponent />}
 
       <Appbar page={page} onChangePage={setPage} />
