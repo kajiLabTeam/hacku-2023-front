@@ -1,14 +1,12 @@
 import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { Image, Loader, Text } from "@mantine/core";
-
 import { userInformationState } from "@/store/state";
-import { userInformation } from "@/sample/userInformation";
 import styles from "./submissionResultsCardList.module.scss";
 
 export default function SubmissionResultsList() {
   const [loading, setLoading] = useState(false);
-  // const userInformation = useRecoilValue(userInformationState);
+  const userInformation = useRecoilValue(userInformationState);
 
   const handleImageError = () => {
     setLoading(false);
