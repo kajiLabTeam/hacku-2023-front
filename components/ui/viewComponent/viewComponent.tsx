@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { ShortList, ShortObject } from "@/types";
 import ShortInfoComponent from "@/components/ui/shortInfo/shortInfo";
 import { fetchShorts } from "@/components/api/short";
-import { userState } from "@/store/state";
-import { useRecoilValue } from "recoil";
+import { shortsState, userState } from "@/store/state";
+import { useRecoilState, useRecoilValue } from "recoil";
 import { useIsSigned } from "@/components/firebase/auth";
 
 type shortContentProps = {
@@ -15,7 +15,7 @@ type shortContentProps = {
 };
 
 export default function ViewContainer() {
-  const [shorts, setShorts] = useState<ShortList>([]);
+  const [shorts, setShorts] = useRecoilState(shortsState);
   const [currentIndex, setCurrentIndex] = useState(0);
   const tokenId = useRecoilValue(userState);
   const isSigned = useIsSigned();
@@ -29,7 +29,7 @@ export default function ViewContainer() {
       const res = await fetchShorts(tokenId);
       setShorts((prev) => [...prev, ...res]);
     })();
-  }, [currentIndex, tokenId, isSigned, shorts.length]);
+  }, [currentIndex, tokenId, isSigned, shorts.length, setShorts]);
 
   useEffect(() => {
     const viewer = document.getElementById("viewer");
@@ -61,8 +61,8 @@ export default function ViewContainer() {
     isViewing: boolean;
   }) => {
     const memoizedShortComponent = useMemo(
-      () => <ShortInfoComponent short={short} isViewing={isViewing} />,
-      [isViewing, short]
+      () => <ShortInfoComponent short={short} />,
+      [short]
     );
     return memoizedShortComponent;
   };

@@ -44,7 +44,7 @@ export default function Home() {
     view: <ViewPage />,
     post: <PostPage />,
     user: <UserPage />,
-    search: <SearchPage />,
+    search: <SearchPage setPage={setPage} />,
   };
 
   useEffect(() => {

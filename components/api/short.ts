@@ -24,14 +24,15 @@ const fetchShortById = async (
 
 // タグかタイトルからショート一覧を取得
 const fetchShortsByTagsOrTitle = async (
-  tokenId: string,
+  title: string,
   tags: string,
-  title: string
+  tokenId: string
 ): Promise<ShortList> => {
-  return commonGetFetch<ShortList>(
-    `short/search?tags=${tags}&title=${title}`,
+  const res = await commonGetFetch<{ shorts: ShortList }>(
+    `/api/short/search/?title=${title}&tags=${tags}`,
     tokenId
   );
+  return res.shorts;
 };
 
 // ショートを投稿

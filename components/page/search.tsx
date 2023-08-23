@@ -2,8 +2,13 @@ import styles from "@/styles/search.module.scss";
 import ModalComponent from "@/components/ui/modal/modal";
 import { usePlayingSound } from "@/hooks/usePlayingSound";
 import { useEffect } from "react";
+import { Page } from "@/types";
 
-export default function SearchPage() {
+export default function SearchPage({
+  setPage,
+}: {
+  setPage: (page: Page) => void;
+}) {
   const [_, { switchShort }] = usePlayingSound();
 
   useEffect(() => {
@@ -12,7 +17,7 @@ export default function SearchPage() {
 
   return (
     <div className={styles.search}>
-      <ModalComponent />
+      <ModalComponent setPage={setPage} />
     </div>
   );
 }
