@@ -33,6 +33,10 @@
   display: flex;
   flex-direction: column;
 
+  @media (min-width: 850px) {
+    width: 50%;
+  }
+
   .right_top,
   .right_bottom {
     flex: 1;
