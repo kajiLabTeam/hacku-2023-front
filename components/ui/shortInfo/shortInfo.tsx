@@ -10,6 +10,7 @@ import {
 } from "@/components/icons/icon";
 import useReaction from "@/hooks/useReaction";
 import { reactions } from "@/const";
+import InformatoinComponent from "../credit/credit";
 
 type IconRelationType = {
   [key in Reactions]: {
@@ -101,6 +102,8 @@ export default function ShortInfoComponent({ short }: { short: ShortObject }) {
           <ReactionComponent reaction={reaction} key={reaction} />
         ))}
       </div>
+
+      <InformatoinComponent speaker={short.speaker} />
     </div>
   );
 }

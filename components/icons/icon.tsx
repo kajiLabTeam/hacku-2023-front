@@ -134,3 +134,13 @@ export function SignInIcon(props: SVGProps<SVGSVGElement>) {
     </svg>
   );
 }
+
+export function InformationIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 50" {...props}>
+      <path d="M25,5c11.03,0,20,8.97,20,20s-8.97,20-20,20S5,36.03,5,25,13.97,5,25,5m0-5C11.19,0,0,11.19,0,25s11.19,25,25,25,25-11.19,25-25S38.81,0,25,0h0Z" />
+      <path d="M25,34.21c-1.57,0-2.84-1.27-2.84-2.84V12.61c0-1.57,1.27-2.84,2.84-2.84s2.84,1.27,2.84,2.84V31.38c0,1.57-1.27,2.84-2.84,2.84Z" />
+      <circle cx="25" cy="38.5" r="2.83" />
+    </svg>
+  );
+}
