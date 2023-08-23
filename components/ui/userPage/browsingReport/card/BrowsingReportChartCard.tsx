@@ -23,7 +23,7 @@ export default function BrowsingReportChartCard({ className }: props) {
       <div className={`${styles.settings_card} ${className}`}>
         <PinIcon className={styles.pin_icon} />
         <h1 className={styles.title_in_card}>閲覧レポート</h1>
-        <Center>
+        <Center mb={30}>
           <BrowsingReportChart />
         </Center>
       </div>
