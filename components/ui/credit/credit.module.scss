@@ -1,0 +1,16 @@
+.icon {
+  margin-left: auto;
+  width: 60px;
+  padding: 15px;
+  display: block;
+  cursor: pointer;
+
+  path,
+  circle {
+    fill: var(--on-primary);
+  }
+}
+
+.credit {
+  text-align: center;
+}
