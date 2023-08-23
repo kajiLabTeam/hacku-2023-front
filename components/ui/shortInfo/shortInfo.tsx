@@ -12,6 +12,7 @@ import useReaction from "@/hooks/useReaction";
 import { reactions } from "@/const";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/store/state";
+import InformatoinComponent from "../credit/credit";
 
 type IconRelationType = {
   [key in Reactions]: {
@@ -106,6 +107,8 @@ export default function ShortInfoComponent({ short }: { short: ShortObject }) {
           <ReactionComponent reaction={reaction} key={reaction} />
         ))}
       </div>
+
+      <InformatoinComponent speaker={short.speaker} />
     </div>
   );
 }
