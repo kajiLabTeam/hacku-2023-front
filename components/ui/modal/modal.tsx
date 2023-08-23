@@ -54,8 +54,13 @@ export default function ModalComponent({
       tags.values.employees.join(","),
       tokenId
     );
-    setShorts(res);
-    setPage("view");
+
+    if (res.length === 0) {
+      openDialog("該当するショートがありません");
+    } else {
+      setShorts(res);
+      setPage("view");
+    }
   }
 
   return (
