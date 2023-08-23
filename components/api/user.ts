@@ -16,21 +16,30 @@ const fetchUserInformation = async (
   shortId: number,
   tokenId: string
 ): Promise<UserInformationObject> => {
-  return commonGetFetch<UserInformationObject>(`user/get/${shortId}`, tokenId);
+  return commonGetFetch<UserInformationObject>(
+    `/api/user/get/${shortId}`,
+    tokenId
+  );
 };
 
 // 投稿履歴を取得
-const fetchPostHistories = async (tokenId: string): Promise<PostHistories> => {
-  return commonGetFetch<PostHistories>("user/post/history", tokenId);
+const fetchPostHistories = async (
+  page: number,
+  tokenId: string
+): Promise<PostHistories> => {
+  return commonGetFetch<PostHistories>(
+    `/api/user/post/history/get/?page=${page}`,
+    tokenId
+  );
 };
 
 // 閲覧履歴を取得
 const fetchBrowsingHistories = async (
-  tokenId: string,
-  page: number
+  page: number,
+  tokenId: string
 ): Promise<BrowsingHistories> => {
   return commonGetFetch<BrowsingHistories>(
-    `user/browsing/history/?page=${page}`,
+    `/api/user/browsing/history/?page=${page}`,
     tokenId
   );
 };

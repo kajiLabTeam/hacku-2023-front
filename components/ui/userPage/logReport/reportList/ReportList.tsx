@@ -10,8 +10,8 @@ import { browsingHistories } from "@/sample/browsingHistory";
 import { browsingHistoryState, postHistoryState } from "@/store/state";
 
 export default function ReportList() {
-  // const postHistory = useRecoilValue(postHistoryState);
-  // const browsingHistory = useRecoilValue(browsingHistoryState);
+  const postHistory = useRecoilValue(postHistoryState);
+  const browsingHistory = useRecoilValue(browsingHistoryState);
 
   return (
     <Box>
@@ -29,7 +29,7 @@ export default function ReportList() {
         <Carousel.Slide>
           <h1 className={styles.title_in_card}>自分の閲覧履歴</h1>
           <SimpleGrid mb={40} cols={2} mt="xl" verticalSpacing={40}>
-            {browsingHistories.map((browsingHistory) => {
+            {browsingHistory.browsingHistories.map((browsingHistory) => {
               return (
                 <Box key={browsingHistory.id}>
                   <LogSlideComponent
@@ -47,7 +47,7 @@ export default function ReportList() {
         <Carousel.Slide>
           <h1 className={styles.title_in_card}>過去の投稿</h1>
           <SimpleGrid cols={2} mt="xl" verticalSpacing={40}>
-            {postHistories.map((postHistory) => {
+            {postHistory.postHistories.map((postHistory) => {
               return (
                 <Box key={postHistory.id}>
                   <LogSlideComponent
