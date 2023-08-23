@@ -11,9 +11,15 @@ type props = {
   isViewing: boolean;
   shortIndex: number;
   short: ShortObject;
+  scrollToNext: () => void;
 };
 
-export default function ShortViewer({ isViewing, shortIndex, short }: props) {
+export default function ShortViewer({
+  isViewing,
+  shortIndex,
+  short,
+  scrollToNext,
+}: props) {
   const [sounds, setSounds] = useState<HTMLAudioElement[]>([]);
   const [playing, setPlaying] = useRecoilState(playingState);
   const [_, { setPlayingSound, switchShort }] = usePlayingSound();
@@ -80,12 +86,16 @@ export default function ShortViewer({ isViewing, shortIndex, short }: props) {
     sounds[slideIndex]?.addEventListener("ended", () => {
       const shortEle = document.getElementById(`short-${shortIndex}`);
       if (!shortEle) return;
-      shortEle.scrollTo({
-        left: shortEle.clientWidth * (slideIndex + 1),
-        behavior: "smooth",
-      });
+      
+      if (slideIndex >= sounds.length - 1) scrollToNext();
+      else {
+        shortEle.scrollTo({
+          left: shortEle.clientWidth * (slideIndex + 1),
+          behavior: "smooth",
+        });
+      }
     });
-  }, [isViewing, playing, setPlayingSound, shortIndex, slideIndex, sounds]);
+  }, [isViewing, playing, scrollToNext, setPlayingSound, shortIndex, slideIndex, sounds]);
 
   // スライドが切り替わった場合は再生位置を戻す
   useEffect(() => {

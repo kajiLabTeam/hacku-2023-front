@@ -1,17 +1,18 @@
 import styles from "./viewComponent.module.scss";
 import ShortViewer from "@/components/ui/shortViewer/shortViewer";
 import { useEffect, useMemo, useState } from "react";
-import { ShortList, ShortObject } from "@/types";
+import { ShortObject } from "@/types";
 import ShortInfoComponent from "@/components/ui/shortInfo/shortInfo";
-import { fetchShorts } from "@/components/api/short";
 import { shortsState, userState } from "@/store/state";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { useIsSigned } from "@/components/firebase/auth";
+import { fetchShorts } from "@/components/api/short";
 
 type shortContentProps = {
   short: ShortObject;
   index: number;
   isViewing: boolean;
+  scrollToNext: () => void;
 };
 
 export default function ViewContainer() {
@@ -19,6 +20,16 @@ export default function ViewContainer() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const tokenId = useRecoilValue(userState);
   const isSigned = useIsSigned();
+
+  function scrollToNext() {
+    const viewer = document.getElementById("viewer");
+    if (!viewer) return;
+
+    viewer.scrollTo({
+      top: window.innerHeight * (currentIndex + 1),
+      behavior: "smooth",
+    });
+  }
 
   useEffect(() => {
     if (!isSigned) return;
@@ -43,23 +54,22 @@ export default function ViewContainer() {
     };
   }, [setCurrentIndex]);
 
-  const ShortContent = ({ short, index, isViewing }: shortContentProps) => {
+  const ShortContent = ({
+    short,
+    index,
+    isViewing,
+    scrollToNext,
+  }: shortContentProps) => {
     const memoizedShortComponent = useMemo(
       () => (
-        <ShortViewer short={short} shortIndex={index} isViewing={isViewing} />
+        <ShortViewer short={short} shortIndex={index} isViewing={isViewing} scrollToNext={scrollToNext} />
       ),
-      [short, index, isViewing]
+      [short, index, isViewing, scrollToNext]
     );
     return memoizedShortComponent;
   };
 
-  const ShortInfo = ({
-    short,
-    isViewing,
-  }: {
-    short: ShortObject;
-    isViewing: boolean;
-  }) => {
+  const ShortInfo = ({ short }: { short: ShortObject }) => {
     const memoizedShortComponent = useMemo(
       () => <ShortInfoComponent short={short} />,
       [short]
@@ -79,12 +89,9 @@ export default function ViewContainer() {
                 short={short}
                 index={index}
                 isViewing={index === currentIndex}
+                scrollToNext={scrollToNext}
               />
-              <ShortInfo
-                short={short}
-                key={index}
-                isViewing={index === currentIndex}
-              />
+              <ShortInfo short={short} key={index} />
             </div>
           </div>
         </div>
