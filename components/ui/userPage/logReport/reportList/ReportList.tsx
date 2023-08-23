@@ -4,13 +4,12 @@ import { Box, SimpleGrid, Text } from "@mantine/core";
 import styles from "./reportList.module.scss";
 import { formatNumber } from "@/components/util/util";
 import LogSlideComponent from "../slide/logSlide";
-import { browsingHistories } from "@/sample/browsingHistory";
-import { postHistoryState } from "@/store/state";
+import { browsingHistoryState, postHistoryState } from "@/store/state";
 import { useEffect } from "react";
 
 export default function ReportList() {
   const postHistory = useRecoilValue(postHistoryState);
-  // const browsingHistory = useRecoilValue(browsingHistoryState);
+  const browsingHistories = useRecoilValue(browsingHistoryState);
 
   useEffect(() => {
     console.log(postHistory);
@@ -29,10 +28,10 @@ export default function ReportList() {
           },
         })}
       >
-        <Carousel.Slide>
+        <Carousel.Slide className={styles.grid}>
           <h1 className={styles.title_in_card}>自分の閲覧履歴</h1>
           <SimpleGrid mb={40} cols={2} mt="xl" verticalSpacing={40}>
-            {browsingHistories.map((browsingHistory) => {
+            {browsingHistories.browsingHistories.map((browsingHistory) => {
               return (
                 <Box key={browsingHistory.id}>
                   <LogSlideComponent
@@ -47,7 +46,7 @@ export default function ReportList() {
             })}
           </SimpleGrid>
         </Carousel.Slide>
-        <Carousel.Slide>
+        <Carousel.Slide className={styles.grid}>
           <h1 className={styles.title_in_card}>過去の投稿</h1>
           <SimpleGrid cols={2} mt="xl" verticalSpacing={40}>
             {postHistory.postHistories.map((postHistory) => {
