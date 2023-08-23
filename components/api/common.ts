@@ -37,8 +37,9 @@ export const commonPostFetch = async <T>(
   path: string,
   tokenId: string
 ): Promise<T> => {
+  const header = { headers: { Authorization: `Bearer ${tokenId}` } };
   return axios
-    .post(path, { headers: { Authorization: `Bearer ${tokenId}` } })
+    .post(path, {}, header)
     .then((res) => {
       return res.data as T;
     })
