@@ -1,4 +1,5 @@
 import styles from "./slide.module.scss";
+import md from "@/styles/md.module.scss";
 import { Marp } from "@marp-team/marp-core";
 
 type props = {
@@ -15,10 +16,8 @@ export default function SlideComponent({ markdown, onClick }: props) {
       <style jsx>{css}</style>
 
       <div className={styles.slide} onClick={onClick}>
-        <div dangerouslySetInnerHTML={{ __html: html }} />
-        
+        <div dangerouslySetInnerHTML={{ __html: html }} className={md.slide} />
       </div>
-      
     </>
   );
 }
