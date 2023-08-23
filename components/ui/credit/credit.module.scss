@@ -1,9 +1,15 @@
 .icon {
-  margin-left: auto;
   width: 60px;
   padding: 15px;
   display: block;
   cursor: pointer;
+
+  @media (min-width: 850px) {
+    margin-left: auto;
+  }
+  @media (max-width: 850px) {
+    margin-right: auto;
+  }
 
   path,
   circle {
