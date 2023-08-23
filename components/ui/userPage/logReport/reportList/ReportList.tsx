@@ -11,10 +11,6 @@ export default function ReportList() {
   const postHistory = useRecoilValue(postHistoryState);
   const browsingHistories = useRecoilValue(browsingHistoryState);
 
-  useEffect(() => {
-    console.log(postHistory);
-  }, [postHistory]);
-
   return (
     <Box>
       <Carousel

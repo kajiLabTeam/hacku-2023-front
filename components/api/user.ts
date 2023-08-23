@@ -14,10 +14,12 @@ const fetcAddhUser = async (tokenId: string): Promise<UserObject> => {
 
 // ユーザー情報を取得
 const fetchUserInformation = async (
-  shortId: number,
   tokenId: string
 ): Promise<UserInformationObject> => {
-  return commonGetFetch<UserInformationObject>(`user/get/${shortId}`, tokenId);
+  return commonGetFetch<UserInformationObject>(
+    "/api/user/profile",
+    tokenId
+  );
 };
 
 // 投稿履歴を取得
@@ -39,7 +41,7 @@ const fetchBrowsingHistories = async (
   page: number = 1
 ): Promise<HistoryObject[]> => {
   const res = await commonGetFetch<BrowsingHistories>(
-    `user/browsing/history/?page=${page}`,
+    `/api/user/browsing/history/?page=${page}`,
     tokenId
   );
   return res.browsingHistories;

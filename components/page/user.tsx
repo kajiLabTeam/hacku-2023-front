@@ -4,7 +4,11 @@ import { useEffect } from "react";
 import ReportList from "../ui/userPage/logReport/reportList/ReportList";
 import SubmissionResultsCard from "../ui/userPage/submissionReport/card/SubmissionResultsCard";
 import BrowsingReportChartCard from "../ui/userPage/browsingReport/card/BrowsingReportChartCard";
-import { fetchBrowsingHistories, fetchPostHistories, fetchUserInformation } from "../api/user";
+import {
+  fetchBrowsingHistories,
+  fetchPostHistories,
+  fetchUserInformation,
+} from "../api/user";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   browsingHistoryState,
@@ -18,6 +22,7 @@ export default function UserPage() {
   const tokenId = useRecoilValue(userState);
   const setPostHistories = useSetRecoilState(postHistoryState);
   const setBrowsingHistories = useSetRecoilState(browsingHistoryState);
+  const setUserInformation = useSetRecoilState(userInformationState);
 
   useEffect(() => {
     switchShort(-1);
@@ -26,14 +31,19 @@ export default function UserPage() {
   useEffect(() => {
     (async () => {
       if (tokenId) {
+        console.log(tokenId);
+
         const postHistorySnap = await fetchPostHistories(tokenId);
         setPostHistories({ postHistories: postHistorySnap });
 
         const browsingHistorySnap = await fetchBrowsingHistories(tokenId);
         setBrowsingHistories({ browsingHistories: browsingHistorySnap });
+
+        const userInformationSnap = await fetchUserInformation(tokenId);
+        setUserInformation(userInformationSnap);
       }
     })();
-  }, [setBrowsingHistories, setPostHistories, tokenId]);
+  }, [setBrowsingHistories, setPostHistories, setUserInformation, tokenId]);
 
   return (
     <section className={styles.user}>

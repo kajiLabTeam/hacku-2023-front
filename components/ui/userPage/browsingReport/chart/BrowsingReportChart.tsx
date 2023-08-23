@@ -9,9 +9,8 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-
-import { userInformation } from "@/sample/userInformation";
 import { userInformationState } from "@/store/state";
+import { useEffect } from "react";
 
 ChartJS.register(
   CategoryScale,
@@ -23,11 +22,12 @@ ChartJS.register(
 );
 
 export default function BrowsingReportChart() {
-  // const userInformation = useRecoilValue(userInformationState);
+  const userInformation = useRecoilValue(userInformationState);
 
   const labels = userInformation.report.dates.map((date) => {
-    const month = (date.getMonth() + 1).toString().padStart(2, "0");
-    const day = date.getDate().toString().padStart(2, "0");
+    const d = new Date(date);
+    const month = (d.getMonth() + 1).toString().padStart(2, "0");
+    const day = d.getDate().toString().padStart(2, "0");
     return `${month}/${day}`;
   });
 
