@@ -1,69 +1,55 @@
-import axios from "axios";
+import { PostShortObject, ShortList, ShortObject } from "@/types";
+import {
+  commonGetFetch,
+  commonPostFetch,
+  commonPostFetchWithBody,
+} from "./common";
 
-import { ErrorObject, PostShortObject, ShortList, ShortObject } from "@/types";
-
-const fetchShorts = async (
-  tokenId: string
-): Promise<ShortList | ErrorObject> => {
-  try {
-    const res = await axios.get(`/short/get`, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+// ショート一覧を取得
+const fetchShorts = async (tokenId: string): Promise<ShortList> => {
+  const res = await commonGetFetch<{ shorts: ShortList }>(
+    "/api/short/get",
+    tokenId
+  );
+  return res.shorts;
 };
 
+// id からショートを取得
 const fetchShortById = async (
   tokenId: string,
   shortId: number
-): Promise<ShortObject | ErrorObject> => {
-  try {
-    const res = await axios.get(`/get/${shortId}`, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+): Promise<ShortObject> => {
+  return commonGetFetch<ShortObject>(`short/get/${shortId}`, tokenId);
 };
 
+// タグかタイトルからショート一覧を取得
 const fetchShortsByTagsOrTitle = async (
-  tokenId: string,
+  title: string,
   tags: string,
-  title: string
-): Promise<ShortList | ErrorObject> => {
-  try {
-    const res = await axios.get(`/short/search?tags=${tags}&title=${title}`, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+  tokenId: string
+): Promise<ShortList> => {
+  const res = await commonGetFetch<{ shorts: ShortList }>(
+    `/api/short/search/?title=${title}&tags=${tags}`,
+    tokenId
+  );
+  return res.shorts;
 };
 
-const postShort = async (
-  tokenId: string,
-  short: PostShortObject
-): Promise<PostShortObject | ErrorObject> => {
-  try {
-    const res = await axios.post(`/short/post`, short, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data();
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+// ショートを投稿
+const fetchPostShort = async (
+  short: PostShortObject,
+  tokenId: string
+): Promise<PostShortObject> => {
+  return commonPostFetchWithBody<PostShortObject>(
+    "/api/short/post",
+    short,
+    tokenId
+  );
 };
 
-export { fetchShorts, fetchShortById, fetchShortsByTagsOrTitle, postShort };
+export {
+  fetchShorts,
+  fetchShortById,
+  fetchShortsByTagsOrTitle,
+  fetchPostShort,
+};

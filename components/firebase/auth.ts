@@ -10,7 +10,7 @@ import {
 } from "firebase/auth";
 import { useSetRecoilState } from "recoil";
 import { userState } from "@/store/state";
-import { cloneObjec } from "../util/util";
+import { fetcAddhUser } from "../api/user";
 
 export const login = (): Promise<void> => {
   const provider = new GoogleAuthProvider();
@@ -25,20 +25,23 @@ export const logout = (): Promise<void> => {
 
 export const useIsSigned = (): boolean | undefined => {
   const [isSigned, setIsSigned] = useState<boolean | undefined>();
-  const setUserState = useSetRecoilState(userState);
+  const setUserToken = useSetRecoilState(userState);
 
   useEffect(() => {
     const auth = getAuth(app);
     return onAuthStateChanged(auth, (user) => {
       if (user) {
-        const newUser = user ? cloneObjec<User>(user) : null;
-        setUserState(newUser);
-        setIsSigned(true);
+        (async () => {
+          const token = await user.getIdToken();
+          setUserToken(token);
+          setIsSigned(true);
+          void fetcAddhUser(token);
+        })();
       } else {
         setIsSigned(false);
       }
     });
-  }, [setUserState]);
+  }, [setUserToken]);
 
   return isSigned;
 };

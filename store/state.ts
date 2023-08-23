@@ -4,10 +4,10 @@ import {
   BrowsingHistories,
   PostHistories,
   PostShortObject,
+  ShortList,
   UserInformationObject,
 } from "@/types";
 import { speakers } from "@/const";
-import { User } from "firebase/auth";
 
 const postShortState = atom<PostShortObject>({
   key: recoilKeyHashSet.postShorts,
@@ -40,7 +40,7 @@ const playingShortIdState = atom<number>({
   default: -1,
 });
 
-const userState = atom<User | null>({
+const userState = atom<string | null>({
   key: recoilKeyHashSet.signedIn,
   default: null,
 });
@@ -60,6 +60,11 @@ const userInformationState = atom<UserInformationObject>({
   default: { achievements: [], report: { dates: [], genres: [] } },
 });
 
+const shortsState = atom<ShortList>({
+  key: recoilKeyHashSet.shorts,
+  default: [],
+});
+
 export {
   postShortState,
   postHistoryState,
@@ -69,4 +74,5 @@ export {
   playingSoundState,
   playingShortIdState,
   userState,
+  shortsState,
 };

@@ -44,7 +44,7 @@ export default function Home() {
     view: <ViewPage />,
     post: <PostPage />,
     user: <UserPage />,
-    search: <SearchPage />,
+    search: <SearchPage setPage={setPage} />,
   };
 
   useEffect(() => {
@@ -65,12 +65,6 @@ export default function Home() {
       >
         <SigninComponent />
       </Modal>
-
-      {isSigned && (
-        <div className={styles.debug_signout} onClick={logout}>
-          ログアウト
-        </div>
-      )}
 
       {isSigned === undefined && <LoadingComponent />}
 

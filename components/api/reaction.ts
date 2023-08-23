@@ -1,39 +1,45 @@
-import { ErrorObject, ReactionObject } from "@/types";
-import axios from "axios";
+import { ReactionsState } from "@/types";
+import { commonPostFetchWithBody } from "./common";
+import { reactions } from "@/const";
 
-const postReaction = async (
-  tokenId: string,
+type Reaction = { reaction: string };
+
+// リアクションを追加
+const fetchAddReaction = async (
   shortId: number,
-  reaction: ReactionObject
-): Promise<ReactionObject | ErrorObject> => {
-  try {
-    const res = await axios.post(`/short/${shortId}/reaction/add/`, reaction, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data();
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+  reaction: string,
+  tokenId: string
+): Promise<Reaction> => {
+  return commonPostFetchWithBody<Reaction>(
+    `short/${shortId}/reaction/add/`,
+    { reaction: reaction },
+    tokenId
+  );
 };
 
-const deleteReaction = async (
-  tokenId: string,
+// リアクションを削除
+const fetchRemoveReaction = async (
   shortId: number,
-  reaction: ReactionObject
-): Promise<ReactionObject | ErrorObject> => {
-  try {
-    const res = await axios.delete(`/short/${shortId}/reaction/remove/`, {
-      data: reaction,
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data();
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+  reaction: string,
+  tokenId: string
+): Promise<Reaction> => {
+  return commonPostFetchWithBody<Reaction>(
+    `short/${shortId}/reaction/remove/`,
+    { reaction: reaction },
+    tokenId
+  );
 };
 
-export { postReaction, deleteReaction };
+// リアクションを更新
+const fetchUpdateReaction = async (
+  shortId: number,
+  reaction: ReactionsState,
+  tokenId: string
+): Promise<void> => {
+  reactions.map((r) => {
+    if (reaction[r].reacted) fetchAddReaction(shortId, r, tokenId);
+    else fetchRemoveReaction(shortId, r, tokenId);
+  });
+};
+
+export { fetchAddReaction, fetchRemoveReaction, fetchUpdateReaction };

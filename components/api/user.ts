@@ -1,77 +1,42 @@
 import {
   BrowsingHistories,
-  ErrorObject,
   PostHistories,
   UserInformationObject,
   UserObject,
 } from "@/types";
-import axios from "axios";
+import { commonGetFetch, commonPostFetch } from "./common";
 
-const postUser = async (tokenId: string): Promise<UserObject | ErrorObject> => {
-  try {
-    const res = await axios.post("/user/post", {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return await res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+// ユーザーを追加
+const fetcAddhUser = async (tokenId: string): Promise<UserObject> => {
+  return commonPostFetch<UserObject>("/api/user/post/", tokenId);
 };
 
+// ユーザー情報を取得
 const fetchUserInformation = async (
-  tokenId: string,
-  shortId: number
-): Promise<UserInformationObject | ErrorObject> => {
-  try {
-    const res = await axios.get(`api/short/get/${shortId}`, {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
-};
-
-const fetchPostHistories = async (
+  shortId: number,
   tokenId: string
-): Promise<PostHistories | ErrorObject> => {
-  try {
-    const res = await axios.get("user/post/history", {
-      headers: {
-        Authorization: `Bearer ${tokenId}`,
-      },
-    });
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+): Promise<UserInformationObject> => {
+  return commonGetFetch<UserInformationObject>(`user/get/${shortId}`, tokenId);
 };
 
+// 投稿履歴を取得
+const fetchPostHistories = async (tokenId: string): Promise<PostHistories> => {
+  return commonGetFetch<PostHistories>("user/post/history", tokenId);
+};
+
+// 閲覧履歴を取得
 const fetchBrowsingHistories = async (
   tokenId: string,
   page: number
-): Promise<BrowsingHistories | ErrorObject> => {
-  try {
-    const res = await axios.get(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/browsing/history/?page=${page}`,
-      {
-        headers: {
-          Authorization: `Bearer ${tokenId}`,
-        },
-      }
-    );
-    return res.data;
-  } catch (e) {
-    return { error: e } as ErrorObject;
-  }
+): Promise<BrowsingHistories> => {
+  return commonGetFetch<BrowsingHistories>(
+    `user/browsing/history/?page=${page}`,
+    tokenId
+  );
 };
 
 export {
-  postUser,
+  fetcAddhUser,
   fetchUserInformation,
   fetchPostHistories,
   fetchBrowsingHistories,

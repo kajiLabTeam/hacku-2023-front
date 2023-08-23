@@ -1,9 +1,12 @@
 import styles from "./viewComponent.module.scss";
-import { shorts } from "@/sample/short";
 import ShortViewer from "@/components/ui/shortViewer/shortViewer";
 import { useEffect, useMemo, useState } from "react";
-import { ShortObject } from "@/types";
+import { ShortList, ShortObject } from "@/types";
 import ShortInfoComponent from "@/components/ui/shortInfo/shortInfo";
+import { fetchShorts } from "@/components/api/short";
+import { shortsState, userState } from "@/store/state";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { useIsSigned } from "@/components/firebase/auth";
 
 type shortContentProps = {
   short: ShortObject;
@@ -12,7 +15,21 @@ type shortContentProps = {
 };
 
 export default function ViewContainer() {
+  const [shorts, setShorts] = useRecoilState(shortsState);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const tokenId = useRecoilValue(userState);
+  const isSigned = useIsSigned();
+
+  useEffect(() => {
+    if (!isSigned) return;
+    if (currentIndex < shorts.length - 3) return;
+
+    (async () => {
+      if (!tokenId) return;
+      const res = await fetchShorts(tokenId);
+      setShorts((prev) => [...prev, ...res]);
+    })();
+  }, [currentIndex, tokenId, isSigned, shorts.length, setShorts]);
 
   useEffect(() => {
     const viewer = document.getElementById("viewer");
@@ -21,7 +38,8 @@ export default function ViewContainer() {
     viewer.onscroll = () => {
       const windowHigh = window.innerHeight;
       const scrollTop = viewer.scrollTop;
-      setCurrentIndex(Math.round(scrollTop / windowHigh));
+      const index = Math.round(scrollTop / windowHigh);
+      setCurrentIndex(index);
     };
   }, [setCurrentIndex]);
 
@@ -35,7 +53,13 @@ export default function ViewContainer() {
     return memoizedShortComponent;
   };
 
-  const ShortInfo = ({ short }: { short: ShortObject }) => {
+  const ShortInfo = ({
+    short,
+    isViewing,
+  }: {
+    short: ShortObject;
+    isViewing: boolean;
+  }) => {
     const memoizedShortComponent = useMemo(
       () => <ShortInfoComponent short={short} />,
       [short]
@@ -46,7 +70,7 @@ export default function ViewContainer() {
   return (
     <>
       {shorts.map((short, index) => (
-        <div className={styles.short} key={short.id}>
+        <div className={styles.short} key={`${index}-${short.id}`}>
           <div className={styles.inner_short}>
             <h1 className={styles.title}>{short.title}</h1>
 
@@ -56,7 +80,11 @@ export default function ViewContainer() {
                 index={index}
                 isViewing={index === currentIndex}
               />
-              <ShortInfo short={short} key={index} />
+              <ShortInfo
+                short={short}
+                key={index}
+                isViewing={index === currentIndex}
+              />
             </div>
           </div>
         </div>

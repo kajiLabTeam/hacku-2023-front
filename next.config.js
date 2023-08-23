@@ -13,7 +13,7 @@ const nextConfig = {
         destination:
             process.env.NODE_ENV === "production"
               ? "https://tech-tok.kajilab.tk/api/:path*" // 本番用
-              : "http://localhost:8080/api/:path*", // 開発用
+              : "https://tech-tok.kajilab.tk/api/:path*", // 開発用
       },
     ];
   },

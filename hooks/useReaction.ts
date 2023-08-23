@@ -1,9 +1,18 @@
+import {
+  fetchAddReaction,
+  fetchRemoveReaction,
+} from "@/components/api/reaction";
 import { Reactions, ReactionsState } from "@/types";
 import { useCallback, useState } from "react";
 
-export default function useReaction(defaultState: ReactionsState) {
+export default function useReaction(
+  shortid: number,
+  defaultState: ReactionsState,
+  tokenId: string
+) {
   const [reactionsState, setReactionsState] = useState(defaultState);
   const [defaultReaction] = useState(defaultState);
+  const [token] = useState(tokenId);
 
   // reaction を付ける
   const addReaction = useCallback(
