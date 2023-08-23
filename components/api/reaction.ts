@@ -1,5 +1,5 @@
 import { ReactionsState } from "@/types";
-import { commonPostFetchWithBody } from "./common";
+import { commonDeleteFetch, commonPostFetchWithBody } from "./common";
 import { reactions } from "@/const";
 
 type Reaction = { reaction: string };
@@ -11,7 +11,7 @@ const fetchAddReaction = async (
   tokenId: string
 ): Promise<Reaction> => {
   return commonPostFetchWithBody<Reaction>(
-    `short/${shortId}/reaction/add/`,
+    `/api/short/${shortId}/reaction/add/`,
     { reaction: reaction },
     tokenId
   );
@@ -23,8 +23,8 @@ const fetchRemoveReaction = async (
   reaction: string,
   tokenId: string
 ): Promise<Reaction> => {
-  return commonPostFetchWithBody<Reaction>(
-    `short/${shortId}/reaction/remove/`,
+  return commonDeleteFetch<Reaction>(
+    `/api/short/${shortId}/reaction/remove/`,
     { reaction: reaction },
     tokenId
   );

@@ -53,3 +53,26 @@ export const commonPostFetchWithBody = async <T>(
       throw err;
     });
 };
+
+// 共通処理
+export const commonDeleteFetch = async <T>(
+  path: string,
+  params: any,
+  tokenId: string
+): Promise<T> => {
+  const data = {
+    headers: {
+      Authorization: `Bearer ${tokenId}`,
+    },
+    data: params,
+  };
+  return axios
+    .delete(path, data)
+    .then((res) => {
+      return res.data as T;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+};

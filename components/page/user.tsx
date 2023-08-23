@@ -31,8 +31,6 @@ export default function UserPage() {
   useEffect(() => {
     (async () => {
       if (tokenId) {
-        console.log(tokenId);
-
         const postHistorySnap = await fetchPostHistories(tokenId);
         setPostHistories({ postHistories: postHistorySnap });
 
