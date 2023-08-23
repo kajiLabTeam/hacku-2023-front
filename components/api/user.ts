@@ -36,12 +36,13 @@ const fetchPostHistories = async (
 // 閲覧履歴を取得
 const fetchBrowsingHistories = async (
   tokenId: string,
-  page: number
-): Promise<BrowsingHistories> => {
-  return commonGetFetch<BrowsingHistories>(
+  page: number = 1
+): Promise<HistoryObject[]> => {
+  const res = await commonGetFetch<BrowsingHistories>(
     `user/browsing/history/?page=${page}`,
     tokenId
   );
+  return res.browsingHistories;
 };
 
 export {

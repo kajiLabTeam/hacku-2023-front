@@ -4,14 +4,20 @@ import { useEffect } from "react";
 import ReportList from "../ui/userPage/logReport/reportList/ReportList";
 import SubmissionResultsCard from "../ui/userPage/submissionReport/card/SubmissionResultsCard";
 import BrowsingReportChartCard from "../ui/userPage/browsingReport/card/BrowsingReportChartCard";
-import { fetchPostHistories } from "../api/user";
+import { fetchBrowsingHistories, fetchPostHistories, fetchUserInformation } from "../api/user";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { postHistoryState, userState } from "@/store/state";
+import {
+  browsingHistoryState,
+  postHistoryState,
+  userInformationState,
+  userState,
+} from "@/store/state";
 
 export default function UserPage() {
   const [_, { switchShort }] = usePlayingSound();
   const tokenId = useRecoilValue(userState);
   const setPostHistories = useSetRecoilState(postHistoryState);
+  const setBrowsingHistories = useSetRecoilState(browsingHistoryState);
 
   useEffect(() => {
     switchShort(-1);
@@ -20,12 +26,14 @@ export default function UserPage() {
   useEffect(() => {
     (async () => {
       if (tokenId) {
-        console.log(tokenId);
-        const res = await fetchPostHistories(tokenId);
-        setPostHistories({ postHistories: res });
+        const postHistorySnap = await fetchPostHistories(tokenId);
+        setPostHistories({ postHistories: postHistorySnap });
+
+        const browsingHistorySnap = await fetchBrowsingHistories(tokenId);
+        setBrowsingHistories({ browsingHistories: browsingHistorySnap });
       }
     })();
-  }, [setPostHistories, tokenId]);
+  }, [setBrowsingHistories, setPostHistories, tokenId]);
 
   return (
     <section className={styles.user}>
