@@ -1,9 +1,5 @@
-import { PostShortObject, ShortList, ShortObject } from "@/types";
-import {
-  commonGetFetch,
-  commonPostFetch,
-  commonPostFetchWithBody,
-} from "./common";
+import { PostShortObject, ShortList } from "@/types";
+import { commonGetFetch, commonPostFetchWithBody } from "./common";
 
 // ショート一覧を取得
 const fetchShorts = async (tokenId: string): Promise<ShortList> => {
@@ -12,14 +8,6 @@ const fetchShorts = async (tokenId: string): Promise<ShortList> => {
     tokenId
   );
   return res.shorts;
-};
-
-// id からショートを取得
-const fetchShortById = async (
-  tokenId: string,
-  shortId: number
-): Promise<ShortObject> => {
-  return commonGetFetch<ShortObject>(`short/get/${shortId}`, tokenId);
 };
 
 // タグかタイトルからショート一覧を取得
@@ -47,9 +35,4 @@ const fetchPostShort = async (
   );
 };
 
-export {
-  fetchShorts,
-  fetchShortById,
-  fetchShortsByTagsOrTitle,
-  fetchPostShort,
-};
+export { fetchShorts, fetchShortsByTagsOrTitle, fetchPostShort };

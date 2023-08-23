@@ -1,5 +1,6 @@
 import {
   BrowsingHistories,
+  HistoryObject,
   PostHistories,
   UserInformationObject,
   UserObject,
@@ -20,8 +21,16 @@ const fetchUserInformation = async (
 };
 
 // 投稿履歴を取得
-const fetchPostHistories = async (tokenId: string): Promise<PostHistories> => {
-  return commonGetFetch<PostHistories>("user/post/history", tokenId);
+const fetchPostHistories = async (
+  tokenId: string,
+  page: number = 1
+): Promise<HistoryObject[]> => {
+  const res = await commonGetFetch<{ postingHistories: HistoryObject[] }>(
+    `/api/user/post/history/get/?page=${page}`,
+    tokenId
+  );
+
+  return res.postingHistories;
 };
 
 // 閲覧履歴を取得

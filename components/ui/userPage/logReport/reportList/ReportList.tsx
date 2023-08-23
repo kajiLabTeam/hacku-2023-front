@@ -1,17 +1,20 @@
 import { useRecoilValue } from "recoil";
 import { Carousel } from "@mantine/carousel";
 import { Box, SimpleGrid, Text } from "@mantine/core";
-
 import styles from "./reportList.module.scss";
 import { formatNumber } from "@/components/util/util";
 import LogSlideComponent from "../slide/logSlide";
-import { postHistories } from "@/sample/postHistory";
 import { browsingHistories } from "@/sample/browsingHistory";
-import { browsingHistoryState, postHistoryState } from "@/store/state";
+import { postHistoryState } from "@/store/state";
+import { useEffect } from "react";
 
 export default function ReportList() {
-  // const postHistory = useRecoilValue(postHistoryState);
+  const postHistory = useRecoilValue(postHistoryState);
   // const browsingHistory = useRecoilValue(browsingHistoryState);
+
+  useEffect(() => {
+    console.log(postHistory);
+  }, [postHistory]);
 
   return (
     <Box>
@@ -47,7 +50,7 @@ export default function ReportList() {
         <Carousel.Slide>
           <h1 className={styles.title_in_card}>過去の投稿</h1>
           <SimpleGrid cols={2} mt="xl" verticalSpacing={40}>
-            {postHistories.map((postHistory) => {
+            {postHistory.postHistories.map((postHistory) => {
               return (
                 <Box key={postHistory.id}>
                   <LogSlideComponent
