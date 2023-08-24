@@ -3,10 +3,10 @@ import ShortViewer from "@/components/ui/shortViewer/shortViewer";
 import { useEffect, useMemo, useState } from "react";
 import { ShortObject } from "@/types";
 import ShortInfoComponent from "@/components/ui/shortInfo/shortInfo";
-import { shortsState, userState } from "@/store/state";
-import { useRecoilState, useRecoilValue } from "recoil";
+import { userState } from "@/store/state";
+import { useRecoilValue } from "recoil";
 import { useIsSigned } from "@/components/firebase/auth";
-import { fetchShorts } from "@/components/api/short";
+import { shorts } from "@/sample/short";
 
 type shortContentProps = {
   short: ShortObject;
@@ -16,7 +16,6 @@ type shortContentProps = {
 };
 
 export default function ViewContainer() {
-  const [shorts, setShorts] = useRecoilState(shortsState);
   const [currentIndex, setCurrentIndex] = useState(0);
   const tokenId = useRecoilValue(userState);
   const isSigned = useIsSigned();
@@ -30,17 +29,6 @@ export default function ViewContainer() {
       behavior: "smooth",
     });
   }
-
-  useEffect(() => {
-    if (!isSigned) return;
-    if (currentIndex < shorts.length - 3) return;
-
-    (async () => {
-      if (!tokenId) return;
-      const res = await fetchShorts(tokenId);
-      setShorts((prev) => [...prev, ...res]);
-    })();
-  }, [currentIndex, tokenId, isSigned, shorts.length, setShorts]);
 
   useEffect(() => {
     const viewer = document.getElementById("viewer");
@@ -62,7 +50,12 @@ export default function ViewContainer() {
   }: shortContentProps) => {
     const memoizedShortComponent = useMemo(
       () => (
-        <ShortViewer short={short} shortIndex={index} isViewing={isViewing} scrollToNext={scrollToNext} />
+        <ShortViewer
+          short={short}
+          shortIndex={index}
+          isViewing={isViewing}
+          scrollToNext={scrollToNext}
+        />
       ),
       [short, index, isViewing, scrollToNext]
     );

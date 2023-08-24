@@ -3,30 +3,37 @@ import { ShortObject } from "@/types";
 const shorts: ShortObject[] = [
   {
     id: 1,
-    title: "Short 1",
+    title: "CSSで幅によって見た目を変える方法",
     speaker: "ずんだもん",
     slides: [
       {
-        script: "This is the first slide1",
-        slide: "# First slide1\n\nThis is the first slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741786176434227/1-1.mp3",
+        script: "CSSで幅によって見た目を変える方法",
+        slide: "# CSSで幅によって\n# 見た目を変える方法",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/1/1.wav",
       },
       {
-        script: "This is the secound slide1",
-        slide: "# Secound slide1\n\nThis is the secound slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741786499383407/1-2.mp3",
+        script: "画面幅によってデザインを変えたいことありませんか？",
+        slide: "画面幅によってデザインを変えたいこと\nありませんか？",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/1/2.wav",
       },
       {
-        script: "This is the third slide1",
-        slide: "# Third slide1\n\nThis is the third slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741786818158673/1-3.mp3",
+        script: "そんなときは @media を使うのだ",
+        slide: "そんなときは `@media` を使いましょう！",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/1/3.wav",
+      },
+      {
+        script:
+          "このようにすることで、幅が600px以下では赤く、600pxを超えると青くなるのだ",
+        slide:
+          "```css\nbody {\n  background-color: blue;\n}\n\n@media (max-width: 600px) {\n  body {\n    background-color: red;\n  }\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/1/4.wav",
       },
     ],
-    createdAt: "2021-01-01",
+    createdAt: "2023-08-23",
     reactions: {
-      heart: { count: 11, reacted: true },
-      good: { count: 21, reacted: false },
-      smile: { count: 31, reacted: false },
+      heart: { count: 5, reacted: false },
+      good: { count: 4, reacted: false },
+      smile: { count: 12, reacted: false },
     },
     tags: ["tag1", "tag2", "tag3"],
     genre: "frontend",
@@ -35,62 +42,92 @@ const shorts: ShortObject[] = [
   },
   {
     id: 2,
-    title: "Short 2",
-    speaker: "ちび式じい",
+    title: "CSSで中央揃えにする方法",
+    speaker: "春日部つむぎ",
     slides: [
       {
-        script: "This is the first slide2",
-        slide: "# First slide2\n\nThis is the first slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741787136929932/2-1.mp3",
+        script: "CSSで中央揃えにする方法",
+        slide: "# CSSで中央揃えにする方法",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/2/1.wav",
       },
       {
-        script: "This is the secound slide2",
-        slide: "# Secound slide2\n\nThis is the secound slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741787522793472/2-2.mp3",
+        script:
+          "テキストなどのインライン要素は てきすとあらいんせんたー でできるけど",
+        slide: "```html\np {\n  text-align: center;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/2/2.wav",
       },
       {
-        script: "This is the third slide2",
-        slide: "# Third slide2\n\nThis is the third slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741787845763194/2-3.mp3",
+        script: "でぃぶろっくようそ などのブロック要素はそううまくはいかない",
+        slide: "```html\ndiv {\n  text-align: center;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/2/3.wav",
+      },
+      {
+        script: "そんなときには まーじんいんらいんおーと を使おう",
+        slide: "```html\ndiv {\n  margin-inline: auto;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/2/4.wav",
       },
     ],
-    createdAt: "2022-02-02",
+    createdAt: "2023-08-23",
     reactions: {
-      heart: { count: 12, reacted: false },
-      good: { count: 22, reacted: true },
-      smile: { count: 32, reacted: false },
+      heart: { count: 13, reacted: false },
+      good: { count: 9, reacted: false },
+      smile: { count: 20, reacted: false },
     },
     tags: ["tag1"],
-    genre: "backend",
-    poster: "bash",
+    genre: "frontend",
+    poster: "satooru",
     views: 200,
   },
   {
     id: 3,
-    title: "Short 3",
+    title: "CSSでスクロールをピタッと止める方法",
     speaker: "四国めたん",
     slides: [
       {
-        script: "This is the first slide3",
-        slide: "# First slide3\n\nThis is the first slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741788193894470/3-1.mp3",
+        script: "CSSでスクロールをピタッと止める方法",
+        slide: "# CSSでスクロールをピタッと止める方法",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/1.wav",
       },
       {
-        script: "This is the secound slide3",
-        slide: "# Secound slide3\n\nThis is the secound slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741788575563887/3-2.mp3",
+        script:
+          "スクロールした時にこのスライドのようにピッタリ止めたいことがあるよね",
+        slide: "スクロールをピッタリ止めたい！",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/2.wav",
       },
       {
-        script: "This is the third slide3",
-        slide: "# Third slide3\n\nThis is the third slide",
-        voiceURL: "https://cdn.discordapp.com/attachments/976823205543153714/1141741788894339143/3-3.mp3",
+        script: "そんな時はスクロールスナップを使う",
+        slide: "### scroll-snap を使おう！",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/3.wav",
+      },
+      {
+        script:
+          "使い方は簡単！親にオーバフローわいスクロール すくろーるすなっぷたいぷ わいまんだとりー を指定し",
+        slide:
+          "```css\n.parent {\n  overflow-y: scroll;\n  scroll-snap-type: y mandatory;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/4.wav",
+      },
+      {
+        script: "子には すくろーるすなっぷあらいん すたーと を指定する",
+        slide: "```css\n.child {\n  scroll-snap-align: start;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/5.wav",
+      },
+      {
+        script: "するとピッタリとまるようになる",
+        slide: "```css\n.child {\n  scroll-snap-align: start;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/6.wav",
+      },
+      {
+        script: "水平方向にしたければ y を x に変えるとできるよ",
+        slide:
+          "```css\n.parent {\n  overflow-x: scroll;\n  scroll-snap-type: x mandatory;\n}\n```",
+        voiceURL: "https://satooru.nagoya/hacku/shorts-voice/3/7.wav",
       },
     ],
-    createdAt: "2023-03-03",
+    createdAt: "2023-08-24",
     reactions: {
       heart: { count: 13, reacted: false },
       good: { count: 23, reacted: false },
-      smile: { count: 33, reacted: true },
+      smile: { count: 33, reacted: false },
     },
     tags: ["tag1", "tag2", "tag3", "tag4"],
     genre: "backend",
