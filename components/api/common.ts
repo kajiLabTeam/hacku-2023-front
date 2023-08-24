@@ -21,6 +21,21 @@ export const commonGetFetch = async <T>(
 };
 
 // 共通処理
+export const commonGetFetchWithoutToken = async <T>(
+  path: string
+): Promise<T> => {
+  return axios
+    .get(path)
+    .then((res) => {
+      return res.data as T;
+    })
+    .catch((err) => {
+      console.log(err);
+      throw err;
+    });
+};
+
+// 共通処理
 export const commonPostFetch = async <T>(
   path: string,
   tokenId: string

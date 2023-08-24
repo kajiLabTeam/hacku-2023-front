@@ -32,12 +32,12 @@ export default function ViewContainer() {
   }
 
   useEffect(() => {
-    if (!isSigned) return;
+    if (isSigned === undefined) return;
     if (currentIndex < shorts.length - 3) return;
 
     (async () => {
-      if (!tokenId) return;
-      const res = await fetchShorts(tokenId);
+      const res = await fetchShorts(tokenId || null);
+      console.log({ res });
       setShorts((prev) => [...prev, ...res]);
     })();
   }, [currentIndex, tokenId, isSigned, shorts.length, setShorts]);
@@ -62,7 +62,12 @@ export default function ViewContainer() {
   }: shortContentProps) => {
     const memoizedShortComponent = useMemo(
       () => (
-        <ShortViewer short={short} shortIndex={index} isViewing={isViewing} scrollToNext={scrollToNext} />
+        <ShortViewer
+          short={short}
+          shortIndex={index}
+          isViewing={isViewing}
+          scrollToNext={scrollToNext}
+        />
       ),
       [short, index, isViewing, scrollToNext]
     );
