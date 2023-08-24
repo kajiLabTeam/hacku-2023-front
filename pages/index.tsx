@@ -6,9 +6,14 @@ import { Page } from "@/types";
 import PostPage from "@/components/page/post";
 import ViewPage from "@/components/page/view";
 import UserPage from "@/components/page/user";
-import { useDisclosure, useHotkeys, useLocalStorage } from "@mantine/hooks";
+import {
+  useDisclosure,
+  useHotkeys,
+  useLocalStorage,
+  useMediaQuery,
+} from "@mantine/hooks";
 import SearchPage from "@/components/page/search";
-import { Modal } from "@mantine/core";
+import { MediaQuery, Modal } from "@mantine/core";
 import { login, logout, useIsSigned } from "@/components/firebase/auth";
 import SigninComponent from "@/components/ui/signin/signin";
 import LoadingComponent from "@/components/ui/loading/loading";
@@ -25,6 +30,7 @@ export default function Home() {
     defaultValue: "view",
   });
   const isSigned = useIsSigned();
+  const matches = useMediaQuery("(max-width: 850px)");
 
   function signinWithEnter() {
     if (opened) login();
@@ -55,21 +61,27 @@ export default function Home() {
 
   return (
     <main className={`${noto.className} ${styles.main}`}>
-      <Modal
-        opened={opened}
-        onClose={() => {
-          close();
-          setPage("view");
-        }}
-        withCloseButton={false}
-      >
-        <SigninComponent />
-      </Modal>
+      {matches ? (
+        Page["view"]
+      ) : (
+        <>
+          <Modal
+            opened={opened}
+            onClose={() => {
+              close();
+              setPage("view");
+            }}
+            withCloseButton={false}
+          >
+            <SigninComponent />
+          </Modal>
 
-      {isSigned === undefined && <LoadingComponent />}
+          {isSigned === undefined && <LoadingComponent />}
 
-      <Appbar page={page} onChangePage={setPage} />
-      {Page[page]}
+          <Appbar page={page} onChangePage={setPage} />
+          {Page[page]}
+        </>
+      )}
     </main>
   );
 }
