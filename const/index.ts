@@ -32,13 +32,15 @@ const speakers = [
 ] as const;
 
 const genres = {
-  frontend: "フロントエンド",
+  web: "web",
+  mobile: "モバイル",
   backend: "バックエンド",
   infra: "インフラ",
+  game: "ゲーム",
   others: "その他",
 } as const;
 
 const genresKeys = Object.keys(genres) as (keyof typeof genres)[];
 const genresValues = Object.values(genres);
 
-export { pages, reactions, speakers, genres, genresKeys , genresValues};
+export { pages, reactions, speakers, genres, genresKeys, genresValues };
