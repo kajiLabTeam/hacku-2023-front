@@ -41,7 +41,7 @@ export const useIsSigned = (): boolean | undefined => {
         setIsSigned(false);
       }
     });
-  }, [setUserToken]);
+  }, [setUserToken, setIsSigned]);
 
   return isSigned;
 };
