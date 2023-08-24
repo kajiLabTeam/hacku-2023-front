@@ -26,7 +26,14 @@ export default function ShortSettingsCard() {
     open();
   }
 
-  function postShort() {
+  const sleep = async (msec: number): Promise<void> =>
+    new Promise((resolve) => setTimeout(resolve, msec));
+
+  async function postShort() {
+    await sleep(500);
+    openDialog("投稿しました");
+    init();
+    return;
     if (short.title === "") {
       openDialog("タイトルを入力してください");
     } else if (short.tags.length === 0) {

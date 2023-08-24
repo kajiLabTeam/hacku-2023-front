@@ -1,6 +1,6 @@
 import { HistoryObject } from "@/types";
 
-const postHistories: HistoryObject[] = [
+const many: HistoryObject[] = [
   {
     id: 1,
     title: "10秒でわかるJavaScript",
@@ -107,5 +107,17 @@ const postHistories: HistoryObject[] = [
     poster: "Hikakin",
   },
 ];
+
+const js: HistoryObject[] = [
+  {
+    id: 1,
+    title: "JSでHelloWorld!",
+    slide: "# JSでHelloWorld!",
+    views: 0,
+    poster: "SatooRu",
+  },
+];
+
+const postHistories = js;
 
 export { postHistories };

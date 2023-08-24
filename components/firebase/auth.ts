@@ -33,6 +33,8 @@ export const useIsSigned = (): boolean | undefined => {
       if (user) {
         (async () => {
           const token = await user.getIdToken();
+          console.log(token);
+
           setUserToken(token);
           setIsSigned(true);
           void fetcAddhUser(token);

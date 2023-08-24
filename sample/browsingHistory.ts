@@ -24,14 +24,14 @@ const browsingHistories: HistoryObject[] = [
   },
   {
     id: 4,
-    title: "猿しかわからないGolang講座",
-    slide: "# Goの学び方",
+    title: "JavaScriptとTypeScript",
+    slide: "# JavaScriptとTypeScript",
     views: 7777,
-    poster: "Hikakin",
+    poster: "SatooRu",
   },
   {
     id: 5,
-    title: "10秒でわかるJavaScript",
+    title: "Rustの",
     slide: "# JSとは\n- 型がないのでエラーがでない！！",
     views: 10,
     poster: "Hikakin",

@@ -4,11 +4,6 @@ import { useEffect } from "react";
 import ReportList from "../ui/userPage/logReport/reportList/ReportList";
 import SubmissionResultsCard from "../ui/userPage/submissionReport/card/SubmissionResultsCard";
 import BrowsingReportChartCard from "../ui/userPage/browsingReport/card/BrowsingReportChartCard";
-import {
-  fetchBrowsingHistories,
-  fetchPostHistories,
-  fetchUserInformation,
-} from "../api/user";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import {
   browsingHistoryState,
@@ -16,6 +11,9 @@ import {
   userInformationState,
   userState,
 } from "@/store/state";
+import { postHistories } from "@/sample/postHistory";
+import { browsingHistories } from "@/sample/browsingHistory";
+import { userInformation } from "@/sample/userInformation";
 
 export default function UserPage() {
   const [_, { switchShort }] = usePlayingSound();
@@ -31,14 +29,11 @@ export default function UserPage() {
   useEffect(() => {
     (async () => {
       if (tokenId) {
-        const postHistorySnap = await fetchPostHistories(tokenId);
-        setPostHistories({ postHistories: postHistorySnap });
+        setPostHistories({ postHistories: postHistories });
 
-        const browsingHistorySnap = await fetchBrowsingHistories(tokenId);
-        setBrowsingHistories({ browsingHistories: browsingHistorySnap });
+        setBrowsingHistories({ browsingHistories: browsingHistories });
 
-        const userInformationSnap = await fetchUserInformation(tokenId);
-        setUserInformation(userInformationSnap);
+        setUserInformation(userInformation);
       }
     })();
   }, [setBrowsingHistories, setPostHistories, setUserInformation, tokenId]);

@@ -4,12 +4,9 @@ const userInformation: UserInformationObject = {
   achievements: [
     {
       name: "JavaScript",
-      link: "tps://firebasest",
+      link: "/sample/js.png",
     },
-    {
-      name: "TypeScript",
-      link: "https://firebasestorage.googleapis.com/v0/b/open-hack-u-2023-nagoya.appspot.com/o/image%2FTypescript_logo_2020.svg.png?alt=media&token=3405f199-1327-43de-b08e-669ab8df11d4",
-    },
+    { name: "TypeScript", link: "" },
     { name: "Go", link: "" },
     { name: "MVC", link: "" },
     { name: "C", link: "" },
@@ -47,27 +44,27 @@ const userInformation: UserInformationObject = {
       {
         name: "web",
         color: "245, 101, 101, 1",
-        dailyViews: [10, 4, 22, 1, 97, 111, 0],
+        dailyViews: [10, 15, 2, 4, 7, 1, 0],
       },
       {
         name: "モバイル",
         color: "246, 173, 85, 1",
-        dailyViews: [10, 4, 22, 1, 97, 111, 0],
+        dailyViews: [10, 4, 22, 1, 20, 11, 0],
       },
       {
         name: "ゲーム",
         color: "183, 148, 244, 1",
-        dailyViews: [73, 22, 6, 100, 22, 63, 52],
+        dailyViews: [0, 0, 0, 0, 0, 0, 0],
       },
       {
         name: "バックエンド",
         color: "99, 179, 237, 1",
-        dailyViews: [20, 11, 44, 22, 43, 4, 76],
+        dailyViews: [3, 2, 22, 0, 5, 1, 20],
       },
       {
         name: "その他",
         color: "160, 174, 192, 1",
-        dailyViews: [20, 11, 44, 22, 43, 4, 76],
+        dailyViews: [0, 0, 0, 0, 0, 0, 0],
       },
     ],
   },
