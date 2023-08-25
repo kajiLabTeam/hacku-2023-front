@@ -31,13 +31,13 @@ export default function UserPage() {
   useEffect(() => {
     (async () => {
       if (tokenId) {
-        const postHistorySnap = await fetchPostHistories(tokenId);
+        const postHistorySnap = await fetchPostHistories();
         setPostHistories({ postHistories: postHistorySnap });
 
-        const browsingHistorySnap = await fetchBrowsingHistories(tokenId);
+        const browsingHistorySnap = await fetchBrowsingHistories();
         setBrowsingHistories({ browsingHistories: browsingHistorySnap });
 
-        const userInformationSnap = await fetchUserInformation(tokenId);
+        const userInformationSnap = await fetchUserInformation();
         setUserInformation(userInformationSnap);
       }
     })();

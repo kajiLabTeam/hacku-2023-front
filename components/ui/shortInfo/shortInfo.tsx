@@ -22,11 +22,9 @@ type IconRelationType = {
 };
 
 export default function ShortInfoComponent({ short }: { short: ShortObject }) {
-  const tokenId = useRecoilValue(userState);
   const [reactionState, { addReaction, removeReaction }] = useReaction(
     short.id,
-    short.reactions,
-    tokenId || ""
+    short.reactions
   );
 
   const IconRelation: IconRelationType = {

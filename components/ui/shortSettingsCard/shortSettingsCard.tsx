@@ -41,7 +41,7 @@ export default function ShortSettingsCard() {
       openDialog("トークンを取得できませんでした");
     } else {
       (async () => {
-        await fetchPostShort(short, tokenId);
+        await fetchPostShort(short);
         openDialog("投稿しました");
         init();
       })();

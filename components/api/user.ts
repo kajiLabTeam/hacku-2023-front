@@ -8,28 +8,21 @@ import {
 import { commonGetFetch, commonPostFetch } from "./common";
 
 // ユーザーを追加
-const fetcAddhUser = async (tokenId: string): Promise<UserObject> => {
-  return commonPostFetch<UserObject>("/api/user/post/", tokenId);
+const fetcAddhUser = async (): Promise<UserObject> => {
+  return commonPostFetch<UserObject>("/api/user/post/");
 };
 
 // ユーザー情報を取得
-const fetchUserInformation = async (
-  tokenId: string
-): Promise<UserInformationObject> => {
-  return commonGetFetch<UserInformationObject>(
-    "/api/user/profile",
-    tokenId
-  );
+const fetchUserInformation = async (): Promise<UserInformationObject> => {
+  return commonGetFetch<UserInformationObject>("/api/user/profile");
 };
 
 // 投稿履歴を取得
 const fetchPostHistories = async (
-  tokenId: string,
   page: number = 1
 ): Promise<HistoryObject[]> => {
   const res = await commonGetFetch<{ postingHistories: HistoryObject[] }>(
-    `/api/user/post/history/get/?page=${page}`,
-    tokenId
+    `/api/user/post/history/get/?page=${page}`
   );
 
   return res.postingHistories;
@@ -37,12 +30,10 @@ const fetchPostHistories = async (
 
 // 閲覧履歴を取得
 const fetchBrowsingHistories = async (
-  tokenId: string,
   page: number = 1
 ): Promise<HistoryObject[]> => {
   const res = await commonGetFetch<BrowsingHistories>(
-    `/api/user/browsing/history/?page=${page}`,
-    tokenId
+    `/api/user/browsing/history/?page=${page}`
   );
   return res.browsingHistories;
 };
