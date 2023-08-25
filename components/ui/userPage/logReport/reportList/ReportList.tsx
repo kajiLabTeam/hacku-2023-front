@@ -23,6 +23,14 @@ export default function ReportList() {
             marginBottom: 80,
           },
         })}
+        styles={{
+          control: {
+            "&[data-inactive]": {
+              opacity: 0,
+              cursor: "default",
+            },
+          },
+        }}
       >
         <Carousel.Slide className={styles.grid}>
           <h1 className={styles.title_in_card}>過去の投稿</h1>
