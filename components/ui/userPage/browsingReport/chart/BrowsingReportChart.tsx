@@ -11,6 +11,8 @@ import {
 } from "chart.js";
 import { userInformationState } from "@/store/state";
 import { useEffect } from "react";
+import { GenreValue } from "@/types";
+import { genresValues } from "@/const";
 
 ChartJS.register(
   CategoryScale,
@@ -31,13 +33,26 @@ export default function BrowsingReportChart() {
     return `${month}/${day}`;
   });
 
+  const getColor = (genre: GenreValue) => {
+    const color = [
+      "rgba(245, 101, 101, 1)",
+      "rgba(66, 153, 225, 1)",
+      "rgba(246, 173, 85, 1)",
+      "rgba(72, 187, 120, 1)",
+      "rgba(159, 122, 234, 1)",
+      "rgba(160, 174, 192, 1)",
+    ];
+    const i = genresValues.indexOf(genre) % color.length;
+    return color[i];
+  };
+
   const data = {
     labels,
     datasets: userInformation.report.genres.map((genre) => {
       return {
         label: genre.name,
         data: genre.dailyViews,
-        backgroundColor: `rgba(${genre.color})`,
+        backgroundColor: getColor(genre.name),
       };
     }),
   };
