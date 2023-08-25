@@ -32,9 +32,11 @@ const speakers = [
 ] as const;
 
 const genres = {
-  frontend: "フロントエンド",
+  web: "web",
+  mobile: "モバイル",
   backend: "バックエンド",
   infra: "インフラ",
+  game: "ゲーム",
   others: "その他",
 } as const;
 
