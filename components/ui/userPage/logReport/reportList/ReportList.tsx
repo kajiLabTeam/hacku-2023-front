@@ -25,24 +25,6 @@ export default function ReportList() {
         })}
       >
         <Carousel.Slide className={styles.grid}>
-          <h1 className={styles.title_in_card}>自分の閲覧履歴</h1>
-          <SimpleGrid mb={40} cols={2} mt="xl" verticalSpacing={40}>
-            {browsingHistories.browsingHistories.map((browsingHistory) => {
-              return (
-                <Box key={browsingHistory.id}>
-                  <LogSlideComponent
-                    markdown={browsingHistory.slide}
-                    views={formatNumber(browsingHistory.views)}
-                  />
-                  <Text mt={10} fw={800} align="center">
-                    {browsingHistory.title}
-                  </Text>
-                </Box>
-              );
-            })}
-          </SimpleGrid>
-        </Carousel.Slide>
-        <Carousel.Slide className={styles.grid}>
           <h1 className={styles.title_in_card}>過去の投稿</h1>
           <SimpleGrid cols={2} mt="xl" verticalSpacing={40}>
             {postHistory.postHistories.map((postHistory) => {
@@ -54,6 +36,24 @@ export default function ReportList() {
                   />
                   <Text mt={10} fw={800} align="center">
                     {postHistory.title}
+                  </Text>
+                </Box>
+              );
+            })}
+          </SimpleGrid>
+        </Carousel.Slide>
+        <Carousel.Slide className={styles.grid}>
+          <h1 className={styles.title_in_card}>自分の閲覧履歴</h1>
+          <SimpleGrid mb={40} cols={2} mt="xl" verticalSpacing={40}>
+            {browsingHistories.browsingHistories.map((browsingHistory) => {
+              return (
+                <Box key={browsingHistory.id}>
+                  <LogSlideComponent
+                    markdown={browsingHistory.slide}
+                    views={formatNumber(browsingHistory.views)}
+                  />
+                  <Text mt={10} fw={800} align="center">
+                    {browsingHistory.title}
                   </Text>
                 </Box>
               );
