@@ -1,6 +1,6 @@
 import { speakers } from "@/const";
 import { postShortState } from "@/store/state";
-import { GenreKey, PostSlideObject, Speaker } from "@/types";
+import { GenreKey, GenreValue, PostSlideObject, Speaker } from "@/types";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 
@@ -88,7 +88,7 @@ export default function usePostShort() {
 
   // ジャンルを更新
   const setGenre = useCallback(
-    (genre: GenreKey) => {
+    (genre: GenreValue) => {
       setShorts({
         ...short,
         genre: genre,

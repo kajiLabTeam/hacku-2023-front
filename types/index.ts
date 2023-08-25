@@ -53,7 +53,7 @@ type PostShortObject = {
   speaker: Speaker;
   slides: PostSlideObject[];
   tags: string[];
-  genre: GenreKey;
+  genre: GenreValue | "";
 };
 
 // 閲覧記録

@@ -4,7 +4,7 @@ import { PinIcon } from "@/components/icons/icon";
 import usePostShort from "@/hooks/usePostShort";
 import { Button, Dialog, Select } from "@mantine/core";
 import { genres, genresKeys, genresValues, speakers } from "@/const";
-import { Speaker } from "@/types";
+import { GenreValue, Speaker } from "@/types";
 import { useDisclosure, useHotkeys } from "@mantine/hooks";
 import { fetchPostShort } from "@/components/api/short";
 import { useRecoilValue } from "recoil";
@@ -120,7 +120,7 @@ export default function ShortSettingsCard() {
               className={styles.settings_genre}
               data={genresValues}
               onChange={(v) => {
-                const g = genresKeys.find((key) => genres[key] === v) || "";
+                const g = v as GenreValue;
                 setGenre(g);
               }}
               placeholder="select genre"
