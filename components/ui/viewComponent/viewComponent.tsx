@@ -17,9 +17,6 @@ type shortContentProps = {
 
 export default function ViewContainer() {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const tokenId = useRecoilValue(userState);
-  const isSigned = useIsSigned();
-
   function scrollToNext() {
     const viewer = document.getElementById("viewer");
     if (!viewer) return;

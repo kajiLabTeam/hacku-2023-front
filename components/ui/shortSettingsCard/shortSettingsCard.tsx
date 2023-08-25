@@ -16,7 +16,6 @@ export default function ShortSettingsCard() {
   const [searchTag, setSearchTag] = useState("");
   const [short, { init, addTag, deleteTag, setTitle, setSpeaker, setGenre }] =
     usePostShort();
-  const tokenId = useRecoilValue(userState);
 
   // キーイベント
   useHotkeys([["esc", close]]);
@@ -44,11 +43,9 @@ export default function ShortSettingsCard() {
       openDialog("スピーカーを選択してください");
     } else if (short.slides.length < 2) {
       openDialog("スライドを2枚以上追加してください");
-    } else if (tokenId === null) {
-      openDialog("トークンを取得できませんでした");
     } else {
       (async () => {
-        await fetchPostShort(short, tokenId);
+        await fetchPostShort(short);
         openDialog("投稿しました");
         init();
       })();

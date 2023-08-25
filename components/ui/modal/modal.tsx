@@ -51,8 +51,7 @@ export default function ModalComponent({
 
     const res = await fetchShortsByTagsOrTitle(
       searchTitle,
-      tags.values.employees.join(","),
-      tokenId
+      tags.values.employees.join(",")
     );
 
     if (res.length === 0) {

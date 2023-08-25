@@ -1,14 +1,16 @@
 import axios from "axios";
+import { getAuth } from "firebase/auth";
+import { app } from "../firebase/firebase";
 
 // 共通処理
-export const commonGetFetch = async <T>(
-  path: string,
-  tokenId: string
-): Promise<T> => {
+export const commonGetFetch = async <T>(path: string): Promise<T> => {
+  const auth = getAuth(app);
+  const token = auth.currentUser?.getIdToken();
+
   return axios
     .get(path, {
       headers: {
-        Authorization: `Bearer ${tokenId}`,
+        Authorization: `Bearer ${token}`,
       },
     })
     .then((res) => {
@@ -21,11 +23,11 @@ export const commonGetFetch = async <T>(
 };
 
 // 共通処理
-export const commonPostFetch = async <T>(
-  path: string,
-  tokenId: string
-): Promise<T> => {
-  const header = { headers: { Authorization: `Bearer ${tokenId}` } };
+export const commonPostFetch = async <T>(path: string): Promise<T> => {
+  const auth = getAuth(app);
+  const token = auth.currentUser?.getIdToken();
+
+  const header = { headers: { Authorization: `Bearer ${token}` } };
   return axios
     .post(path, {}, header)
     .then((res) => {
@@ -40,11 +42,13 @@ export const commonPostFetch = async <T>(
 // 共通処理
 export const commonPostFetchWithBody = async <T>(
   path: string,
-  body: any,
-  tokenId: string
+  body: any
 ): Promise<T> => {
+  const auth = getAuth(app);
+  const token = auth.currentUser?.getIdToken();
+
   return axios
-    .post(path, body, { headers: { Authorization: `Bearer ${tokenId}` } })
+    .post(path, body, { headers: { Authorization: `Bearer ${token}` } })
     .then((res) => {
       return res.data as T;
     })
@@ -57,12 +61,14 @@ export const commonPostFetchWithBody = async <T>(
 // 共通処理
 export const commonDeleteFetch = async <T>(
   path: string,
-  params: any,
-  tokenId: string
+  params: any
 ): Promise<T> => {
+  const auth = getAuth(app);
+  const token = auth.currentUser?.getIdToken();
+
   const data = {
     headers: {
-      Authorization: `Bearer ${tokenId}`,
+      Authorization: `Bearer ${token}`,
     },
     data: params,
   };

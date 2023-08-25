@@ -7,12 +7,10 @@ import { useCallback, useState } from "react";
 
 export default function useReaction(
   shortid: number,
-  defaultState: ReactionsState,
-  tokenId: string
+  defaultState: ReactionsState
 ) {
   const [reactionsState, setReactionsState] = useState(defaultState);
   const [defaultReaction] = useState(defaultState);
-  const [token] = useState(tokenId);
 
   // reaction を付ける
   const addReaction = useCallback(
@@ -26,10 +24,10 @@ export default function useReaction(
         clonedReaction[reaction].count = defaultReaction[reaction].count + 1;
       }
 
-      void fetchAddReaction(shortid, reaction, token);
+      void fetchAddReaction(shortid, reaction);
       setReactionsState(clonedReaction);
     },
-    [defaultReaction, reactionsState, shortid, token]
+    [defaultReaction, reactionsState, shortid]
   );
 
   // reaction を外す
@@ -45,10 +43,10 @@ export default function useReaction(
         clonedReaction[reaction].count = defaultReaction[reaction].count;
       }
 
-      void fetchRemoveReaction(shortid, reaction, token);
+      void fetchRemoveReaction(shortid, reaction);
       setReactionsState(clonedReaction);
     },
-    [defaultReaction, reactionsState, shortid, token]
+    [defaultReaction, reactionsState, shortid]
   );
 
   return [reactionsState, { removeReaction, addReaction }] as const;

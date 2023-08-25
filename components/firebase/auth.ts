@@ -37,7 +37,7 @@ export const useIsSigned = (): boolean | undefined => {
 
           setUserToken(token);
           setIsSigned(true);
-          void fetcAddhUser(token);
+          void fetcAddhUser();
         })();
       } else {
         setIsSigned(false);
