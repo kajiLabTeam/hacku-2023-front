@@ -25,6 +25,11 @@
       width: 70px;
       transition: all 0.3s;
       border-radius: 0 20px 20px 0;
+      cursor: pointer;
+
+      &:hover {
+        background-color: var(--background);
+      }
     }
 
     .icon_player {
