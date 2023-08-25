@@ -15,7 +15,6 @@ export const commonGetFetch = async <T>(
       return res.data as T;
     })
     .catch((err) => {
-      console.log(err);
       throw err;
     });
 };
@@ -30,7 +29,6 @@ export const commonGetFetchWithoutToken = async <T>(
       return res.data as T;
     })
     .catch((err) => {
-      console.log(err);
       throw err;
     });
 };
@@ -47,7 +45,6 @@ export const commonPostFetch = async <T>(
       return res.data as T;
     })
     .catch((err) => {
-      console.log(err);
       throw err;
     });
 };
@@ -64,7 +61,6 @@ export const commonPostFetchWithBody = async <T>(
       return res.data as T;
     })
     .catch((err) => {
-      console.log(err);
       throw err;
     });
 };
@@ -87,7 +83,6 @@ export const commonDeleteFetch = async <T>(
       return res.data as T;
     })
     .catch((err) => {
-      console.log(err);
       throw err;
     });
 };

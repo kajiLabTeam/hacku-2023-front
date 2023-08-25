@@ -37,7 +37,6 @@ export default function ViewContainer() {
 
     (async () => {
       const res = await fetchShorts(tokenId || null);
-      console.log({ res });
       setShorts((prev) => [...prev, ...res]);
     })();
   }, [currentIndex, tokenId, isSigned, shorts.length, setShorts]);
