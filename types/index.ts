@@ -58,8 +58,8 @@ type PostShortObject = {
 
 // 閲覧記録
 type ViewRecord = {
-  dates: Array<Date>;
-  genres: Array<Genre>;
+  dates: Date[];
+  genres: Genre[];
 };
 
 // 実績
@@ -70,7 +70,7 @@ type Achievement = {
 
 // ジャンル
 type Genre = {
-  name: string;
+  name: GenreValue;
   color: string;
   dailyViews: number[];
 };

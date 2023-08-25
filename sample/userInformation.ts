@@ -43,27 +43,27 @@ const userInformation: UserInformationObject = {
     genres: [
       {
         name: "web",
-        color: "245, 101, 101, 1",
+        color: "x",
         dailyViews: [10, 15, 2, 4, 7, 1, 0],
       },
       {
         name: "モバイル",
-        color: "246, 173, 85, 1",
+        color: "x",
         dailyViews: [10, 4, 22, 1, 20, 11, 0],
       },
       {
         name: "ゲーム",
-        color: "183, 148, 244, 1",
+        color: "x",
         dailyViews: [0, 0, 0, 0, 0, 0, 0],
       },
       {
         name: "バックエンド",
-        color: "99, 179, 237, 1",
+        color: "x",
         dailyViews: [3, 2, 22, 0, 5, 1, 20],
       },
       {
         name: "その他",
-        color: "160, 174, 192, 1",
+        color: "x",
         dailyViews: [0, 0, 0, 0, 0, 0, 0],
       },
     ],
