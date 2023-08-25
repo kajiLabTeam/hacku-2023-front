@@ -17,6 +17,7 @@ export default function ShortSettingsCard() {
   const [short, { init, addTag, deleteTag, setTitle, setSpeaker, setGenre }] =
     usePostShort();
   const tokenId = useRecoilValue(userState);
+  const [isPosting, setIsPosting] = useState(false);
 
   // キーイベント
   useHotkeys([["esc", close]]);
@@ -27,7 +28,9 @@ export default function ShortSettingsCard() {
   }
 
   function postShort() {
-    if (short.title === "") {
+    if (isPosting) {
+      openDialog("投稿中です. しばらくお待ちください");
+    } else if (short.title === "") {
       openDialog("タイトルを入力してください");
     } else if (short.tags.length === 0) {
       openDialog("タグを入力してください");
@@ -41,9 +44,12 @@ export default function ShortSettingsCard() {
       openDialog("トークンを取得できませんでした");
     } else {
       (async () => {
+        setIsPosting(true);
+        init();
+        openDialog("投稿中です");
         await fetchPostShort(short);
         openDialog("投稿しました");
-        init();
+        setIsPosting(false);
       })();
     }
   }
