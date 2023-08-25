@@ -1,6 +1,6 @@
 .short_viewr {
   margin-inline: auto;
-  // max-width: calc((100vh - 150px) / 9 * 16);
+  max-width: calc((100vh - 150px) / 9 * 16);
   width: 100%;
   height: auto;
   border-radius: 10px;
@@ -8,7 +8,6 @@
   aspect-ratio: 16/9;
   position: relative;
   cursor: pointer;
-
 
   .volume_icon {
     width: 30px;
