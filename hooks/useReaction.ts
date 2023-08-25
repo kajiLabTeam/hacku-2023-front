@@ -26,7 +26,9 @@ export default function useReaction(
         clonedReaction[reaction].count = defaultReaction[reaction].count + 1;
       }
 
-      void fetchAddReaction(shortid, reaction, token);
+      if (token) {
+        void fetchAddReaction(shortid, reaction, token);
+      }
       setReactionsState(clonedReaction);
     },
     [defaultReaction, reactionsState, shortid, token]
@@ -45,7 +47,9 @@ export default function useReaction(
         clonedReaction[reaction].count = defaultReaction[reaction].count;
       }
 
-      void fetchRemoveReaction(shortid, reaction, token);
+      if (token) {
+        void fetchRemoveReaction(shortid, reaction, token);
+      }
       setReactionsState(clonedReaction);
     },
     [defaultReaction, reactionsState, shortid, token]
