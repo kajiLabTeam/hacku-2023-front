@@ -5,7 +5,6 @@ import styles from "./reportList.module.scss";
 import { formatNumber } from "@/components/util/util";
 import LogSlideComponent from "../slide/logSlide";
 import { browsingHistoryState, postHistoryState } from "@/store/state";
-import { useEffect } from "react";
 
 export default function ReportList() {
   const postHistory = useRecoilValue(postHistoryState);
@@ -34,7 +33,12 @@ export default function ReportList() {
       >
         <Carousel.Slide className={styles.grid}>
           <h1 className={styles.title_in_card}>過去の投稿</h1>
-          <SimpleGrid cols={2} mt="xl" verticalSpacing={40}>
+          <SimpleGrid
+            cols={2}
+            mt="xl"
+            verticalSpacing={40}
+            className={styles.carousel}
+          >
             {postHistory.postHistories.map((postHistory) => {
               return (
                 <Box key={postHistory.id}>
@@ -52,7 +56,13 @@ export default function ReportList() {
         </Carousel.Slide>
         <Carousel.Slide className={styles.grid}>
           <h1 className={styles.title_in_card}>自分の閲覧履歴</h1>
-          <SimpleGrid mb={40} cols={2} mt="xl" verticalSpacing={40}>
+          <SimpleGrid
+            mb={40}
+            cols={2}
+            mt="xl"
+            verticalSpacing={40}
+            className={styles.carousel}
+          >
             {browsingHistories.browsingHistories.map((browsingHistory) => {
               return (
                 <Box key={browsingHistory.id}>

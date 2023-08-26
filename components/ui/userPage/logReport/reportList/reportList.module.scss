@@ -13,5 +13,16 @@
 }
 
 .grid {
-  min-height: calc(100vh - 20px);
+  height: calc(100vh - 20px);
+}
+
+.carousel {
+  height: calc(100vh - 100px);
+  overflow-y: scroll;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
