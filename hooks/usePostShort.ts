@@ -1,10 +1,32 @@
 import { speakers } from "@/const";
 import { postShortState } from "@/store/state";
-import { GenreKey, GenreValue, PostSlideObject, Speaker } from "@/types";
+import {
+  GenreKey,
+  GenreValue,
+  PostShortObject,
+  PostSlideObject,
+  Speaker,
+} from "@/types";
+import { useLocalStorage } from "@mantine/hooks";
 import { useCallback, useEffect } from "react";
 import { useRecoilState } from "recoil";
 
 export default function usePostShort() {
+  const [shortLocal, setShortLocal] = useLocalStorage<PostShortObject>({
+    key: "short",
+    defaultValue: {
+      title: "",
+      speaker: speakers[0],
+      slides: [
+        {
+          script: "",
+          slide: "",
+        },
+      ],
+      tags: [],
+      genre: "",
+    },
+  });
   const [short, setShorts] = useRecoilState(postShortState);
 
   const init = useCallback(() => {
@@ -164,6 +186,10 @@ export default function usePostShort() {
       init();
     }
   }, [init, short.slides.length]);
+
+  useEffect(() => {
+    setShortLocal(short);
+  }, [setShortLocal, short]);
 
   return [
     short,
